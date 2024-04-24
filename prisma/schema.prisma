@@ -14,21 +14,73 @@ datasource db {
 }
 
 model User {
-  id            Int      @id @default(autoincrement())
-  username      String   @unique
-  email         String   @unique
+  id            Int            @id @default(autoincrement())
+  username      String         @unique
+  email         String         @unique
   password      String
-  status        String   @db.VarChar(128)
+  status        String         @db.VarChar(128)
   biography     String
-  register_date DateTime @default(now())
-  role          Role     @relation(fields: [role_id], references: [id])
+  register_date DateTime       @default(now())
+  role          Role           @relation(fields: [role_id], references: [id])
   role_id       Int
-  friends       User[]   @relation("UserFriends")
-  friend_of     User[]   @relation("UserFriends")
+  friends       User[]         @relation("UserFriends")
+  friend_of     User[]         @relation("UserFriends")
+  games         Game_Tag[]
+  platforms     Platform_Tag[]
+  events        Event[]
 }
 
 model Role {
   id    Int    @id @default(autoincrement())
   name  String
   users User[]
+}
+
+model Game_Tag {
+  id     Int    @id @default(autoincrement())
+  name   String
+  api_id Int
+  User   User[]
+}
+
+model Platform_Tag {
+  id     Int    @id @default(autoincrement())
+  name   String
+  api_id Int
+  User   User[]
+}
+
+model Event {
+  id         Int      @id @default(autoincrement())
+  name       String
+  start_date DateTime
+  end_date   DateTime
+  links      Link[]
+  location   Location @relation(fields: [locationId], references: [id])
+  User       User[]
+  locationId Int
+}
+
+model Location {
+  id        Int     @id @default(autoincrement())
+  city      String
+  zip_code  Int
+  country   String
+  latitude  String?
+  longitude String?
+  Event     Event[]
+}
+
+model Link {
+  id          Int       @id @default(autoincrement())
+  text        String
+  type        Link_Type @relation(fields: [link_TypeId], references: [id])
+  Event       Event     @relation(fields: [eventId], references: [id])
+  eventId     Int
+  link_TypeId Int
+}
+
+model Link_Type {
+  id   Int    @id @default(autoincrement())
+  Link Link[]
 }
