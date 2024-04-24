@@ -14,26 +14,36 @@ datasource db {
 }
 
 model User {
-  id            Int            @id @default(autoincrement())
-  username      String         @unique
-  email         String         @unique
-  password      String
-  status        String         @db.VarChar(128)
-  biography     String
-  register_date DateTime       @default(now())
-  role          Role           @relation(fields: [role_id], references: [id])
-  role_id       Int
-  friends       User[]         @relation("UserFriends")
-  friend_of     User[]         @relation("UserFriends")
-  games         Game_Tag[]
-  platforms     Platform_Tag[]
-  events        Event[]
+  id             Int              @id @default(autoincrement())
+  username       String           @unique
+  email          String           @unique
+  password       String
+  status         String           @db.VarChar(128)
+  biography      String
+  register_date  DateTime         @default(now())
+  role           Role             @relation(fields: [role_id], references: [id])
+  role_id        Int
+  friends        User[]           @relation("UserFriends")
+  friend_of      User[]           @relation("UserFriends")
+  games          Game_Tag[]
+  platforms      Platform_Tag[]
+  events         Event[]
+  Friend_Request Friend_Request[]
+  Friend_Requested Friend_Request[] @relation("UserFriendsRequest")
 }
 
 model Role {
   id    Int    @id @default(autoincrement())
   name  String
   users User[]
+}
+
+model Friend_Request {
+  id           Int  @id @default(autoincrement())
+  requester_id Int
+  requester    User @relation(name: "UserFriendsRequester", fields: [requester_id], references: [id])
+  receiver_id  Int
+  receiver     User @relation(fields: [receiver_id], references: [id])
 }
 
 model Game_Tag {
