@@ -14,22 +14,23 @@ datasource db {
 }
 
 model User {
-  id             Int              @id @default(autoincrement())
-  username       String           @unique
-  email          String           @unique
-  password       String
-  status         String           @db.VarChar(128)
-  biography      String
-  register_date  DateTime         @default(now())
-  role           Role             @relation(fields: [role_id], references: [id])
-  role_id        Int
-  friends        User[]           @relation("UserFriends")
-  friend_of      User[]           @relation("UserFriends")
-  games          Game_Tag[]
-  platforms      Platform_Tag[]
-  events         Event[]
-  Friend_Request Friend_Request[]
-  Friend_Requested Friend_Request[] @relation("UserFriendsRequest")
+  id                   Int              @id @default(autoincrement())
+  username             String           @unique
+  email                String           @unique
+  password             String
+  status               String           @db.VarChar(128)
+  biography            String
+  register_date        DateTime         @default(now())
+  role                 Role             @relation(fields: [role_id], references: [id])
+  role_id              Int
+  friends              User[]           @relation("UserFriends")
+  friend_of            User[]           @relation("UserFriends")
+  games                Game_Tag[]
+  platforms            Platform_Tag[]
+  events_interested_by Event[] @relation("eventsInterest")
+  events_author        Event[] @relation("eventsAuthor")
+  Friend_Request       Friend_Request[] @relation("UserFriendsRequester")
+  Friend_Requested     Friend_Request[] @relation("UserFriendsRequested")
 }
 
 model Role {
@@ -41,9 +42,9 @@ model Role {
 model Friend_Request {
   id           Int  @id @default(autoincrement())
   requester_id Int
-  requester    User @relation(name: "UserFriendsRequester", fields: [requester_id], references: [id])
+  requester    User @relation(name: "UserFriendsRequested", fields: [requester_id], references: [id])
   receiver_id  Int
-  receiver     User @relation(fields: [receiver_id], references: [id])
+  receiver     User @relation(name: "UserFriendsRequester", fields: [receiver_id], references: [id])
 }
 
 model Game_Tag {
@@ -61,14 +62,16 @@ model Platform_Tag {
 }
 
 model Event {
-  id         Int      @id @default(autoincrement())
-  name       String
-  start_date DateTime
-  end_date   DateTime
-  links      Link[]
-  location   Location @relation(fields: [locationId], references: [id])
-  User       User[]
-  locationId Int
+  id               Int      @id @default(autoincrement())
+  name             String
+  start_date       DateTime
+  end_date         DateTime
+  links            Link[]
+  location         Location @relation(fields: [locationId], references: [id])
+  users_interested User[] @relation("eventsInterest")
+  author           User     @relation(name: "eventsAuthor", fields: [userId], references: [id])
+  locationId       Int
+  userId           Int
 }
 
 model Location {
