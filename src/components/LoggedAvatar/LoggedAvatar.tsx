@@ -1,6 +1,7 @@
 import {JSX} from "react";
 import style from "./style.module.css"
 import Image from "next/image";
+import SignOutButton from "@/components/SignOutButton/SignOutButton";
 
 type LoggedAvatarProps = {
     username: string;
@@ -25,9 +26,19 @@ export default function LoggedAvatar({username, status}: LoggedAvatarProps): JSX
             </div>
 
             <div className={style.wrap}>
-                <p>1</p>
-                <p>2</p>
-                <p>3</p>
+                <a className={style.links}>
+                    <Image src="/assets/profile_dropdown/profile.svg" alt="Logo de profile" width={25} height={100}/>
+                    <p>Mon profil</p>
+                </a>
+                <a className={style.links}>
+                    <Image src="/assets/profile_dropdown/friends.svg" alt="Logo des amis" width={25} height={100}/>
+                    <p>Mes amis</p>
+                </a>
+                <a className={style.links}>
+                    <Image src="/assets/profile_dropdown/settings.svg" alt="Logo des paramètres" width={25} height={100}/>
+                    <p>Paramètres</p>
+                </a>
+                <SignOutButton />
             </div>
         </div>
     );

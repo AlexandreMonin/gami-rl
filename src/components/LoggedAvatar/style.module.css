@@ -32,5 +32,37 @@
 }
 
 .container:hover {
-    max-height: 200px;
+    cursor: default;
+    max-height: 210px;
+}
+
+.links {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+}
+
+.logout {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+    color: #FF0000;
+    font-weight: 500;
+}
+
+.wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem
+}
+
+.links:hover, .logout:hover {
+    font-weight: 700;
+    transition: font-weight 0.2s ease-in-out;
+    cursor: pointer;
 }
