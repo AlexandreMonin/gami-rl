@@ -13,7 +13,7 @@ type NavbarProps = {
 export default function Navbar({user}: NavbarProps): JSX.Element {
     return (
         <div className={style.navbar}>
-            <Image src="/logo.svg" alt="Logo du site Gami-RL" width={180} height={250} priority/>
+            <Image src="/logo.svg" alt="Logo du site Gami-RL" width={180} height={250} priority className={style.logo}/>
 
             <div className={style.tabs}>
                 <NavbarTab name="Accueil" href="/"/>
@@ -21,10 +21,9 @@ export default function Navbar({user}: NavbarProps): JSX.Element {
                 <NavbarTab name="Joueurs" href="/Players"/>
                 <NavbarTab name="Évènements" href="/Events"/>
             </div>
-
             {
                 user ? (
-                    <LoggedAvatar/>
+                    <LoggedAvatar username={user.username} status={user.status}/>
                 ) : (
                     <NotLoggedAvatar/>
                 )

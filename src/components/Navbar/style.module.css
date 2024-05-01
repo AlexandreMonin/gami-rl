@@ -2,10 +2,16 @@
     display: flex;
     width: 100%;
     padding: 0.5rem 2rem;
+    position: relative;
+}
+
+.logo {
+    position: absolute;
+    top: 0
 }
 
 .tabs {
-    width: 100%;
+    flex: 1;
     display: flex;
     flex-direction: row;
     justify-content: center;
