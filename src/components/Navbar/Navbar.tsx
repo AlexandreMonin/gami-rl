@@ -7,7 +7,7 @@ import NotLoggedAvatar from "@/components/NotLoggedAvatar/NotLoggedAvatar";
 export default function Navbar(): JSX.Element {
     return (
         <div className={style.navbar}>
-            <Image src="/logo.svg" alt="Logo du site Gami-RL" width={180} height={250} />
+            <Image src="/logo.svg" alt="Logo du site Gami-RL" width={180} height={250} priority />
 
             <div className={style.tabs}>
                 <NavbarTab name="Accueil" href="/"/>

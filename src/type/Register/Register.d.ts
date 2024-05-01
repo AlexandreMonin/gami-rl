@@ -1,9 +1,9 @@
 type Register = {
-    username: String;
-    email: String;
+    username: string;
+    email: string;
     password: string;
-    status: String,
-    biography: String;
+    status: string,
+    biography: string;
     roleId: number
 };
 

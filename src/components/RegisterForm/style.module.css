@@ -5,7 +5,13 @@
     border: 0.1rem solid black;
 }
 
-.passwordContainer {
+.passwordContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.passwordField {
     display: flex;
     width: 100%;
     gap: 1rem;
@@ -16,4 +22,12 @@
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+}
+
+.passwordMatchError{
+    padding-left: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: red;
+    align-self: flex-start;
 }
