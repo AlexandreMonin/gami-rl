@@ -1,7 +1,14 @@
-export default function Signup() {
+import {JSX} from "react";
+import style from "./style.module.css";
+
+export default function Signup(): JSX.Element {
     return (
-        <main>
-            <p>Bonjour</p>
+        <main className={style.main}>
+            <div className={style.card}>
+                <form>
+                    <input name="email" id="email" type="email" placeholder="Email"/>
+                </form>
+            </div>
         </main>
     );
 }
