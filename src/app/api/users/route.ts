@@ -1,6 +1,6 @@
 import prisma from "@/utils/database";
 import bcrypt from "bcrypt";
-import Register from "@/type/Register/Register";
+import Register from "@/type/User/User";
 import {NextResponse} from "next/server";
 
 export async function POST(req: Request) {

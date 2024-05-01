@@ -1,10 +1,10 @@
-type Register = {
+type User = {
     username: string;
     email: string;
     password: string;
     status: string,
     biography: string;
-    roleId: number
+    role_id: number
 };
 
-export default Register;
+export default User;

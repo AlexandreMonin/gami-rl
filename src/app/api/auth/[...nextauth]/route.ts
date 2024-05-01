@@ -1,21 +1,64 @@
-import NextAuth from "next-auth";
+import prisma from "@/utils/database";
+import bcrypt from "bcrypt";
+import NextAuth, {Session} from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import User from "@/type/User/User";
+import {JWT} from "next-auth/jwt";
 
-export const options = {
+export const authOptions = {
     providers: [
         CredentialsProvider({
             name: "Credentials",
             credentials: {
-                username: { label: "Username", type: "text", placeholder: "jsmith" },
+                username: { label: "Email", type: "text", placeholder: "jsmith" },
                 password: { label: "Password", type: "password" },
             },
-            async authorize(credentials, req) {
+            async authorize(credentials) {
+                if (!credentials?.password || !credentials?.username) {
+                    return null;
+                }
+
+                const user = await prisma.user.findFirst({
+                    where: {
+                        email: credentials?.username,
+                    },
+                });
+
+                if (
+                    user &&
+                    (await bcrypt.compare(credentials.password, user.password))
+                ) {
+                    return user;
+                }
+
                 return null;
             },
         }),
     ],
-}
+    callbacks: {
+        async session({ session, token } : {session: Session, token: JWT}) {
+            console.log(token);
 
-const handler = NextAuth(options);
+            const user: User = await prisma.user.findFirst({
+                where: {
+                    email: token?.email?.toString(),
+                },
+            }) as User;
+
+            session.user = {
+                ...session.user,
+                username: user.username,
+            };
+            return session
+        }
+    }
+};
+
+const handler = NextAuth({
+    ...authOptions,
+    // Override types because NextAuth doesn't export them correctly
+    callbacks: authOptions.callbacks as any,
+    providers: authOptions.providers as any,
+});
 
 export { handler as GET, handler as POST };
