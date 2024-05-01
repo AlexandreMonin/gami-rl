@@ -48,6 +48,7 @@ export const authOptions = {
             session.user = {
                 ...session.user,
                 username: user.username,
+                status: user.status
             };
             return session
         }
