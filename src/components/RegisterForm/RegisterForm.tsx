@@ -1,5 +1,5 @@
 "use client"
-import {JSX, useEffect, useState} from "react";
+import {JSX, useState} from "react";
 import style from "./style.module.css";
 import axios from "axios";
 
@@ -29,7 +29,7 @@ export default function RegisterForm(): JSX.Element {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        axios.post("/api/users", {email, username, password, status, biography}).then((response) => {console.log("ok")})
+        axios.post("/api/users", {email, username, password, status, biography}).then((response) => {console.log(response.status)})
 
     }
 
