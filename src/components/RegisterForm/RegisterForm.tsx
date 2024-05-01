@@ -18,7 +18,7 @@ export default function RegisterForm(): JSX.Element {
                    className={style.userInput}/>
             <textarea name="biography" id="biography" rows={5} className={style.userInput} placeholder="Biographie"/>
 
-            <button type="submit" className="button-primary">M'enregistrer</button>
+            <button type="submit" className="button-primary">M&apos;enregistrer</button>
         </form>
     );
 }
