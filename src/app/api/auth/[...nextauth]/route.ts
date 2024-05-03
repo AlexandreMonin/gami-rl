@@ -6,6 +6,9 @@ import User from "@/type/User/User";
 import {JWT} from "next-auth/jwt";
 
 export const authOptions = {
+    pages: {
+        signIn: "/user/signin"
+    },
     providers: [
         CredentialsProvider({
             name: "Credentials",

@@ -2,6 +2,7 @@
 import {JSX, useEffect, useState} from "react";
 import style from "./style.module.css";
 import {usePathname} from "next/navigation";
+import Link from "next/link";
 
 type NavbarTabProps = {
     name: String;
@@ -17,8 +18,8 @@ export default function NavbarTab({ name, href } : NavbarTabProps): JSX.Element 
     }, [pathname, href]);
 
     return (
-        <a className={ isActive ? style.activeText : style.text} href={href}>
+        <Link className={ isActive ? style.activeText : style.text} href={href}>
             {name}
-        </a>
+        </Link>
     );
 }
