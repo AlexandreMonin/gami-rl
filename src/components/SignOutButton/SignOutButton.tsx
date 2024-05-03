@@ -3,7 +3,6 @@ import {JSX} from "react";
 import style from "./style.module.css";
 import Image from "next/image";
 import {signOut} from "next-auth/react";
-import Link from "next/link";
 
 const SignOut = async () => {
     await signOut({ redirect: true, callbackUrl: '/' });
