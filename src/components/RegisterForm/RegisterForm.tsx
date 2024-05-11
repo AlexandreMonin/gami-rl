@@ -11,6 +11,7 @@ export default function RegisterForm(): JSX.Element {
     const [status, setStatus] = useState("");
     const [biography, setBiography] = useState("");
     const [passwordsMatch, setPasswordsMatch] = useState(true);
+    const [role_id, setRole_id] = useState(0);
 
     const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPassword(event.target.value);
@@ -29,13 +30,30 @@ export default function RegisterForm(): JSX.Element {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        axios.post("/api/users", {email, username, password, status, biography}).then((response) => {console.log(response.status)})
+        axios.post("/api/users", {email, username, password, status, biography, role_id}).then((response) => {console.log(response.status)})
 
     }
 
     return (
         <form className={style.registerForm} onSubmit={handleSubmit}>
-            <input name="email" id="email" type="email" placeholder="Email" className={style.userInput} value={email} onChange={event => setEmail(event.target.value)} />
+
+            <fieldset className={style.fieldset}>
+                <legend className={style.legend}>
+                    Je m&apos;inscris en tant que
+                </legend>
+
+                <div>
+                    <input type="radio" id="player" name="userType" value={1} onChange={event => setRole_id(parseInt(event.target.value))}/>
+                    <label htmlFor="player">Joueur</label>
+                </div>
+                <div>
+                    <input type="radio" id="association" name="userType" value={2} onChange={event => setRole_id(parseInt(event.target.value))}/>
+                    <label htmlFor="association">Association</label>
+                </div>
+            </fieldset>
+
+            <input name="email" id="email" type="email" placeholder="Email" className={style.userInput} value={email}
+                   onChange={event => setEmail(event.target.value)} />
             <input name="username" id="username" type="text" placeholder="Pseudonyme" className={style.userInput} value={username} onChange={event => setUsername(event.target.value)} />
 
             <div className={style.passwordContainer}>

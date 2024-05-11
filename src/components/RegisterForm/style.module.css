@@ -31,3 +31,17 @@
     color: red;
     align-self: flex-start;
 }
+
+.fieldset {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem;
+    border-width: 1px;
+    width: 100%;
+}
+
+.legend {
+    margin-left: 5px;
+}

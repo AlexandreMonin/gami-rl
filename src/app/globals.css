@@ -25,6 +25,15 @@ button {
 }
 
 .button-primary {
+    border: 1px #5F0099 solid;
     background-color: #5F0099;
     color: white;
+    transition-duration: 0.5s;
+}
+
+.button-primary:hover{
+    border: 1px #5F0099 solid;
+    background-color: white;
+    color: #5F0099;
+    transition-duration: 0.5s;
 }

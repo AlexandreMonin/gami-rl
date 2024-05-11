@@ -4,7 +4,7 @@ import Register from "@/type/User/User";
 import {NextResponse} from "next/server";
 
 export async function POST(req: Request) {
-    const {username, email, password, status, biography}: Register = await req.json();
+    const {username, email, password, status, biography, role_id}: Register = await req.json();
     const hashPassword = await bcrypt.hash(password, 10);
 
     try {
@@ -15,7 +15,11 @@ export async function POST(req: Request) {
                 password: hashPassword,
                 status,
                 biography,
-                role_id: 1
+                role: {
+                    connect: {
+                        id: role_id,
+                    }
+                }
             },
         });
         return NextResponse.json({ data: newUser }, { status: 201 });
