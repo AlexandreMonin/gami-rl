@@ -1,0 +1,30 @@
+.userInput {
+    width: 100%;
+    border-radius: 0.5rem;
+    padding: 0.2rem 1rem;
+    border: 0.1rem solid black;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.labelInput {
+    color: #5F0099;
+    margin-bottom: -1rem;
+    margin-left: 0.5rem;
+    align-self: flex-start;
+}
+
+.inputGroup {
+    width: 100%;
+}
+
+.required {
+    color: red;
+}
+
+.checkboxGroup {
+    align-self: center;
+}

@@ -70,6 +70,7 @@ model Event {
   locationId       Int
   userId           Int
   post             Post[]
+  isPrivate        Boolean
 }
 
 model Location {
@@ -92,8 +93,8 @@ model Link {
 }
 
 model Link_Type {
-  id   Int    @id @default(autoincrement())
-  name String
+  id    Int    @id @default(autoincrement())
+  name  String
   links Link[]
 }
 
