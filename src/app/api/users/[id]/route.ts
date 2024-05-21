@@ -10,7 +10,7 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
             //     role: true,
             // }
         });
-        console.log('user:' + user);
+        // console.log('user:' + user);
         if (user) {
             return NextResponse.json({data: user}, {status: 200});
         }

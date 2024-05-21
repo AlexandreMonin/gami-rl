@@ -28,11 +28,12 @@ export default async function PlayerCard({id}: { id: number }) {
     const playerId = await GetPlayerById(id);
     const player = playerId.data as User;
     return (
-        <div className={style.player_card}>
-            <h2 className={style.player_card_name}>{player.username}</h2>
-            <p className={style.player_card_email}>{player.email}</p>
-            <p className={style.player_card_status}>{player.status}</p>
-            <p className={style.player_card_biography}>{player.biography}</p>
-        </div>
+        <a href={`/user/profile/${id}`}>
+            <div className={style.player_card}>
+                <h2 className={style.player_card_name}>{player.username}</h2>
+                <p className={style.player_card_status}>{player.status}</p>
+                <p className={style.player_card_biography}>{player.biography}</p>
+            </div>
+        </a>
     )
 }
