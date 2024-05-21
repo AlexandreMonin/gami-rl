@@ -30,7 +30,9 @@ export default function RegisterForm(): JSX.Element {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        axios.post("/api/users", {email, username, password, status, biography, role}).then((response) => {console.log(response.status)})
+        axios.post("/api/users", {email, username, password, status, biography, role}).then((response) => {
+            console.log(response.status)
+        })
 
     }
 
@@ -43,34 +45,62 @@ export default function RegisterForm(): JSX.Element {
                 </legend>
 
                 <div>
-                    <input type="radio" id="player" name="userType" value="player" onChange={event => setRole(event.target.value)}/>
+                    <input type="radio" id="player" name="userType" value="player"
+                           onChange={event => setRole(event.target.value)}/>
                     <label htmlFor="player">Joueur</label>
                 </div>
                 <div>
-                    <input type="radio" id="association" name="userType" value="association" onChange={event => setRole(event.target.value)}/>
+                    <input type="radio" id="association" name="userType" value="association"
+                           onChange={event => setRole(event.target.value)}/>
                     <label htmlFor="association">Association</label>
                 </div>
             </fieldset>
 
-            <input name="email" id="email" type="email" placeholder="Email" className={style.userInput} value={email}
-                   onChange={event => setEmail(event.target.value)} />
-            <input name="username" id="username" type="text" placeholder="Pseudonyme" className={style.userInput} value={username} onChange={event => setUsername(event.target.value)} />
+            <div className={style.inputGroup}>
+                <label htmlFor="email" className={style.labelInput}>Email</label>
+                <input name="email" id="email" type="email" placeholder="mon@email.com" className={style.userInput}
+                       value={email}
+                       onChange={event => setEmail(event.target.value)}/>
+            </div>
+
+            <div className={style.inputGroup}>
+                <label htmlFor="username" className={style.labelInput}>Pseudonyme</label>
+                <input name="username" id="username" type="text" placeholder="Pseudonyme" className={style.userInput}
+                       value={username} onChange={event => setUsername(event.target.value)}/>
+            </div>
 
             <div className={style.passwordContainer}>
                 <div className={style.passwordField}>
-                    <input name="password" id="password" type="password" placeholder="Mot de passe"
-                           className={style.userInput} value={password}
-                           onChange={handlePasswordChange}/>
-                    <input name="confirmPassword" id="confirmPassword" type="password"
-                           placeholder="Confirmer le mot de passe" className={style.userInput} value={confirmPassword}
-                           onChange={handleConfirmPasswordChange}/>
+                    <div className={style.inputGroup}>
+                        <label htmlFor="password" className={style.labelInput}>Mot de passe</label>
+                        <input name="password" id="password" type="password" placeholder="********"
+                               className={style.userInput} value={password}
+                               onChange={handlePasswordChange}/>
+                    </div>
+                    <div className={style.inputGroup}>
+                        <label htmlFor="confirmPassword" className={style.labelInput}>Confirmer votre mot de
+                            passe</label>
+                        <input name="confirmPassword" id="confirmPassword" type="password"
+                               placeholder="********" className={style.userInput}
+                               value={confirmPassword}
+                               onChange={handleConfirmPasswordChange}/>
+                    </div>
                 </div>
-                {!passwordsMatch && <p className={style.passwordMatchError}>Les mots de passe ne correspondent pas.</p>}
+                {!passwordsMatch &&
+                    <p className={style.passwordMatchError}>Les mots de passe ne correspondent pas.</p>}
             </div>
 
-            <input name="status" id="status" type="text" placeholder="Décrivez-vous en une phrase"
-                   className={style.userInput} value={status} onChange={event => setStatus(event.target.value)} />
-            <textarea name="biography" id="biography" rows={10} className={style.userInput} placeholder="Biographie" value={biography} onChange={event => setBiography(event.target.value)} />
+            <div className={style.inputGroup}>
+                <label htmlFor="status" className={style.labelInput}>Status</label>
+                <input name="status" id="status" type="text" placeholder="Décrivez-vous en une phrase..."
+                       className={style.userInput} value={status} onChange={event => setStatus(event.target.value)}/>
+            </div>
+
+            <div className={style.inputGroup}>
+                <label htmlFor="biography" className={style.labelInput}>Biographie</label>
+                <textarea name="biography" id="biography" rows={10} className={style.userInput} placeholder="Dites en d'avantage"
+                          value={biography} onChange={event => setBiography(event.target.value)}/>
+            </div>
 
             <button type="submit" className="button-primary">M&apos;enregistrer</button>
         </form>

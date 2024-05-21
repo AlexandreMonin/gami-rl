@@ -2,6 +2,7 @@
 import {signIn} from "next-auth/react";
 import {JSX, useState} from "react";
 import style from "@/components/RegisterForm/style.module.css";
+import Link from "next/link";
 
 export default function LoginForm() : JSX.Element {
     const [email, setEmail] = useState("");
@@ -26,6 +27,9 @@ export default function LoginForm() : JSX.Element {
             <button type="submit">
                 Connexion
             </button>
+            <Link href="/user/signup" >
+                Inscription
+            </Link>
         </form>
     )
 }
