@@ -1,12 +1,13 @@
 // import {Player, Step} from "@prisma/client";
-import axios from "axios";
+import User from "@/type/User/User";
+import style from "./style.module.css";
 
 export async function GetPlayerById(id: number): Promise<{ data : {
 
         // ingredients: RecipeIngredient[];
         // steps: (Step & { ingredients: [{ quantity: string; name: string; id: number }] })[]
-        id: number;
-        name: String;
+        // id: number;
+        // name: String;
     }}> {
 
     const apiUrl = process.env.APP_URL;
@@ -25,19 +26,13 @@ export async function GetPlayerById(id: number): Promise<{ data : {
 export default async function PlayerCard({id}: { id: number }) {
 
     const playerId = await GetPlayerById(id);
-    const player = playerId.data;
+    const player = playerId.data as User;
     return (
-            <div>
-                <div>
-                    <span>
-                        {player.email}
-                        {player.id}
-                        {player.name}
-                    </span>
-                    <span>
-                        {/*{player.description}*/}
-                    </span>
-                </div>
-            </div>
+        <div className={style.player_card}>
+            <h2 className={style.player_card_name}>{player.username}</h2>
+            <p className={style.player_card_email}>{player.email}</p>
+            <p className={style.player_card_status}>{player.status}</p>
+            <p className={style.player_card_biography}>{player.biography}</p>
+        </div>
     )
 }

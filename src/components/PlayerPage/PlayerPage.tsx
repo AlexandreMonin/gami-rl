@@ -1,4 +1,6 @@
 import PlayerCard from "@/components/PlayerCard/PlayerCard"
+import User from "@/type/User/User";
+import style from "@/components/PlayerPage/style.module.css";
 
 const retrievePlayers = async () => {
     try {
@@ -17,12 +19,12 @@ const retrievePlayers = async () => {
 
 export default async function PlayerPage() {
     const players = await retrievePlayers();
-    return (
+    const data = players.data as User[];
 
-        <div>
-            {players.data.map((player: { id: number }) => (
-                // <span key={player.id}>{player.id}</span>
-                <PlayerCard key={player.id} id={player.id} aria-label="Player"/>
+    return (
+        <div className={style.player_container}>
+             {data.map((player) => (
+                <PlayerCard key={player.id} id={player.id} aria-label="Player" />
             ))}
         </div>
     );
