@@ -1,7 +1,7 @@
 "use client"
 import {JSX, useState} from "react";
 import style from "./style.module.css";
-import axios from "axios";
+import {TailSpin} from "react-loader-spinner";
 
 export default function RegisterForm(): JSX.Element {
     const [email, setEmail] = useState("");
@@ -12,6 +12,7 @@ export default function RegisterForm(): JSX.Element {
     const [biography, setBiography] = useState("");
     const [passwordsMatch, setPasswordsMatch] = useState(true);
     const [role, setRole] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
 
     const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPassword(event.target.value);
@@ -27,13 +28,32 @@ export default function RegisterForm(): JSX.Element {
 
     };
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+        setIsLoading(true);
+        if (passwordsMatch) {
+            try{
+                const response = await fetch("/api/users", {
+                    method: "POST",
+                    headers: {
+                        contentType: "application/json",
+                    },
+                    body: JSON.stringify({email, username, password, status, biography, role})
+                });
 
-        axios.post("/api/users", {email, username, password, status, biography, role}).then((response) => {
-            console.log(response.status)
-        })
+                if (!response.ok){
+                    console.log("Failed to sign up");
+                } else {
+                    const data = await response.json();
+                    console.log(data);
+                }
 
+            } catch (e: any) {
+                console.error("An error has occured :", e);
+            }
+
+            setIsLoading(false);
+        }
     }
 
     return (
@@ -41,49 +61,52 @@ export default function RegisterForm(): JSX.Element {
 
             <fieldset className={style.fieldset}>
                 <legend className={style.legend}>
-                    Je m&apos;inscris en tant que
+                    Je m&apos;inscris en tant que <span className={style.required}>*</span>
                 </legend>
 
                 <div className={style.radioButton}>
                     <input type="radio" id="player" name="userType" value="player"
-                           onChange={event => setRole(event.target.value)}/>
+                           onChange={event => setRole(event.target.value)} required/>
                     <label htmlFor="player">Joueur</label>
                 </div>
                 <div className={style.radioButton}>
                     <input type="radio" id="association" name="userType" value="association"
-                           onChange={event => setRole(event.target.value)}/>
+                           onChange={event => setRole(event.target.value)} required/>
                     <label htmlFor="association">Association</label>
                 </div>
             </fieldset>
 
             <div className={style.inputGroup}>
-                <label htmlFor="email" className={style.labelInput}>Email</label>
+                <label htmlFor="email" className={style.labelInput}>Email <span
+                    className={style.required}>*</span></label>
                 <input name="email" id="email" type="email" placeholder="mon@email.com" className={style.userInput}
                        value={email}
-                       onChange={event => setEmail(event.target.value)}/>
+                       onChange={event => setEmail(event.target.value)} required/>
             </div>
 
             <div className={style.inputGroup}>
-                <label htmlFor="username" className={style.labelInput}>Pseudonyme</label>
+                <label htmlFor="username" className={style.labelInput}>Pseudonyme <span
+                    className={style.required}>*</span></label>
                 <input name="username" id="username" type="text" placeholder="Pseudonyme" className={style.userInput}
-                       value={username} onChange={event => setUsername(event.target.value)}/>
+                       value={username} onChange={event => setUsername(event.target.value)} required/>
             </div>
 
             <div className={style.passwordContainer}>
                 <div className={style.passwordField}>
                     <div className={style.inputGroup}>
-                        <label htmlFor="password" className={style.labelInput}>Mot de passe</label>
+                        <label htmlFor="password" className={style.labelInput}>Mot de passe <span
+                            className={style.required}>*</span></label>
                         <input name="password" id="password" type="password" placeholder="********"
                                className={style.userInput} value={password}
-                               onChange={handlePasswordChange}/>
+                               onChange={handlePasswordChange} required/>
                     </div>
                     <div className={style.inputGroup}>
                         <label htmlFor="confirmPassword" className={style.labelInput}>Confirmer votre mot de
-                            passe</label>
+                            passe <span className={style.required}>*</span></label>
                         <input name="confirmPassword" id="confirmPassword" type="password"
                                placeholder="********" className={style.userInput}
                                value={confirmPassword}
-                               onChange={handleConfirmPasswordChange}/>
+                               onChange={handleConfirmPasswordChange} required/>
                     </div>
                 </div>
                 {!passwordsMatch &&
@@ -98,11 +121,24 @@ export default function RegisterForm(): JSX.Element {
 
             <div className={style.inputGroup}>
                 <label htmlFor="biography" className={style.labelInput}>Biographie</label>
-                <textarea name="biography" id="biography" rows={10} className={style.userInput} placeholder="Dites en d'avantage"
+                <textarea name="biography" id="biography" rows={10} className={style.userInput}
+                          placeholder="Dites en d'avantage"
                           value={biography} onChange={event => setBiography(event.target.value)}/>
             </div>
 
-            <button type="submit" className="button-primary">M&apos;enregistrer</button>
+            {
+                isLoading ? (
+                    <button type="submit" className="button-primary-disabled" disabled>M&apos;enregistrer <TailSpin
+                        visible={true}
+                        height="30"
+                        width="30"
+                        color="#5F0099"
+                        ariaLabel="tail-spin-loading"
+                    /></button>
+                ) : (
+                    <button type="submit" className="button-primary">M&apos;enregistrer</button>
+                )
+            }
         </form>
     );
 }
