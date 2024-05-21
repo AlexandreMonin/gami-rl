@@ -44,12 +44,12 @@ export default function RegisterForm(): JSX.Element {
                     Je m&apos;inscris en tant que
                 </legend>
 
-                <div>
+                <div className={style.radioButton}>
                     <input type="radio" id="player" name="userType" value="player"
                            onChange={event => setRole(event.target.value)}/>
                     <label htmlFor="player">Joueur</label>
                 </div>
-                <div>
+                <div className={style.radioButton}>
                     <input type="radio" id="association" name="userType" value="association"
                            onChange={event => setRole(event.target.value)}/>
                     <label htmlFor="association">Association</label>
