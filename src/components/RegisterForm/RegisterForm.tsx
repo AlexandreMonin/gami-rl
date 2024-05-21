@@ -11,7 +11,7 @@ export default function RegisterForm(): JSX.Element {
     const [status, setStatus] = useState("");
     const [biography, setBiography] = useState("");
     const [passwordsMatch, setPasswordsMatch] = useState(true);
-    const [role_id, setRole_id] = useState(0);
+    const [role, setRole] = useState("");
 
     const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPassword(event.target.value);
@@ -30,7 +30,7 @@ export default function RegisterForm(): JSX.Element {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        axios.post("/api/users", {email, username, password, status, biography, role_id}).then((response) => {console.log(response.status)})
+        axios.post("/api/users", {email, username, password, status, biography, role}).then((response) => {console.log(response.status)})
 
     }
 
@@ -43,11 +43,11 @@ export default function RegisterForm(): JSX.Element {
                 </legend>
 
                 <div>
-                    <input type="radio" id="player" name="userType" value={1} onChange={event => setRole_id(parseInt(event.target.value))}/>
+                    <input type="radio" id="player" name="userType" value="player" onChange={event => setRole(event.target.value)}/>
                     <label htmlFor="player">Joueur</label>
                 </div>
                 <div>
-                    <input type="radio" id="association" name="userType" value={2} onChange={event => setRole_id(parseInt(event.target.value))}/>
+                    <input type="radio" id="association" name="userType" value="association" onChange={event => setRole(event.target.value)}/>
                     <label htmlFor="association">Association</label>
                 </div>
             </fieldset>

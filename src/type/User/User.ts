@@ -4,7 +4,7 @@ type User = {
     password: string;
     status: string,
     biography: string;
-    role_id: number
+    role: string
 };
 
 export default User;

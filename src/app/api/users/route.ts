@@ -4,26 +4,38 @@ import Register from "@/type/User/User";
 import {NextResponse} from "next/server";
 
 export async function POST(req: Request) {
-    const {username, email, password, status, biography, role_id}: Register = await req.json();
+    const {username, email, password, status, biography, role}: Register = await req.json();
     const hashPassword = await bcrypt.hash(password, 10);
 
     try {
-        const newUser = await prisma.user.create({
-            data: {
-                email,
-                username,
-                password: hashPassword,
-                status,
-                biography,
-                role: {
-                    connect: {
-                        id: role_id,
-                    }
-                }
-            },
+
+        const userRole = await prisma.role.findFirst({
+            where: {
+                name: role,
+            }
         });
-        return NextResponse.json({ data: newUser }, { status: 201 });
+
+        if (!userRole) {
+            return NextResponse.json({error: "role is missing"}, {status: 500});
+        } else {
+            const newUser = await prisma.user.create({
+                data: {
+                    email,
+                    username,
+                    password: hashPassword,
+                    status,
+                    biography,
+                    role: {
+                        connect: {
+                            id: userRole.id,
+                        }
+                    }
+                },
+            });
+            return NextResponse.json({data: newUser}, {status: 201});
+        }
+
     } catch (e: any) {
-        return NextResponse.json({ error: e.message }, { status: 500 });
+        return NextResponse.json({error: e.message}, {status: 500});
     }
 }
