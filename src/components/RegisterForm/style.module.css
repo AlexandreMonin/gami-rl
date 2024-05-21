@@ -42,6 +42,27 @@
     width: 100%;
 }
 
+.radioButton {
+    align-self: center;
+}
+
 .legend {
-    margin-left: 5px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    color: #5F0099;
+}
+
+.labelInput {
+    color: #5F0099;
+    margin-bottom: -1rem;
+    margin-left: 0.5rem;
+    align-self: flex-start;
+}
+
+.inputGroup {
+    width: 100%;
+}
+
+.required {
+    color: red;
 }

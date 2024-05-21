@@ -1,0 +1,31 @@
+.cardSuccess {
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+    background-color: rgb(36, 186, 36);
+    padding-left: 5rem;
+    padding-right: 5rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 5px 15px 4px rgba(0,0,0,0.10);
+    box-shadow: 0 5px 15px 4px rgba(0,0,0,0.10);
+}
+
+.cardFail {
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+    background-color: red;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 5px 15px 4px rgba(0,0,0,0.10);
+    box-shadow: 0 5px 15px 4px rgba(0,0,0,0.10);
+}
+
+.text {
+    font-size: 1.2rem;
+}

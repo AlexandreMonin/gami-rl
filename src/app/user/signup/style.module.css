@@ -1,5 +1,10 @@
 .title {
     text-align: center;
+}
+
+.required {
+    color: red;
+    text-align: center;
     margin-bottom: 1rem;
 }
 
