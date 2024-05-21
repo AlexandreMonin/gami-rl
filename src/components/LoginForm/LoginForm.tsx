@@ -27,7 +27,7 @@ export default function LoginForm() : JSX.Element {
             <button type="submit">
                 Connexion
             </button>
-            <Link href="/user/signup" >
+            <Link href={"/user/signup"} >
                 Inscription
             </Link>
         </form>
