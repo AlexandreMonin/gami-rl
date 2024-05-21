@@ -41,7 +41,7 @@ export async function POST(req: Request) {
 
         if (e instanceof Prisma.PrismaClientKnownRequestError) {
             if (e.code === 'P2002') {
-                const target = e.meta?.target;
+                const target: string[] = e.meta?.target as [];
                 if (target && target.includes('email')) {
                     return NextResponse.json({data: "L'adresse email existe déjà"}, {status: 400});
                 } else if (target && target.includes('username')) {
@@ -49,6 +49,6 @@ export async function POST(req: Request) {
                 }
             }
         }
-        return NextResponse.json({data: e.message}, {status: 500});
+        return NextResponse.json({data: e}, {status: 500});
     }
 }

@@ -50,6 +50,13 @@ export default function RegisterForm(): JSX.Element {
                     setModalMessage(data.data);
                 } else {
                     setSuccess(true);
+                    setEmail("");
+                    setUsername("");
+                    setPassword("");
+                    setConfirmPassword("");
+                    setStatus("");
+                    setBiography("");
+                    setRole("");
                     setModalMessage("Enregistrement réussi");
                 }
 
@@ -132,7 +139,7 @@ export default function RegisterForm(): JSX.Element {
             <div className={style.inputGroup}>
                 <label htmlFor="biography" className={style.labelInput}>Biographie</label>
                 <textarea name="biography" id="biography" rows={10} className={style.userInput}
-                          placeholder="Dites en d'avantage"
+                          placeholder="Dites en d'avantage..."
                           value={biography} onChange={event => setBiography(event.target.value)}/>
             </div>
 
