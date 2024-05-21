@@ -2,6 +2,7 @@
 import {JSX, useState} from "react";
 import style from "./style.module.css";
 import {TailSpin} from "react-loader-spinner";
+import InformationToast from "@/components/InformationToast/InformationToats";
 
 export default function RegisterForm(): JSX.Element {
     const [email, setEmail] = useState("");
@@ -13,18 +14,17 @@ export default function RegisterForm(): JSX.Element {
     const [passwordsMatch, setPasswordsMatch] = useState(true);
     const [role, setRole] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
     const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPassword(event.target.value);
         setPasswordsMatch(event.target.value === confirmPassword);
-        console.log(passwordsMatch);
 
     };
 
     const handleConfirmPasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setConfirmPassword(event.target.value);
         setPasswordsMatch(event.target.value === password);
-        console.log(passwordsMatch);
 
     };
 
@@ -32,7 +32,7 @@ export default function RegisterForm(): JSX.Element {
         event.preventDefault();
         setIsLoading(true);
         if (passwordsMatch) {
-            try{
+            try {
                 const response = await fetch("/api/users", {
                     method: "POST",
                     headers: {
@@ -41,8 +41,8 @@ export default function RegisterForm(): JSX.Element {
                     body: JSON.stringify({email, username, password, status, biography, role})
                 });
 
-                if (!response.ok){
-                    console.log("Failed to sign up");
+                if (!response.ok) {
+                    console.error("Failed to sign up");
                 } else {
                     const data = await response.json();
                     console.log(data);
@@ -52,8 +52,12 @@ export default function RegisterForm(): JSX.Element {
                 console.error("An error has occured :", e);
             }
 
-            setIsLoading(false);
         }
+        setIsLoading(false);
+        setIsOpen(true);
+        setTimeout(() => {
+            setIsOpen(false);
+        }, 8000);
     }
 
     return (
@@ -139,6 +143,7 @@ export default function RegisterForm(): JSX.Element {
                     <button type="submit" className="button-primary">M&apos;enregistrer</button>
                 )
             }
+            <InformationToast information="Enregistrement réussi" isOpen={isOpen} success={true}/>
         </form>
     );
 }
