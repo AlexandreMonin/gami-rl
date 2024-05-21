@@ -22,10 +22,12 @@ export default async function PlayerPage() {
     const data = players.data as User[];
 
     return (
-        <div className={style.player_container}>
-             {data.map((player) => (
-                <PlayerCard key={player.id} id={player.id} aria-label="Player" />
-            ))}
+        <div className={style.container}>
+            <div className={style.player_container}>
+                 {data.map((player) => (
+                    <PlayerCard key={player.id} id={player.id} aria-label="Player" />
+                ))}
+            </div>
         </div>
     );
 }
