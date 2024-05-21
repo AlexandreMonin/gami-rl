@@ -1,0 +1,23 @@
+.tagGame {
+    background-color: pink;
+    margin-top: 1vh;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    padding-top: 1vh;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    padding-bottom: 1vh;
+    width: 5vw;
+}
+
+.tagPlatform {
+    background-color: green;
+    margin-top: 1vh;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    padding-top: 1vh;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    padding-bottom: 1vh;
+    width: 5vw;
+}

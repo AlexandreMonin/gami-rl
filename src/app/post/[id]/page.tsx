@@ -1,4 +1,3 @@
-// components/RecipePage.tsx
 import PostDetails from '@/components/Posts/PostDetails/PostDetails';
 import React from 'react';
 
@@ -18,11 +17,11 @@ const retrievePosts = async (id : string) => {
     }
 };
 
-const RecipePage = async( { params } : {params: { id: string }}) => {
-    const recipe = await retrievePosts(params.id);
+const PostPage = async( { params } : {params: { id: string }}) => {
+    const post = await retrievePosts(params.id);
     return (
-        <PostDetails params={recipe}/>
+        <PostDetails params={post}/>
     );
 };
 
-export default RecipePage;
+export default PostPage;

@@ -1,4 +1,3 @@
-// components/RecipeList.tsx
 import Post from '@/type/Post/Post';
 import PostCard from '@/components/Posts/PostCard/PostCard';
 import styles from './style.module.css';
