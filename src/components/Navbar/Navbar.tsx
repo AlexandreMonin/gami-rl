@@ -17,7 +17,7 @@ export default function Navbar({user}: NavbarProps): JSX.Element {
 
             <div className={style.tabs}>
                 <NavbarTab name="Accueil" href="/"/>
-                <NavbarTab name="Forum" href="/Questions"/>
+                <NavbarTab name="Forum" href="/post"/>
                 <NavbarTab name="Joueurs" href="/Players"/>
                 <NavbarTab name="Évènements" href="/Events"/>
             </div>
