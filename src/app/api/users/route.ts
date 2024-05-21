@@ -2,6 +2,7 @@ import prisma from "@/utils/database";
 import bcrypt from "bcrypt";
 import Register from "@/type/User/User";
 import {NextResponse} from "next/server";
+import {Prisma} from "@prisma/client";
 
 export async function POST(req: Request) {
     const {username, email, password, status, biography, role}: Register = await req.json();
@@ -36,10 +37,18 @@ export async function POST(req: Request) {
         }
 
     } catch (e: any) {
-        return NextResponse.json({error: e.message}, {status: 500});
-    }
-}
+        console.error(e);
 
-export async function GET() {
-    return NextResponse.json({data: "ca marche"});
+        if (e instanceof Prisma.PrismaClientKnownRequestError) {
+            if (e.code === 'P2002') {
+                const target = e.meta?.target;
+                if (target && target.includes('email')) {
+                    return NextResponse.json({data: "L'adresse email existe déjà"}, {status: 400});
+                } else if (target && target.includes('username')) {
+                    return NextResponse.json({data: "Le nom d'utilisateur existe déjà"}, {status: 400});
+                }
+            }
+        }
+        return NextResponse.json({data: e.message}, {status: 500});
+    }
 }

@@ -15,6 +15,8 @@ export default function RegisterForm(): JSX.Element {
     const [role, setRole] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
+    const [modalMessage, setModalMessage] = useState("");
+    const [success, setSuccess] = useState(false);
 
     const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPassword(event.target.value);
@@ -41,15 +43,19 @@ export default function RegisterForm(): JSX.Element {
                     body: JSON.stringify({email, username, password, status, biography, role})
                 });
 
+                const data = await response.json();
+
                 if (!response.ok) {
-                    console.error("Failed to sign up");
+                    setSuccess(false);
+                    setModalMessage(data.data);
                 } else {
-                    const data = await response.json();
-                    console.log(data);
+                    setSuccess(true);
+                    setModalMessage("Enregistrement réussi");
                 }
 
             } catch (e: any) {
-                console.error("An error has occured :", e);
+                setSuccess(false);
+                setModalMessage("Une erreur est survenue, veuillez réessayer plus tard");
             }
 
         }
@@ -143,7 +149,7 @@ export default function RegisterForm(): JSX.Element {
                     <button type="submit" className="button-primary">M&apos;enregistrer</button>
                 )
             }
-            <InformationToast information="Enregistrement réussi" isOpen={isOpen} success={true}/>
+            <InformationToast information={modalMessage} isOpen={isOpen} success={success}/>
         </form>
     );
 }
