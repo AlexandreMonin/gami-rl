@@ -9,8 +9,8 @@ export default function EventForm() {
     return (
         <form className={style.form}>
             <div className={style.checkboxGroup}>
-                <input type="checkbox" id="isPrivate" name="isPrivate"/>
-                <label htmlFor="isPrivate" onChange={}>Evènement privé</label>
+                <input type="checkbox" id="isPrivate" name="isPrivate" onChange={(event) => setIsPrivate(event.target.checked)}/>
+                <label htmlFor="isPrivate">Evènement privé</label>
             </div>
 
             <div className={style.inputGroup}>
