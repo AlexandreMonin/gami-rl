@@ -32,6 +32,7 @@
 }
 
 .dateGroup {
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -47,6 +48,7 @@
 }
 
 .adress {
+    width: 100%;
     display: flex;
     flex-direction: row;
     gap: 1rem;
