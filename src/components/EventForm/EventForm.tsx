@@ -8,6 +8,8 @@ export default function EventForm() {
     const [city, setCity] = useState("");
     const [zip_code, setZip_Code] = useState("");
     const [country, setCountry] = useState("");
+    const [latitude, setLatitude] = useState("");
+    const [longitude, setLongitude] = useState("");
     const [isPrivate, setIsPrivate] = useState(false);
 
     return (
@@ -80,6 +82,27 @@ export default function EventForm() {
                            value={country}
                            onChange={event => setCountry(event.target.value)} required/>
                 </div>
+            </div>
+
+            <div className={style.adress}>
+                <div className={style.inputGroup}>
+                    <label htmlFor="latitude" className={style.labelInput}>Lattitude<span
+                        className={style.required}>*</span></label>
+                    <input name="latitude" id="latitude" type="text" placeholder=""
+                           className={style.userInput}
+                           value={latitude}
+                           onChange={event => setLatitude(event.target.value)} required/>
+                </div>
+
+                <div className={style.inputGroup}>
+                    <label htmlFor="longitude" className={style.labelInput}>Longitude<span
+                        className={style.required}>*</span></label>
+                    <input name="longityde" id="longitude" type="text" placeholder=""
+                           className={style.userInput}
+                           value={longitude}
+                           onChange={event => setLongitude(event.target.value)} required/>
+                </div>
+
             </div>
 
         </form>
