@@ -75,6 +75,7 @@ model Event {
 
 model Location {
   id        Int     @id @default(autoincrement())
+  adress    String
   city      String
   zip_code  Int
   country   String
