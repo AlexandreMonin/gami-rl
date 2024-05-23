@@ -1,0 +1,25 @@
+.player_card_name {
+    font-size: 2rem;
+    font-weight: bold;
+    border-radius: 0.4rem;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    background-color: rgba(231, 231, 231, 0.47);
+}
+
+.player_card_biography {
+    border-radius: 0.4rem;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    background-color: rgba(231, 231, 231, 0.47);
+
+}
+
+.player_card_status {
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 0.4rem;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    background-color: rgba(231, 231, 231, 0.47);
+}

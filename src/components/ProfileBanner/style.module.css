@@ -1,0 +1,111 @@
+.profile_name {
+    font-weight: bold;
+    border-radius: 0.4rem;
+    margin: 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    background-color: rgba(231, 231, 231, 0.47);
+    max-width:60%;
+}
+
+.profile_biography {
+    border-radius: 0.4rem;
+    margin: 1rem;
+    padding: 0.5rem;
+    background-color: rgba(231, 231, 231, 0.47);
+
+}
+
+.profile_status {
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 0.4rem;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    background-color: rgba(231, 231, 231, 0.47);
+}
+
+.row_container {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    border: 2px solid #6aff00;
+}
+
+.banner_content{
+    width: 100vw;
+}
+
+.row_top_banner_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    position: relative;
+    width: 100%;
+    top: 14.5rem; left: 1rem;
+    border: 2px solid #6aff00;
+}
+
+.row_bottom_banner_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    /*flex-direction: row;*/
+    position: relative;
+    top:15rem; left: 1rem;
+    width: 100%;
+    border: 1px solid red;
+}
+
+.profile_platform_icons{
+    /*flex-direction: row;*/
+    /*display: flex;*/
+    /*justify-content: flex-end;*/
+
+}
+.profile_settings_buttons{
+
+}
+.buttons {
+    height: 40px;
+    width: 40px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    margin-top: 0.5rem;
+    margin-right: 0.3rem;
+}
+
+.dot {
+    height: 50px;
+    width: 50px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 0.3rem;
+}
+
+.circle {
+    background-color: lightblue;
+    border-radius: 50%;
+    width: 200px;
+    min-width: 200px;
+    height: 200px;
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    align-content: center;
+    /*margin: 0.5rem;*/
+    position: relative;
+    top: 6rem; left: 1rem;
+    /*margin: auto;*/
+}
+
+.banner_image{
+    background-color: #2d50b8;
+    background-image: url("https://www.w3schools.com/css/img_lights.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100vw;
+    height: 19rem;
+    position: fixed;
+}
