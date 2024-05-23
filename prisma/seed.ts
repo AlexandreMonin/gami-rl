@@ -20,6 +20,42 @@ async function main() {
             name: 'association',
         },
     });
+
+    await prisma.link_Type.create({
+        data: {
+            name: "phone-number"
+        }
+    });
+
+    await prisma.link_Type.create({
+        data: {
+            name: "website"
+        }
+    });
+
+    await prisma.link_Type.create({
+        data: {
+            name: "facebook"
+        }
+    });
+
+    await prisma.link_Type.create({
+        data: {
+            name: "instagram"
+        }
+    });
+
+    await prisma.link_Type.create({
+        data: {
+            name: "twitter"
+        }
+    });
+
+    await prisma.link_Type.create({
+        data: {
+            name: "youtube"
+        }
+    });
 }
 
 main()

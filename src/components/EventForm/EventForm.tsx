@@ -1,8 +1,14 @@
 "use client"
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import style from "./style.module.css"
+import {JSX} from "react";
+import EventLink from "@/components/EventLinks/EventLinks";
+import InformationToast from "@/components/InformationToast/InformationToats";
 
-export default function EventForm() {
+export default function EventForm(): JSX.Element {
+    const [isOpen, setIsOpen] = useState(false);
+    const [modalMessage, setModalMessage] = useState("");
+    const [success, setSuccess] = useState(false);
     const [name, setName] = useState("");
     const [adress, setAdress] = useState("");
     const [city, setCity] = useState("");
@@ -10,7 +16,36 @@ export default function EventForm() {
     const [country, setCountry] = useState("");
     const [latitude, setLatitude] = useState("");
     const [longitude, setLongitude] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("");
+    const [linkTypes, setLinkTypes] = useState([]);
     const [isPrivate, setIsPrivate] = useState(false);
+
+    useEffect(() => {
+        const getLinkTypes = async () => {
+            try {
+                const response = await fetch("/api/event/linktypes", {
+                    method: "GET",
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    setSuccess(false);
+                    setModalMessage(data.data);
+                    setIsOpen(true);
+                    setTimeout(() => {
+                        setIsOpen(false);
+                    }, 8000);
+                } else {
+                    setLinkTypes(data);
+                }
+            } catch (e: any) {
+                console.log(e)
+            }
+        }
+
+        getLinkTypes();
+    }, [])
 
     return (
         <form className={style.form}>
@@ -100,7 +135,7 @@ export default function EventForm() {
                     <div className={style.inputGroup}>
                         <label htmlFor="longitude" className={style.labelInput}>Longitude<span
                             className={style.required}>*</span></label>
-                        <input name="longityde" id="longitude" type="text" placeholder=""
+                        <input name="longitude" id="longitude" type="text" placeholder=""
                                className={style.userInput}
                                value={longitude}
                                onChange={event => setLongitude(event.target.value)} required/>
@@ -111,7 +146,20 @@ export default function EventForm() {
 
             <fieldset className={style.form}>
                 <legend className={style.legend}>Contact</legend>
+
+                <div className={style.inputGroup}>
+                    <label htmlFor="phone-number" className={style.labelInput}>Numéro de téléphone<span
+                        className={style.required}>*</span></label>
+                    <input name="phone-number" id="phone-number" type="text" placeholder="0123456789"
+                           className={style.userInput}
+                           value={phoneNumber}
+                           onChange={event => setPhoneNumber(event.target.value)} required/>
+                </div>
+
+                <EventLink types={linkTypes}/>
             </fieldset>
+
+            <InformationToast information={modalMessage} isOpen={isOpen} success={success}/>
 
         </form>
     )

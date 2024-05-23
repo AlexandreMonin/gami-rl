@@ -71,6 +71,7 @@ model Event {
   userId           Int
   post             Post[]
   isPrivate        Boolean
+  phoneNumber String
 }
 
 model Location {
