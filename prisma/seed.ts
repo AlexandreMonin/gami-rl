@@ -23,37 +23,37 @@ async function main() {
 
     await prisma.link_Type.create({
         data: {
-            name: "phone-number"
+            name: "Téléphone"
         }
     });
 
     await prisma.link_Type.create({
         data: {
-            name: "website"
+            name: "Site Internet"
         }
     });
 
     await prisma.link_Type.create({
         data: {
-            name: "facebook"
+            name: "Facebook"
         }
     });
 
     await prisma.link_Type.create({
         data: {
-            name: "instagram"
+            name: "Instagram"
         }
     });
 
     await prisma.link_Type.create({
         data: {
-            name: "twitter"
+            name: "Twitter"
         }
     });
 
     await prisma.link_Type.create({
         data: {
-            name: "youtube"
+            name: "Youtube"
         }
     });
 }

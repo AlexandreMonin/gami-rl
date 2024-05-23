@@ -2,8 +2,8 @@
 import {useEffect, useState} from "react";
 import style from "./style.module.css"
 import {JSX} from "react";
-import EventLink from "@/components/EventLinks/EventLinks";
 import InformationToast from "@/components/InformationToast/InformationToats";
+import EventLink from "@/components/EventLinks/EventLinks";
 
 export default function EventForm(): JSX.Element {
     const [isOpen, setIsOpen] = useState(false);
@@ -19,11 +19,12 @@ export default function EventForm(): JSX.Element {
     const [phoneNumber, setPhoneNumber] = useState("");
     const [linkTypes, setLinkTypes] = useState([]);
     const [isPrivate, setIsPrivate] = useState(false);
+    const [eventLinks, setEventLinks] = useState<{id: number, component: JSX.Element}[]>([]);
 
     useEffect(() => {
         const getLinkTypes = async () => {
             try {
-                const response = await fetch("/api/event/linktypes", {
+                const response = await fetch("/api/events/linktypes", {
                     method: "GET",
                 });
 
@@ -37,7 +38,8 @@ export default function EventForm(): JSX.Element {
                         setIsOpen(false);
                     }, 8000);
                 } else {
-                    setLinkTypes(data);
+                    setLinkTypes(data.types);
+                    setEventLinks([{id: 0, component: <EventLink types={data.types} id={0} deleteLink={deleteLink} key={0} />}])
                 }
             } catch (e: any) {
                 console.log(e)
@@ -45,7 +47,17 @@ export default function EventForm(): JSX.Element {
         }
 
         getLinkTypes();
-    }, [])
+    }, []);
+
+    const addLink = () => {
+        const newId = eventLinks.length ? eventLinks[eventLinks.length - 1].id + 1 : 0 ;
+        setEventLinks([...eventLinks, { id: newId, component: <EventLink types={linkTypes} id={newId} deleteLink={deleteLink} key={newId} /> }]);
+
+    };
+
+    const deleteLink = (id: number) => {
+        setEventLinks(eventLinks.filter(link => link.id !== id));
+    };
 
     return (
         <form className={style.form}>
@@ -156,7 +168,10 @@ export default function EventForm(): JSX.Element {
                            onChange={event => setPhoneNumber(event.target.value)} required/>
                 </div>
 
-                <EventLink types={linkTypes}/>
+                <button type="button" onClick={addLink} >Ajouter un lien</button>
+                {
+                    eventLinks.map((eventLink) => eventLink.component)
+                }
             </fieldset>
 
             <InformationToast information={modalMessage} isOpen={isOpen} success={success}/>

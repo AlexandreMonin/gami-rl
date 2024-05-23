@@ -3,10 +3,12 @@ import style from "./style.module.css";
 import LinkType from "@/type/Event/LinkType";
 
 type EventLinkProps = {
-    types: LinkType[]
+    types: LinkType[];
+    id: number;
+    deleteLink: any;
 }
 
-export default function EventLink({ types }: EventLinkProps): JSX.Element | null {
+export default function EventLink({ types, id, deleteLink }: EventLinkProps): JSX.Element | null {
     return (
         <div className={style.inputGroup}>
             <div className={style.input}>
@@ -15,8 +17,8 @@ export default function EventLink({ types }: EventLinkProps): JSX.Element | null
                 <select id="link-type" name="link-type" className={style.dropdown}>
                     {
                         types.map((type: LinkType) => {
-                            return(
-                                <option key={type.id}>{type.name}</option>
+                            return (
+                                <option key={type.id} value={type.id}>{type.name}</option>
                             )
                         })
                     }
@@ -29,6 +31,7 @@ export default function EventLink({ types }: EventLinkProps): JSX.Element | null
                 <input name="link-id" id="link-id" type="text" placeholder="@"
                        className={style.userInput} required/>
             </div>
+            <button onClick={() => deleteLink(id)} type="button">Delete</button>
         </div>
     );
 }
