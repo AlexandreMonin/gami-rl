@@ -1,8 +1,7 @@
 import prisma from "@/utils/database";
 import {NextResponse} from "next/server";
-import LinkType from "@/type/Event/LinkType";
 
-export async function GET(req: Request) {
+export async function GET() {
 
     try {
         const types = await prisma.link_Type.findMany({
