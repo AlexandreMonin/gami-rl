@@ -12,9 +12,9 @@ export default function EventLink({ types, id, deleteLink }: EventLinkProps): JS
     return (
         <div className={style.inputGroup}>
             <div className={style.input}>
-                <label htmlFor="link-type" className={style.labelInput}>Type de lien<span
+                <label htmlFor={`link-type-${id}`} className={style.labelInput}>Type de lien<span
                     className={style.required}>*</span></label>
-                <select id="link-type" name="link-type" className={style.dropdown}>
+                <select id={`link-type-${id}`} name={`link-type-${id}`} className={style.dropdown}>
                     {
                         types.map((type: LinkType) => {
                             return (
@@ -26,9 +26,9 @@ export default function EventLink({ types, id, deleteLink }: EventLinkProps): JS
             </div>
 
             <div className={style.input}>
-                <label htmlFor="link-id" className={style.labelInput}>Identifiant<span
+                <label htmlFor={`link-id-${id}`} className={style.labelInput}>Identifiant<span
                     className={style.required}>*</span></label>
-                <input name="link-id" id="link-id" type="text" placeholder="@"
+                <input name={`link-id-${id}`} id={`link-id-${id}`} type="text" placeholder="@"
                        className={style.userInput} required/>
             </div>
             <button onClick={() => deleteLink(id)} type="button">Delete</button>
