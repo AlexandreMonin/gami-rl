@@ -4,6 +4,7 @@ import style from "./style.module.css"
 import {JSX} from "react";
 import InformationToast from "@/components/InformationToast/InformationToats";
 import EventLink from "@/components/EventLinks/EventLinks";
+import TextEditor from "@/components/TextEditor/TextEditor";
 
 export default function EventForm(): JSX.Element {
     const [isOpen, setIsOpen] = useState(false);
@@ -183,6 +184,7 @@ export default function EventForm(): JSX.Element {
             <fieldset className={style.form}>
                 <legend className={style.legend}>Détails</legend>
 
+                <TextEditor />
 
             </fieldset>
             <InformationToast information={modalMessage} isOpen={isOpen} success={success}/>
