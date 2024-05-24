@@ -19,7 +19,7 @@ export default function EventForm(): JSX.Element {
     const [phoneNumber, setPhoneNumber] = useState("");
     const [linkTypes, setLinkTypes] = useState([]);
     const [isPrivate, setIsPrivate] = useState(false);
-    const [eventLinks, setEventLinks] = useState<{id: number, component: JSX.Element}[]>([]);
+    const [eventLinks, setEventLinks] = useState<{ id: number, component: JSX.Element }[]>([]);
 
     useEffect(() => {
         const getLinkTypes = async () => {
@@ -39,7 +39,10 @@ export default function EventForm(): JSX.Element {
                     }, 8000);
                 } else {
                     setLinkTypes(data.types);
-                    setEventLinks([{id: 0, component: <EventLink types={data.types} id={0} deleteLink={deleteLink} key={0} />}])
+                    setEventLinks([{
+                        id: 0,
+                        component: <EventLink types={data.types} id={0} deleteLink={deleteLink} key={0}/>
+                    }])
                 }
             } catch (e: any) {
                 console.log(e)
@@ -50,8 +53,11 @@ export default function EventForm(): JSX.Element {
     }, []);
 
     const addLink = () => {
-        const newId = eventLinks.length ? eventLinks[eventLinks.length - 1].id + 1 : 0 ;
-        setEventLinks([...eventLinks, { id: newId, component: <EventLink types={linkTypes} id={newId} deleteLink={deleteLink} key={newId} /> }]);
+        const newId = eventLinks.length ? eventLinks[eventLinks.length - 1].id + 1 : 0;
+        setEventLinks([...eventLinks, {
+            id: newId,
+            component: <EventLink types={linkTypes} id={newId} deleteLink={deleteLink} key={newId}/>
+        }]);
 
     };
 
@@ -168,12 +174,17 @@ export default function EventForm(): JSX.Element {
                            onChange={event => setPhoneNumber(event.target.value)} required/>
                 </div>
 
-                <button type="button" onClick={addLink} >Ajouter un lien</button>
+                <button type="button" onClick={addLink}>Ajouter un lien</button>
                 {
                     eventLinks.map((eventLink) => eventLink.component)
                 }
             </fieldset>
 
+            <fieldset className={style.form}>
+                <legend className={style.legend}>Détails</legend>
+
+
+            </fieldset>
             <InformationToast information={modalMessage} isOpen={isOpen} success={success}/>
 
         </form>
