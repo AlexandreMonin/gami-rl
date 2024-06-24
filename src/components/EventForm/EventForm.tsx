@@ -4,7 +4,6 @@ import style from "./style.module.css"
 import {JSX} from "react";
 import InformationToast from "@/components/InformationToast/InformationToats";
 import EventLink from "@/components/EventLinks/EventLinks";
-import TextEditor from "@/components/TextEditor/TextEditor";
 
 export default function EventForm(): JSX.Element {
     const [isOpen, setIsOpen] = useState(false);
@@ -18,6 +17,7 @@ export default function EventForm(): JSX.Element {
     const [latitude, setLatitude] = useState("");
     const [longitude, setLongitude] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
+    const [details, setDetails] = useState("");
     const [linkTypes, setLinkTypes] = useState([]);
     const [isPrivate, setIsPrivate] = useState(false);
     const [eventLinks, setEventLinks] = useState<{ id: number, component: JSX.Element }[]>([]);
@@ -184,8 +184,9 @@ export default function EventForm(): JSX.Element {
             <fieldset className={style.form}>
                 <legend className={style.legend}>Détails</legend>
 
-                <TextEditor />
-
+                <textarea name="details" id="details" rows={10} className={style.userInput}
+                          placeholder="Parler de votre évènement !"
+                          value={details} onChange={event => setDetails(event.target.value)}/>
             </fieldset>
             <InformationToast information={modalMessage} isOpen={isOpen} success={success}/>
 

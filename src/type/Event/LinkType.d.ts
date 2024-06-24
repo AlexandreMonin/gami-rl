@@ -1,7 +1,9 @@
+import Link from "@/type/Link";
+
 type LinkType = {
     id: number;
     name: string;
-    // links Link[]
+    links: Link[];
 };
 
 export default LinkType;
