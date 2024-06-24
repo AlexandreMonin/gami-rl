@@ -4,6 +4,9 @@ import style from "./style.module.css"
 import {JSX} from "react";
 import InformationToast from "@/components/InformationToast/InformationToats";
 import EventLink from "@/components/EventLinks/EventLinks";
+import Event from "@/type/Event/Event";
+import {getServerSession, Session} from "next-auth";
+import {authOptions} from "@/app/api/auth/[...nextauth]/route";
 
 export default function EventForm(): JSX.Element {
     const [isOpen, setIsOpen] = useState(false);
@@ -18,6 +21,8 @@ export default function EventForm(): JSX.Element {
     const [longitude, setLongitude] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
     const [details, setDetails] = useState("");
+    const [startDate, setStartDate] = useState("");
+    const [endDate, setEndDate] = useState("");
     const [linkTypes, setLinkTypes] = useState([]);
     const [isPrivate, setIsPrivate] = useState(false);
     const [eventLinks, setEventLinks] = useState<{ id: number, component: JSX.Element }[]>([]);
@@ -66,8 +71,57 @@ export default function EventForm(): JSX.Element {
         setEventLinks(eventLinks.filter(link => link.id !== id));
     };
 
+    const addEvent = async () => {
+        const session: Session | null = await getServerSession(authOptions);
+
+        const event: Event = {
+            id: 0,
+            name: name,
+            startDate: new Date(startDate),
+            endDate: new Date(endDate),
+            location: {
+                id: 0,
+                address: adress,
+                city: city,
+                zipCode: parseInt(zip_code),
+                country: country,
+                longitude: longitude,
+                latitude: latitude,
+            },
+            authorId: session?.user.id,
+            phoneNumber: phoneNumber,
+            details: details,
+            isPrivate: isPrivate,
+        }
+
+        try {
+            const response = await fetch("/api/events/add", {
+                method: "POST",
+                headers: {
+                    contentType: "application/json",
+                },
+                body: JSON.stringify(event)
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                setSuccess(false);
+                setModalMessage(data.data);
+            } else {
+                setSuccess(true);
+                setModalMessage("Enregistrement réussi");
+            }
+
+        } catch (e: any) {
+            setSuccess(false);
+            setModalMessage("Une erreur est survenue, veuillez réessayer plus tard");
+        }
+
+    }
+
     return (
-        <form className={style.form}>
+        <form className={style.form} action={addEvent} method="POST">
 
             <div className={style.checkboxGroup}>
                 <input type="checkbox" id="isPrivate" name="isPrivate"
@@ -92,6 +146,8 @@ export default function EventForm(): JSX.Element {
                             type="datetime-local"
                             id="start_date"
                             name="start_date"
+                            value={startDate}
+                            onChange={event => setStartDate(event.target.value)}
                             required/>
                     </div>
                     <div className={style.dateInput}>
@@ -100,6 +156,8 @@ export default function EventForm(): JSX.Element {
                             type="datetime-local"
                             id="end_date"
                             name="end_date"
+                            value={endDate}
+                            onChange={event => setEndDate(event.target.value)}
                             required/>
                     </div>
                 </div>
@@ -188,6 +246,8 @@ export default function EventForm(): JSX.Element {
                           placeholder="Parler de votre évènement !"
                           value={details} onChange={event => setDetails(event.target.value)}/>
             </fieldset>
+
+
             <InformationToast information={modalMessage} isOpen={isOpen} success={success}/>
 
         </form>

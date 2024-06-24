@@ -1,18 +1,18 @@
 import prisma from "@/utils/database";
 import {NextResponse} from "next/server";
-import Register from "@/type/User/User";
+import Event from "@/type/Event/Event";
 
 export async function POST(req: Request) {
-    const {name, adress, city, status, biography, role}: Register = await req.json();
-
+    const event: Event = await req.json();
+    console.log(event);
     try {
-        const event = await prisma.event.create({
-            data: {
+        // const event = await prisma.event.create({
+        //     data: {
+        //
+        //     }
+        // })
 
-            }
-        })
-
-        return NextResponse.json({types: types}, {status: 200});
+        return NextResponse.json({event: event}, {status: 200});
     } catch (e: any) {
         console.error(e);
 

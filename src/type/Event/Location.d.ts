@@ -8,7 +8,7 @@ type Location = {
     country: string;
     latitude?: string;
     longitude?: string;
-    events: Event[];
+    events?: Event[];
 };
 
 export default Location;
