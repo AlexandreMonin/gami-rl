@@ -7,8 +7,14 @@
     background-color: rgba(231, 231, 231, 0.47);
 }
 
-.profile_page{
+.page{
     padding: 1rem;
+
+}
+.profile_page{
+    background-color: rgb(255, 255, 255);
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
 
 }
 .player_card_biography {
@@ -25,5 +31,15 @@
     border-radius: 0.4rem;
     margin: 0.5rem;
     padding: 0.5rem;
+    background-color: rgba(231, 231, 231, 0.47);
+}
+.container{
+    display: flex;
+    flex-direction: row;
+}
+
+.favourite_container{
+    width: 65%;
+    justify-content: center;
     background-color: rgba(231, 231, 231, 0.47);
 }

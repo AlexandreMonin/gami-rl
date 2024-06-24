@@ -1,0 +1,12 @@
+.favourite_games_container {
+    /*width: 80%;*/
+    display: flex;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    padding-right: 2rem;
+    padding-left: 2rem;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
