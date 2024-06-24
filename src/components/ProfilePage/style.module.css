@@ -7,6 +7,10 @@
     background-color: rgba(231, 231, 231, 0.47);
 }
 
+.profile_page{
+    padding: 1rem;
+
+}
 .player_card_biography {
     border-radius: 0.4rem;
     margin: 0.5rem;
