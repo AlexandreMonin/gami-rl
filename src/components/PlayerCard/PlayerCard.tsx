@@ -3,16 +3,13 @@ import User from "@/type/User/User";
 import style from "./style.module.css";
 
 export async function GetPlayerById(id: number): Promise<{ data : {
-
-        // ingredients: RecipeIngredient[];
-        // steps: (Step & { ingredients: [{ quantity: string; name: string; id: number }] })[]
-        // id: number;
-        // name: String;
     }}> {
 
     const apiUrl = process.env.APP_URL;
     try {
-        const res = await fetch(`${apiUrl}/api/users/${id}`);
+        const res = await fetch(`${apiUrl}/api/users/${id}`, {
+            cache: 'no-store', // Disable caching
+        });
         if (!res.ok) {
             throw new Error(`Failed to fetch player with ID ${id}: ${res.statusText}`);
         }
