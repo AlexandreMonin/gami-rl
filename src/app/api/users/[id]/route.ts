@@ -24,7 +24,7 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
 
 export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
     const id = params.id;
-    const { status, biography } = await req.json();
+    const { status, biography, gameIds } = await req.json();
 
     try {
         const user = await prisma.user.findUnique({
@@ -36,6 +36,9 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
             data: {
                 status,
                 biography,
+                games: {
+                    set: gameIds.map((gameId: number) => ({ id: gameId })),
+                },
             },
             });
             return NextResponse.json({ data: updatedUser }, { status: 200 });

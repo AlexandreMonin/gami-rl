@@ -94,6 +94,10 @@ async function main() {
             { name: 'Road Doom', api_id: 108308, image_url: 'https://images.igdb.com/igdb/image/upload/t_thumb/co1ma0.jpg' },
             { name: 'The Lost Valley', api_id: 35429, image_url: 'https://images.igdb.com/igdb/image/upload/t_thumb/hguwdwyrob7smtfiv9so.jpg' },
             { name: 'Hidden Secrets: The Nightmare', api_id: 209901, image_url: 'https://images.igdb.com/igdb/image/upload/t_thumb/co4zmz.jpg' },
+            { name: 'Space station - build your own ISS', api_id: 104748, image_url: '' },
+            { name: 'Bubble Whirl Shooter', api_id: 89616, image_url: 'https://images.igdb.com/igdb/image/upload/t_thumb/co448a.jpg' },
+            { name: 'Railroad Tycoon 2: Platinum Edition', api_id: 124961, image_url: '' },
+            { name: 'Zhed', api_id: 122801, image_url: 'https://images.igdb.com/igdb/image/upload/t_thumb/co229d.jpg' },
         ];
 
         const platforms: Platform[] = [

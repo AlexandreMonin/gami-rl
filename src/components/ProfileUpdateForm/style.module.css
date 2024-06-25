@@ -64,3 +64,56 @@
     width: fit-content;
     border: 1px #5F0099 solid;
 }
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.labelInput {
+    font-weight: bold;
+}
+
+.userInput {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.button {
+    padding: 10px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+}
+
+.gameOrder {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.platformCheckbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.loading-message {
+    font-size: 1.2em;
+    text-align: center;
+}
