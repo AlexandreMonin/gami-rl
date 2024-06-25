@@ -3,6 +3,9 @@ import style from "./style.module.css"
 import {JSX, useEffect, useState} from "react";
 import Event from "@/type/Event/Event";
 import Loader from "@/components/Loader/Loader";
+import dynamic from "next/dynamic";
+
+const Map = dynamic(() => import('@/components/Map/Map'), { ssr: false })
 
 type EventFormProps = {
     id: number
@@ -52,6 +55,8 @@ export default function EventDetails({id}: EventFormProps): JSX.Element {
 
                             <div className={style.details}>
                                 <p>{event?.details}</p>
+
+                                <Map />
                             </div>
                         </div>
                     )
