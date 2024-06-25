@@ -42,17 +42,18 @@ export const authOptions = {
         async session({ session, token } : {session: Session, token: JWT}) {
             console.log(token);
 
-            const user: User = await prisma.user.findFirst({
+            const user = await prisma.user.findFirst({
                 where: {
                     email: token?.email?.toString(),
                 },
-            }) as User;
+            });
 
+            if (user) {
             session.user = {
                 ...session.user,
                 username: user.username,
                 status: user.status
-            };
+            };}
             return session
         }
     }
