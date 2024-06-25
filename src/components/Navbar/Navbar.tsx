@@ -23,7 +23,7 @@ export default function Navbar({user}: NavbarProps): JSX.Element {
             </div>
             {
                 user ? (
-                    <LoggedAvatar username={user.username} status={user.status}/>
+                    <LoggedAvatar username={user.username} status={user.status}  id={user.id}/>
                 ) : (
                     <NotLoggedAvatar/>
                 )

@@ -7,15 +7,17 @@ import Link from "next/link";
 type LoggedAvatarProps = {
     username: string;
     status: string;
+    id: number;
 }
 
-export default function LoggedAvatar({username, status}: LoggedAvatarProps): JSX.Element {
+export default function LoggedAvatar({username, status, id}: LoggedAvatarProps): JSX.Element {
     return (
         <div className={style.container}>
             <div className={style.visible}>
                 <div>
                     <p className={style.username}>
                         {username}
+                        {id}
                     </p>
                     <p className={style.status}>
                         {status}
@@ -27,7 +29,7 @@ export default function LoggedAvatar({username, status}: LoggedAvatarProps): JSX
             </div>
 
             <div className={style.wrap}>
-                <Link className={style.links} href="">
+                <Link className={style.links} href={`/user/profile/${id}`}>
                     <Image src="/assets/profile_dropdown/profile.svg" alt="Logo de profile" width={25} height={100}/>
                     <p>Mon profil</p>
                 </Link>
