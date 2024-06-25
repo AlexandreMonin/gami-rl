@@ -17,7 +17,7 @@ export default function EventForm({userMail}: EventFormProps): JSX.Element {
     const [modalMessage, setModalMessage] = useState("");
     const [success, setSuccess] = useState(false);
     const [name, setName] = useState("");
-    const [adress, setAdress] = useState("");
+    const [address, setAddress] = useState("");
     const [city, setCity] = useState("");
     const [zip_code, setZip_Code] = useState("");
     const [country, setCountry] = useState("");
@@ -84,7 +84,7 @@ export default function EventForm({userMail}: EventFormProps): JSX.Element {
             endDate: new Date(endDate),
             location: {
                 id: 0,
-                address: adress,
+                address: address,
                 city: city,
                 zipCode: parseInt(zip_code),
                 country: country,
@@ -178,12 +178,12 @@ export default function EventForm({userMail}: EventFormProps): JSX.Element {
                 <div className={style.inputGroup}>
                     <label htmlFor="name" className={style.labelInput}>Adresse<span
                         className={style.required}>*</span></label>
-                    <input name="adress" id="adress" type="text" placeholder="n°, rue" className={style.userInput}
-                           value={adress}
-                           onChange={event => setAdress(event.target.value)} required/>
+                    <input name="address" id="address" type="text" placeholder="n°, rue" className={style.userInput}
+                           value={address}
+                           onChange={event => setAddress(event.target.value)} required/>
                 </div>
 
-                <div className={style.adress}>
+                <div className={style.address}>
                     <div className={style.inputGroup}>
                         <label htmlFor="city" className={style.labelInput}>Ville<span
                             className={style.required}>*</span></label>
@@ -212,7 +212,7 @@ export default function EventForm({userMail}: EventFormProps): JSX.Element {
                     </div>
                 </div>
 
-                <div className={style.adress}>
+                <div className={style.address}>
                     <div className={style.inputGroup}>
                         <label htmlFor="latitude" className={style.labelInput}>Lattitude<span
                             className={style.required}>*</span></label>
