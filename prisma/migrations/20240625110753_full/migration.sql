@@ -55,6 +55,9 @@ CREATE TABLE "Event" (
     "end_date" TIMESTAMP(3) NOT NULL,
     "locationId" INTEGER NOT NULL,
     "userId" INTEGER NOT NULL,
+    "isPrivate" BOOLEAN NOT NULL,
+    "phoneNumber" TEXT NOT NULL,
+    "details" TEXT NOT NULL,
 
     CONSTRAINT "Event_pkey" PRIMARY KEY ("id")
 );
@@ -62,6 +65,7 @@ CREATE TABLE "Event" (
 -- CreateTable
 CREATE TABLE "Location" (
     "id" SERIAL NOT NULL,
+    "address" TEXT NOT NULL,
     "city" TEXT NOT NULL,
     "zip_code" INTEGER NOT NULL,
     "country" TEXT NOT NULL,
@@ -96,7 +100,7 @@ CREATE TABLE "Post" (
     "content" TEXT NOT NULL,
     "userId" INTEGER NOT NULL,
     "isPost" BOOLEAN NOT NULL,
-    "replyId" INTEGER NOT NULL,
+    "replyId" INTEGER,
 
     CONSTRAINT "Post_pkey" PRIMARY KEY ("id")
 );
@@ -228,7 +232,7 @@ ALTER TABLE "Link" ADD CONSTRAINT "Link_eventId_fkey" FOREIGN KEY ("eventId") RE
 ALTER TABLE "Post" ADD CONSTRAINT "Post_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Post" ADD CONSTRAINT "Post_replyId_fkey" FOREIGN KEY ("replyId") REFERENCES "Post"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Post" ADD CONSTRAINT "Post_replyId_fkey" FOREIGN KEY ("replyId") REFERENCES "Post"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_UserFriends" ADD CONSTRAINT "_UserFriends_A_fkey" FOREIGN KEY ("A") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
