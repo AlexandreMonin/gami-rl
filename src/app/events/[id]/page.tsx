@@ -1,6 +1,4 @@
 import {JSX} from "react";
-import style from "./style.module.css";
-import Event from "@/type/Event/Event";
 import EventDetails from "@/components/EventDetails/EventDetails";
 
 type EventDetailsProps = {

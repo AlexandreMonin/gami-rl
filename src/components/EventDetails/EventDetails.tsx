@@ -3,7 +3,6 @@ import style from "./style.module.css"
 import {JSX, useEffect, useState} from "react";
 import Event from "@/type/Event/Event";
 import Loader from "@/components/Loader/Loader";
-import Image from "next/image";
 
 type EventFormProps = {
     id: number
