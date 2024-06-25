@@ -4,7 +4,7 @@ type Location = {
     id: number;
     address: string;
     city: string;
-    zipCode: number;
+    zip_code: number;
     country: string;
     latitude?: string;
     longitude?: string;

@@ -1,0 +1,39 @@
+.card {
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 1rem;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 1rem;
+}
+
+.details {
+    text-align: justify;
+}
+
+.buttons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.moreButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: #5F0099;
+    border: #5F0099 1px solid;
+    border-radius: 50px;
+    padding:  0.2rem 0.5rem;
+    transition-duration: 0.2s;
+}
+
+.moreButton:hover {
+    cursor: pointer;
+    color: #ffffff;
+    background-color: rgba(95, 0, 153, 1);
+}
