@@ -12,7 +12,7 @@ export default function EventLocation({location}: EventLocationProps): JSX.Eleme
     console.log(location);
     return (
         <div className={style.row}>
-            <FiMapPin />
+            <FiMapPin size={30} />
             <p>{location.address}, {location.zip_code} {location.city}</p>
         </div>
     )

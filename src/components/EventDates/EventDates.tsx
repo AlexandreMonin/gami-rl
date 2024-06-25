@@ -22,7 +22,7 @@ export default function EventDates({start_date, end_date}: EventDatesProps): JSX
 
     return (
         <div className={style.row}>
-            <FiCalendar />
+            <FiCalendar size={30} />
             <p>{start} - {end}</p>
         </div>
     )
