@@ -1,7 +1,6 @@
 "use client"
 import style from "./style.module.css"
 import {JSX} from "react";
-import Location from "@/type/Event/Location";
 import { FiCalendar } from "react-icons/fi";
 
 type EventDatesProps = {

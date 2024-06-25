@@ -13,10 +13,10 @@ type EventFormProps = {
 }
 
 export default function EventCard({id, event}: EventFormProps): JSX.Element {
-    let detail = "aaaaaaaaaaaaaaa aaaaaaaaa aaaaaaaaaaaaaaaaaaa aaa a aaaaaaaaaaaaaaaaaaaa aaaaaaa aaaaaaaaaaaaaaa aa aa aaaaaa aaaaaaaaaaaaa aaaa aaaaaaaaaaaaaa aaaaaaaaaaaaaaa aaaaaaaaa aaaaaaaaaaaaaaaaaaa aaa a aaaaaaaaaaaaaaaaaaaa aaaaaaa aaaaaaaaaaaaaaa aa aa aaaaaa aaaaaaaaaaaaa aaaa aaaaaaaaaaaaaa aaaaaaaaaaaaaaa aaaaaaaaa aaaaaaaaaaaaaaaaaaa aaa a aaaaaaaaaaaaaaaaaaaa aaaaaaa aaaaaaaaaaaaaaa aa aa aaaaaa aaaaaaaaaaaaa aaaa aaaaaaaaaaaaaa aaaaaaaaaaaaaaa aaaaaaaaa aaaaaaaaaaaaaaaaaaa aaa a aaaaaaaaaaaaaaaaaaaa aaaaaaa aaaaaaaaaaaaaaa aa aa aaaaaa aaaaaaaaaaaaa aaaa aaaaaaaaaaaaaa";
+    let detail = event.details;
 
-    if (detail.length > 250) {
-        detail = detail.substring(0, 250) + "..."
+    if (event.details.length > 250) {
+        detail = event.details.substring(0, 250) + "..."
     }
     return (
         <div className={style.card}>
