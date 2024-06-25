@@ -1,16 +1,17 @@
 import prisma from "@/utils/db";
 import {NextRequest, NextResponse} from "next/server";
+import { User, Game_Tag } from ".prisma/client";
 
 export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
     const id = params.id;
     try {
         const user = await prisma.user.findUnique({
             where: { id: Number(id) },
-            // include: {
-            //     role: true,
-            // }
+            include: {
+                game_user: true,
+                platforms: true
+            }
         });
-        // console.log('user:' + user);
         if (user) {
             return NextResponse.json({data: user}, {status: 200});
         }
@@ -22,31 +23,52 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
     }
 }
 
+
 export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
     const id = params.id;
-    const { status, biography, gameIds } = await req.json();
 
     try {
+        const { status, biography, gameIds } = await req.json();
+
         const user = await prisma.user.findUnique({
             where: { id: Number(id) },
+            include: {
+                game_user: {
+                    include: {
+                        game: true // Include the 'game' relation to fetch game details
+                    }
+                }
+            }
         });
-        if (user) {
-            const updatedUser = await prisma.user.update({
+
+        if (!user) {
+            return NextResponse.json({ error: "User not found" }, { status: 404 });
+        }
+
+        console.log('user:' + user.id);
+        const updatedUser = await prisma.user.update({
             where: { id: Number(id) },
             data: {
                 status,
                 biography,
-                games: {
-                    set: gameIds.map((gameId: number) => ({ id: gameId })),
+                game_user: {
+                    createMany: {
+                        data: gameIds.map((gameId: number, index: number) => ({
+                            gameId,
+                            // userId: user.id,
+                            order: index + 1
+                        }))
+                    }
                 },
             },
-            });
-            return NextResponse.json({ data: updatedUser }, { status: 200 });
-        }
-        else {
-            return NextResponse.json({ error: "User not found" }, { status: 404 });
-        }
-    } catch(e) {
+            include: { game_user: true }
+        });
+
+        return NextResponse.json({ data: updatedUser }, { status: 200 });
+    } catch (e) {
+        console.error("Error updating user:", e);
         return NextResponse.json({ error: "An error occurred" }, { status: 500 });
     }
 }
+
+

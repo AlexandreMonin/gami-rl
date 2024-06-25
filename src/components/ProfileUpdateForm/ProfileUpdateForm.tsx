@@ -9,9 +9,7 @@ export default function ProfileUpdateForm({ player }: { player: User }) {
     const [biography, setBiography] = useState<string>('');
     const [games, setGames] = useState<Game_Tag[]>([]);
     const [platforms, setPlatforms] = useState<Platform_Tag[]>([]);
-    const [favoriteGames, setFavoriteGames] = useState<{ gameId: number | null }[]>([
-        { gameId: null }, // Initial favorite game slot
-    ]);
+    const [favoriteGames, setFavoriteGames] = useState<{ gameId: number | null }[]>([]);
     const [selectedPlatformIds, setSelectedPlatformIds] = useState<number[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [initialLoad, setInitialLoad] = useState<boolean>(true);
@@ -22,9 +20,9 @@ export default function ProfileUpdateForm({ player }: { player: User }) {
                 const res = await fetch(`/api/users/${player.id}`);
                 if (res.ok) {
                     const { data } = await res.json();
-                    setStatus(data.status);
+                    setStatus(data.status);                    setFavoriteGames(data.game_user.map((gameId: number) => ({ gameId })));
                     setBiography(data.biography);
-                    setFavoriteGames(data.favoriteGames.map((gameId: number) => ({ gameId })));
+                    setFavoriteGames(data.game_user.map((gameId: number) => ({  })));
                     setSelectedPlatformIds(data.platforms.map((platform: Platform_Tag) => platform.id));
                 } else {
                     alert('Error fetching user data');
@@ -33,7 +31,7 @@ export default function ProfileUpdateForm({ player }: { player: User }) {
                 console.error('Error fetching user data:', error);
             } finally {
                 setLoading(false);
-                setInitialLoad(false); // Set initialLoad to false after data is fetched
+                setInitialLoad(false);
             }
         };
 
@@ -123,7 +121,7 @@ export default function ProfileUpdateForm({ player }: { player: User }) {
     };
 
     if (initialLoad) {
-        return <p className={style["loading-message"]}>Loading...</p>;
+        return <p className={style["loading-message"]}>Chargement...</p>;
     }
 
     return (
