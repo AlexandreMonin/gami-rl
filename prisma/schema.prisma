@@ -92,8 +92,8 @@ model Link {
 }
 
 model Link_Type {
-  id   Int    @id @default(autoincrement())
-  name String
+  id    Int    @id @default(autoincrement())
+  name  String
   links Link[]
 }
 
@@ -108,7 +108,8 @@ model Post {
   platforms     Platform_Tag[]
   events        Event[]
   replies       Post[]         @relation("replies")
-  reply_of_post Post[]         @relation("replies")
+  reply_of_post Post?          @relation("replies", fields: [replyId], references: [id])
+  replyId       Int?
 }
 
 model Post_Like {

@@ -39,8 +39,7 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
  */
 export async function POST(req: NextRequest) {
     try {
-        const body = await req.json();
-        const { postId, authorId, content, title } = body;
+        const { postId, authorId, content, title } = await req.json();
 
         if (!postId || !authorId || !content || !title) {
             return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
@@ -50,8 +49,16 @@ export async function POST(req: NextRequest) {
             data: {
                 title: title,
                 content: content,
-                author: authorId,
-                reply_of_post: postId,
+                author: {
+                    connect: {
+                        id: authorId
+                    }
+                },
+                reply_of_post: {
+                    connect: {
+                        id: postId,
+                    }
+                },
                 isPost: false
             }
         });

@@ -29,7 +29,7 @@ const PostDetails = ({ params } : {params: Post }) => {
                 ))}
                 {/* TODO: Récupérer l'id de l'utilisateur connecté et conditionner l'affichage au fait d'être connecté */}
                 {3 == 3 && (
-                    <ResponseForm postId={params.id} authorId={3}/>
+                    <ResponseForm postId={params.id} authorId={1}/>
                 )}
             </div>
         </main>

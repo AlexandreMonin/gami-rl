@@ -4,7 +4,7 @@ import styles from './style.module.css';
 
 const retrievePosts = async () => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/posts`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/posts`, {cache: 'no-cache'});
     if (!res.ok) {
       throw new Error('Failed to fetch data');
     }
