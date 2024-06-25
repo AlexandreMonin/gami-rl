@@ -30,7 +30,7 @@ export default function EventCard({id, event}: EventFormProps): JSX.Element {
             <p className={style.details}>{detail}</p>
 
             <div className={style.buttons}>
-                <a className={style.moreButton}>En savoir plus <FiChevronRight size={25}/></a>
+                <a className={style.moreButton} href={`/events/${event.id}`}>En savoir plus <FiChevronRight size={25}/></a>
             </div>
         </div>
     )

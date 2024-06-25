@@ -30,8 +30,7 @@ export default function EventGrid(): JSX.Element {
         }
         ,
         []
-    )
-    ;
+    );
 
     return (
         <div className={style.cardGrid}>
