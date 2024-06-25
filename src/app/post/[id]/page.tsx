@@ -9,6 +9,8 @@ const retrievePosts = async (id : string) => {
       }
   
       const response = await res.json();
+      console.log("response :" + response);
+
       return response.data;
       
     } catch (error) {

@@ -7,8 +7,10 @@ type Post = {
     title: string;
     content: string;
     author: User;
+    isPost: boolean;
     games: Game[];
     platforms: Platform[];
+    replies: Post[];
 };
 
 export default Post;

@@ -4,10 +4,9 @@
     margin-left: 1vw;
     margin-right: 1vw;
     padding-top: 1vh;
-    padding-left: 1vw;
-    padding-right: 1vw;
     padding-bottom: 1vh;
     width: 5vw;
+    text-align: center;
 }
 
 .tagPlatform {
@@ -16,8 +15,7 @@
     margin-left: 1vw;
     margin-right: 1vw;
     padding-top: 1vh;
-    padding-left: 1vw;
-    padding-right: 1vw;
     padding-bottom: 1vh;
     width: 5vw;
+    text-align: center;
 }

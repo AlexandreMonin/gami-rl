@@ -11,13 +11,12 @@ interface PostProps {
 }
 
 const PostCard: React.FC<PostProps> = ({ post }) => {
-  console.log(post);
-  return (
+    return (
     <a href={`/post/${post.id}`}>
       <li className={styles.card}>
         <h2>{post.title} - {post.author.username}</h2>
         <p>{post.content}</p>
-        <div>
+        <div style={{display: 'flex'}}>
           {post.games.map((game: Game) => (
             <TagGame key={game.id} game={game} />
           ))}

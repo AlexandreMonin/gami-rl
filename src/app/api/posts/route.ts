@@ -3,7 +3,7 @@ import prisma from "@/utils/db";
 import { NextResponse } from "next/server";
 
 /**
- * Fonction de récupération de l'ensemble des posts et de leur author
+ * Fonction de récupération de l'ensemble des posts, de leurs réponses et de leur author
  * @returns posts
  */
 export async function GET() {
@@ -13,10 +13,15 @@ export async function GET() {
           author: true,
           games: true,
           platforms: true,
+          replies: {
+            include: {
+              author: true
+            }
+          }
         },
       })
       return NextResponse.json({ data: posts }, { status: 200 });
     } catch (e) {
-      return NextResponse.json({ error: e }, { status: 500 });
+      return NextResponse.json({ error: e }, { status: 500 });  
     }
 }

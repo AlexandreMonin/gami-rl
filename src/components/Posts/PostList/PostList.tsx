@@ -24,7 +24,7 @@ const PostList = async () => {
     <main className={styles.background}>
       <div className={styles.container}>
         <ul>
-          {posts.map((post: Post) => (
+          {posts.filter((post: Post) => post.isPost).map((post: Post) => (
             <PostCard key={post.id} post={post} />
           ))}
         </ul>

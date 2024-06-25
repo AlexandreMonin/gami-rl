@@ -1,30 +1,36 @@
+import TagGame from '@/components/Tag/TagGame';
 import styles from './style.module.css';
 import Post from "@/type/Post/Post";
+import Game from '@/type/Game/Game';
+import TagPlatform from '@/components/Tag/TagPlatform';
+import Platform from '@/type/Platform/Platform';
+import ResponseCard from '../ResponseCard/ResponseCard';
+import ResponseForm from '../ResponseForm/ResponseForm';
 
 const PostDetails = ({ params } : {params: Post }) => {
-    console.log(params);
     return (
         <main className={styles.background}>
             <a className={styles.spanContainer} href={`/post`}><span>Toutes les questions</span></a>
             <div className={styles.card}>
-                <h2>{params.title}</h2> 
-                {params.content && <p>{params.content}</p>}
-                {/* <div>
-                    <h3>Steps:</h3>
-                    {params.steps.map((step: Step, index: number) => (
-                    <div key={index}>
-                        <h4>Step {index + 1}</h4>
-                        <p>{step.instructions}</p>
-                        <ul>
-                        {step.ingredients.map((ingredient: Ingredient, i: number) => (
-                            <li key={i}>
-                            {ingredient.name} - {ingredient.quantity}
-                            </li>
-                        ))}
-                        </ul>
-                    </div>
+                <div className={styles.div}>
+                    <h2>{params.title} - {params.author.username}</h2>
+                    <p>{params.content}</p>
+                </div>
+                <div style={{display: 'flex', justifyContent: 'flex-end'}}>
+                    {params.games && params.games.map((game: Game) => (
+                        <TagGame key={game.id} game={game} />
                     ))}
-                </div> */}
+                    {params.platforms && params.platforms.map((platform: Platform) => (
+                        <TagPlatform key={platform.id} platform={platform} />
+                    ))}
+                </div>
+                {params.replies && params.replies.map((response: Post) => (
+                    <ResponseCard params={response}/>
+                ))}
+                {/* TODO: Récupérer l'id de l'utilisateur connecté et conditionner l'affichage au fait d'être connecté */}
+                {3 == 3 && (
+                    <ResponseForm postId={params.id} authorId={3}/>
+                )}
             </div>
         </main>
     );

@@ -103,6 +103,7 @@ model Post {
   content       String
   author        User           @relation(name: "posts", fields: [userId], references: [id])
   userId        Int
+  isPost        Boolean
   games         Game_Tag[]
   platforms     Platform_Tag[]
   events        Event[]
