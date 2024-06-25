@@ -1,4 +1,4 @@
-import prisma from "@/utils/database";
+import prisma from "@/utils/db";
 import {NextResponse} from "next/server";
 import Event from "@/type/Event/Event";
 

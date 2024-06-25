@@ -1,4 +1,4 @@
-import prisma from "@/utils/database";
+import prisma from "@/utils/db";
 import bcrypt from "bcryptjs";
 import Register from "@/type/User/User";
 import {NextResponse} from "next/server";

@@ -3,9 +3,9 @@ import style from "./style.module.css";
 import {getServerSession, Session} from "next-auth";
 import {authOptions} from "@/app/api/auth/[...nextauth]/route";
 import Link from "next/link";
+import EventGrid from "@/components/EventGrid/EventGrid";
 
 export default async function Events(): Promise<JSX.Element> {
-
     const session: Session | null = await getServerSession(authOptions);
 
     return (
@@ -18,6 +18,8 @@ export default async function Events(): Promise<JSX.Element> {
                     Planifier un évènement
                 </Link>
             }
+
+            <EventGrid />
         </div>
     );
 }
