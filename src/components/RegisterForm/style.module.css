@@ -1,7 +1,7 @@
 .userInput {
     width: 100%;
     border-radius: 0.5rem;
-    padding: 0.2rem 1rem;
+    padding: 0.2rem 0.5rem;
     border: 0.1rem solid black;
 }
 
@@ -32,24 +32,8 @@
     align-self: flex-start;
 }
 
-.fieldset {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    padding: 1rem;
-    border-width: 1px;
-    width: 100%;
-}
-
 .radioButton {
     align-self: center;
-}
-
-.legend {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-    color: #5F0099;
 }
 
 .labelInput {

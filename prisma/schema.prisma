@@ -70,10 +70,14 @@ model Event {
   locationId       Int
   userId           Int
   post             Post[]
+  isPrivate        Boolean
+  phoneNumber      String
+  details          String
 }
 
 model Location {
   id        Int     @id @default(autoincrement())
+  address   String
   city      String
   zip_code  Int
   country   String
@@ -92,8 +96,8 @@ model Link {
 }
 
 model Link_Type {
-  id   Int    @id @default(autoincrement())
-  name String
+  id    Int    @id @default(autoincrement())
+  name  String
   links Link[]
 }
 
@@ -103,11 +107,13 @@ model Post {
   content       String
   author        User           @relation(name: "posts", fields: [userId], references: [id])
   userId        Int
+  isPost        Boolean
   games         Game_Tag[]
   platforms     Platform_Tag[]
   events        Event[]
   replies       Post[]         @relation("replies")
-  reply_of_post Post[]         @relation("replies")
+  reply_of_post Post?          @relation("replies", fields: [replyId], references: [id])
+  replyId       Int?
 }
 
 model Post_Like {
