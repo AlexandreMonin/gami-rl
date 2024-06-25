@@ -43,19 +43,21 @@ model Friend_Request {
 }
 
 model Game_Tag {
-  id     Int    @id @default(autoincrement())
-  name   String
-  api_id Int
-  users  User[]
-  posts  Post[]
+  id        Int    @id @default(autoincrement())
+  name      String
+  image_url String
+  api_id    Int    @unique
+  users     User[]
+  posts     Post[]
 }
 
 model Platform_Tag {
-  id     Int    @id @default(autoincrement())
-  name   String
-  api_id Int
-  users  User[]
-  posts  Post[]
+  id        Int    @id @default(autoincrement())
+  name      String
+  image_url String
+  api_id    Int    @unique
+  users     User[]
+  posts     Post[]
 }
 
 model Event {
