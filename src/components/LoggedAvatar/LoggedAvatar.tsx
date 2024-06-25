@@ -17,7 +17,6 @@ export default function LoggedAvatar({username, status, id}: LoggedAvatarProps):
                 <div>
                     <p className={style.username}>
                         {username}
-                        {id}
                     </p>
                     <p className={style.status}>
                         {status}
