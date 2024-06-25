@@ -59,6 +59,8 @@
 
 }
 .profile_settings_buttons{
+    display: flex;
+    flex-direction: row;
 
 }
 .buttons {
@@ -125,7 +127,7 @@
 
 .row_container {
     display: flex;
-    z-index: 1;
+    z-index: 0;
     position: relative;
     flex-direction: row;
     width: 100%;
