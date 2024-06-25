@@ -19,7 +19,7 @@ export default function Navbar({user}: NavbarProps): JSX.Element {
                 <NavbarTab name="Accueil" href="/"/>
                 <NavbarTab name="Forum" href="/post"/>
                 <NavbarTab name="Joueurs" href="/players"/>
-                <NavbarTab name="Évènements" href="/Events"/>
+                <NavbarTab name="Évènements" href="/events"/>
             </div>
             {
                 user ? (
