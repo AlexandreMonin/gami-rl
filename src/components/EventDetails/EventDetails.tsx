@@ -56,7 +56,10 @@ export default function EventDetails({id}: EventFormProps): JSX.Element {
                             <div className={style.details}>
                                 <p>{event?.details}</p>
 
-                                <Map />
+                                {
+                                    (event?.location.latitude && event?.location.longitude) && <Map latitude={parseFloat(event.location.latitude)} longitude={parseFloat(event.location.longitude)}/>
+
+                                }
                             </div>
                         </div>
                     )
