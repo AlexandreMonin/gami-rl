@@ -8,7 +8,11 @@ import Event from "@/type/Event/Event";
 import {getServerSession, Session} from "next-auth";
 import {authOptions} from "@/app/api/auth/[...nextauth]/route";
 
-export default function EventForm(): JSX.Element {
+type EventFormProps = {
+    userMail: string
+}
+
+export default function EventForm({userMail}: EventFormProps): JSX.Element {
     const [isOpen, setIsOpen] = useState(false);
     const [modalMessage, setModalMessage] = useState("");
     const [success, setSuccess] = useState(false);
@@ -72,7 +76,6 @@ export default function EventForm(): JSX.Element {
     };
 
     const addEvent = async () => {
-        const session: Session | null = await getServerSession(authOptions);
 
         const event: Event = {
             id: 0,
@@ -88,7 +91,16 @@ export default function EventForm(): JSX.Element {
                 longitude: longitude,
                 latitude: latitude,
             },
-            authorId: session?.user.id,
+            author: {
+                id: 0,
+                username: "",
+                email: userMail,
+                biography: "",
+                password: "",
+                role: "",
+                status: "",
+            },
+            authorId: 0,
             phoneNumber: phoneNumber,
             details: details,
             isPrivate: isPrivate,
@@ -109,6 +121,7 @@ export default function EventForm(): JSX.Element {
                 setSuccess(false);
                 setModalMessage(data.data);
             } else {
+                console.log(data);
                 setSuccess(true);
                 setModalMessage("Enregistrement réussi");
             }
@@ -133,7 +146,7 @@ export default function EventForm(): JSX.Element {
                 <div className={style.inputGroup}>
                     <label htmlFor="name" className={style.labelInput}>Nom de l&apos;évènement <span
                         className={style.required}>*</span></label>
-                    <input name="email" id="email" type="email" placeholder="Mon évènement"
+                    <input name="name" id="name" type="name" placeholder="Mon évènement"
                            className={style.userInput}
                            value={name}
                            onChange={event => setName(event.target.value)} required/>
@@ -247,6 +260,7 @@ export default function EventForm(): JSX.Element {
                           value={details} onChange={event => setDetails(event.target.value)}/>
             </fieldset>
 
+            <button type="submit" className="button-primary">Sauvegarder</button>
 
             <InformationToast information={modalMessage} isOpen={isOpen} success={success}/>
 

@@ -1,5 +1,5 @@
 import prisma from "@/utils/database";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import Register from "@/type/User/User";
 import {NextResponse} from "next/server";
 import {Prisma} from "@prisma/client";

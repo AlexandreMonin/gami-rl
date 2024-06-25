@@ -1,5 +1,5 @@
 import prisma from "@/utils/database";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import NextAuth, {Session} from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import {JWT} from "next-auth/jwt";
@@ -51,7 +51,8 @@ export const authOptions = {
             session.user = {
                 ...session.user,
                 username: user.username,
-                status: user.status
+                status: user.status,
+                id: user.id
             };}
             return session
         },

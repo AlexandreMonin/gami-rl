@@ -71,12 +71,13 @@ model Event {
   userId           Int
   post             Post[]
   isPrivate        Boolean
-  phoneNumber String
+  phoneNumber      String
+  details          String
 }
 
 model Location {
   id        Int     @id @default(autoincrement())
-  address    String
+  address   String
   city      String
   zip_code  Int
   country   String

@@ -1,4 +1,3 @@
-import {DateTime} from "next-auth/providers/kakao";
 import User from "@/type/User/User";
 import Link from "@/type/Link";
 import Location from "@/type/Event/Location";
@@ -12,7 +11,7 @@ type Event = {
     location: Location;
     userInterested?: User[];
     author?: User;
-    authorId?: number;
+    authorId: number;
     phoneNumber: string;
     details: string;
     isPrivate: boolean;
