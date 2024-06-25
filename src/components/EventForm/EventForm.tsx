@@ -80,13 +80,13 @@ export default function EventForm({userMail}: EventFormProps): JSX.Element {
         const event: Event = {
             id: 0,
             name: name,
-            startDate: new Date(startDate),
-            endDate: new Date(endDate),
+            start_date: new Date(startDate),
+            end_date: new Date(endDate),
             location: {
                 id: 0,
                 address: adress,
                 city: city,
-                zipCode: parseInt(zip_code),
+                zip_code: parseInt(zip_code),
                 country: country,
                 longitude: longitude,
                 latitude: latitude,
