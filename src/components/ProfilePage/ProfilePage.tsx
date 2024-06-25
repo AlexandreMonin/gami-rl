@@ -4,6 +4,7 @@ import style from "@/components/ProfilePage/style.module.css";
 import ProfileBanner from "@/components/ProfileBanner/ProfileBanner";
 import ProfileFavouriteGames from "@/components/ProfileFavouriteGames/ProfileFavouriteGames";
 import ProfileOtherGames from "@/components/ProfileOtherGames/ProfileOtherGames";
+import PlayerLinks from "@/components/PlayerLinks/PlayerLinks";
 
 export default async function ProfilePage({id}: { id: number }) {
 
@@ -17,7 +18,9 @@ export default async function ProfilePage({id}: { id: number }) {
                     <div className={style.favourite_container}>
                         <ProfileFavouriteGames player={player}/>
                     </div>
-                    <div><span>PlayerLinks</span></div>
+                    <div className={style.link_container}>
+                        <PlayerLinks player={player}/>
+                    </div>
                 </div>
                 <div className={style.other_title}>
                     <h3>Mes autres jeux</h3>
