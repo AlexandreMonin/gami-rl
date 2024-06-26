@@ -1,0 +1,21 @@
+.toggleButton {
+    margin: 10px 0;
+    padding: 10px 20px;
+    background-color: #0070f3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.toggleButton:hover {
+background-color: #005bb5;
+}
+
+.select {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}  
