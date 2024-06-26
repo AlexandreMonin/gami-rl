@@ -18,13 +18,22 @@ const retrievePlayers = async () => {
 };
 
 export default async function PlayerPage() {
-    const players = await retrievePlayers();
-    const data = players.data as User[];
+    let players = [];
+    try {
+        const all_players = await retrievePlayers();
+        players = all_players.data.filter((player) => player.isPublicProfile);
+    } catch (error) {
+        console.error('Error fetching players:', error);
+    }
 
     return (
         <div className={style.container}>
+            <div className={style.page_title}>
+                {players.length != 0 && <h2>Trouvez vos meilleurs coéquipiers</h2>}
+                {players.length === 0 && <p className={style.noPlayers}>Il n'y a pas de joueurs pour le moment.</p>}
+            </div>
             <div className={style.player_container}>
-                 {data.map((player) => (
+                {players.map((player) => (
                     <PlayerCard key={player.id} id={player.id} aria-label="Player" />
                 ))}
             </div>
