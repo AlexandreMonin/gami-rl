@@ -208,22 +208,20 @@ export default function ProfileUpdateForm({ player }: { player: User }) {
                                 value={favorite.gameId || ''}
                                 onChange={(e) => handleGameChange(e, index)}
                                 className={style.gameSelect}
-                                disabled={loading}
+                                disabled={loading} required
                             >
                                 <option value="">Sélectionner un jeu</option>
                                 {games.map((game) => (
                                     <option key={game.id} value={game.id}>{game.name}</option>
                                 ))}
                             </select>
-                            {index > 2 && (
-                                <button
-                                    type="button"
-                                    onClick={() => handleRemoveFavoriteGame(index)}
-                                    className={style.removeButton}
-                                >
-                                    Supprimer
-                                </button>
-                            )}
+                            <button
+                                type="button"
+                                onClick={() => handleRemoveFavoriteGame(index)}
+                                className={style.removeButton}
+                            >
+                                Supprimer
+                            </button>
                         </div>
                     ))}</div>
                     <button
