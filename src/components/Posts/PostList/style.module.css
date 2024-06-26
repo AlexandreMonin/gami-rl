@@ -18,4 +18,14 @@ background-color: #005bb5;
     border: 1px solid #ccc;
     border-radius: 5px;
     width: 100%;
-}  
+}
+
+.searchInput {
+    width: 98%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    margin-top: 1vh;
+}

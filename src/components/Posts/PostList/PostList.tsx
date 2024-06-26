@@ -8,14 +8,13 @@ import PostForm from '../PostForm/PostForm';
 
 const retrievePosts = async () => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/posts`, {cache: 'no-cache'});
+    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/posts`, { cache: 'no-cache' });
     if (!res.ok) {
       throw new Error('Failed to fetch data');
     }
 
     const response = await res.json();
     return response.data;
-    
   } catch (error) {
     console.error(error);
     throw error;
@@ -25,6 +24,7 @@ const retrievePosts = async () => {
 const PostList = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [showForm, setShowForm] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -39,15 +39,39 @@ const PostList = () => {
     setShowForm(!showForm);
   };
 
+  const handleSearchChange = (e: any) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const filteredPosts = posts.filter((post: Post) => {
+    const query = searchQuery.toLowerCase();
+    return (
+      post.isPost &&
+      (post.title.toLowerCase().includes(query) ||
+        post.content.toLowerCase().includes(query) ||
+        post.games.some(game => game.name.toLowerCase().includes(query)) ||
+        post.platforms.some(platform => platform.name.toLowerCase().includes(query)))
+    );
+  });
+
   return (
     <main className={styles.background}>
       <div className={styles.container}>
-        <button onClick={toggleForm} className={styles.toggleButton}>
-          {showForm ? 'Cacher le formulaire' : 'Ajouter un post'}
-        </button>
-        {showForm && <PostForm authorId={1} />}
+        <div>
+          <button onClick={toggleForm} className={styles.toggleButton}>
+            {showForm ? 'Cacher le formulaire' : 'Ajouter un post'}
+          </button>
+          {showForm && <PostForm authorId={1} />}
+        </div>
+        <input
+          type="text"
+          placeholder="Rechercher..."
+          value={searchQuery}
+          onChange={handleSearchChange}
+          className={styles.searchInput}
+        />
         <ul>
-          {posts.filter((post: Post) => post.isPost).map((post: Post) => (
+          {filteredPosts.map((post: Post) => (
             <PostCard key={post.id} post={post} />
           ))}
         </ul>
