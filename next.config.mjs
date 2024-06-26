@@ -1,5 +1,6 @@
-/** @type {import('next').NextConfig} */
-const PWA = require("@ducanh2912/next-pwa").default({
+import PWA from "@ducanh2912/next-pwa";
+
+const pwa = PWA({
     dest: "public",
     cacheOnFrontEndNav: true,
     aggressiveFrontEndNavCaching: true,
@@ -10,6 +11,7 @@ const PWA = require("@ducanh2912/next-pwa").default({
     },
 });
 
+/** @type {import('next').NextConfig} */
 const nextConfig = {};
 
-export default PWA(nextConfig);
+export default pwa(nextConfig);
