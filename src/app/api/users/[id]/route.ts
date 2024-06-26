@@ -38,7 +38,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
                         game: true
                     }
                 },
-                platform_user: true,
+                UserPlatform: true,
             },
         });
 
@@ -62,12 +62,14 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
                 biography,
                 game_user: {
                     createMany: {
-                        data: favoriteGames.map((gameId: number) => ({
+                        data: favoriteGames.map((gameId: number, index: number) => ({
                             gameId,
-                        })),
-                    },
+                            // userId: user.id,
+                            order: index + 1
+                        }))
+                    }
                 },
-                platform_user: {
+                UserPlatform: {
                     createMany: {
                         data: platformIds.map((platformId: number) => ({
                             platformId,
@@ -75,7 +77,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
                     },
                 },
             },
-            include: { game_user: true, platform_user: true },
+            include: { game_user: true, UserPlatform: true },
         });
 
 
