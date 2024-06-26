@@ -1,5 +1,6 @@
 import {NextRequest, NextResponse} from "next/server";
 import prisma from "@/utils/db";
+import game from "@/type/Game/Game";
 
 export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
     const id = params.id;
@@ -7,7 +8,11 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
         const user = await prisma.user.findUnique({
             where: { id: Number(id) },
             include: {
-                game_user: true,
+                game_user: {
+                    include: {
+                        game: true,
+                    },
+                },
                 UserPlatform: true
             }
         });
@@ -27,7 +32,25 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
     const id = params.id;
 
     try {
-        const { status, biography, favoriteGames, platformIds } = await req.json();
+        const { status, biography, favoriteGames, platformIds, isPublicProfile } = await req.json();
+
+        // let profilePictureUrl = '';
+        // const profilePictureFile = req.files?.profilePicture;
+
+        // if (profilePictureFile) {
+        //     const fileName = `${id}_profile_picture.${profilePictureFile.name.split('.').pop()}`;
+        //     const path = join(process.cwd(), 'pictures', 'profile', `${id}`, fileName);
+        //
+        //     // Save the file to the specified path
+        //     await new Promise((resolve, reject) => {
+        //         const writeStream = createWriteStream(path);
+        //         profilePictureFile.stream.pipe(writeStream);
+        //         writeStream.on('finish', resolve);
+        //         writeStream.on('error', reject);
+        //     });
+        //
+        //     profilePictureUrl = `/pictures/profile/${id}/${fileName}`;
+        // }
 
 
         const user = await prisma.user.findUnique({
@@ -60,6 +83,8 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
             data: {
                 status,
                 biography,
+                isPublicProfile,
+                // profilePictureUrl,
                 game_user: {
                     createMany: {
                         data: favoriteGames.map((gameId: number, index: number) => ({
