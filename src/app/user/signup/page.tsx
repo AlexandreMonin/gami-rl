@@ -1,6 +1,12 @@
 import {JSX} from "react";
 import style from "./style.module.css";
 import RegisterForm from "@/components/RegisterForm/RegisterForm";
+import type {Metadata} from "next";
+
+export const metadata: Metadata = {
+    title: "Gami-RL - Inscription",
+    description: "Gami-RL signup",
+};
 
 export default function Signup(): JSX.Element {
     return (

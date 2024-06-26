@@ -3,6 +3,12 @@ import style from "./style.module.css";
 import EventForm from "@/components/EventForm/EventForm";
 import {getServerSession, Session} from "next-auth";
 import {authOptions} from "@/app/api/auth/[...nextauth]/route";
+import type {Metadata} from "next";
+
+export const metadata: Metadata = {
+    title: "Gami-RL - Nouvel évènement",
+    description: "Gami-RL new event",
+};
 
 export default async function Signup(): Promise<JSX.Element> {
 
