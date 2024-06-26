@@ -101,11 +101,18 @@ export default function ProfileUpdateForm({ player }: { player: User }) {
 
     const handleGameChange = (e: React.ChangeEvent<HTMLSelectElement>, index: number) => {
         const gameId = parseInt(e.target.value);
-        setFavoriteGames((prev) => {
-            const updatedGames = [...prev];
-            updatedGames[index] = { gameId };
-            return updatedGames;
-        });
+
+        const isAlreadySelected = favoriteGames.some((game, idx) => idx !== index && game.gameId === gameId);
+
+        if (!isAlreadySelected) {
+            setFavoriteGames((prev) => {
+                const updatedGames = [...prev];
+                updatedGames[index] = { gameId };
+                return updatedGames;
+            });
+        } else {
+            alert('Ce jeu a déjà été ajouté.');
+        }
     };
 
     const handleAddFavoriteGame = () => {
