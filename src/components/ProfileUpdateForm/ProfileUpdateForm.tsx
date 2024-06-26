@@ -230,7 +230,7 @@ export default function ProfileUpdateForm({ player }: { player: User }) {
                         disabled={loading || favoriteGames.length >= 10}
                         className={style.addButton}
                     >
-                        Ajouter un jeu préféré
+                        Ajouter un jeu au profil
                     </button>
                 </div>
                 <div className={style.field}>
