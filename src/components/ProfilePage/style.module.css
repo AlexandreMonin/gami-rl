@@ -25,21 +25,35 @@
 
 }
 
-.player_card_status {
-    font-size: 1rem;
-    font-weight: bold;
-    border-radius: 0.4rem;
-    margin: 0.5rem;
-    padding: 0.5rem;
-    background-color: rgba(231, 231, 231, 0.47);
-}
 .container{
     display: flex;
     flex-direction: row;
+    width: 100%;
 }
 
 .favourite_container{
-    width: 65%;
+    width: 60%;
     justify-content: center;
-    background-color: rgba(231, 231, 231, 0.47);
+}
+.other_container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.other_title {
+    margin-top: 4rem;
+    margin-left: 2rem;
+    padding-left: 1.5rem;
+}
+.link_container {
+    display: flex;
+    width: 40%;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+
 }

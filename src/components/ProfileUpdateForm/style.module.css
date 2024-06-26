@@ -1,0 +1,127 @@
+.page {
+    padding: 1rem;
+    background-color: rgb(255, 255, 255);
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    /*display: flex;*/
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+.userInput {
+    width: 100%;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    padding: 0.2rem 0.5rem;
+    border: 0.1rem solid black;
+}
+
+.labelInput {
+    color: #5F0099;
+    margin-bottom: -1rem;
+    align-self: flex-start;
+    font-weight: bold;
+}
+
+.userInput {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.button {
+    padding: 10px;
+    border: none;
+    background-color: #5F0099;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+}
+
+.gameOrder {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.platformCheckbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.loading-message {
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.field {
+    width: 50%;
+}
+
+.form {
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.labelInput {
+    display: block;
+    width: 100%;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.userInput,
+.gameSelect {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.gameSelect {
+    margin-top: 0.5rem;
+}
+
+.favoriteGame {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.addButton {
+    border: 1px solid #5F0099;
+    color: #5F0099;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.addButton:disabled {
+    background-color: #b1c2d6;
+    cursor: not-allowed;
+}
+
+.removeButton {
+    margin-left: 0.5rem;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.removeButton:hover {
+    background-color: #c82333;
+}

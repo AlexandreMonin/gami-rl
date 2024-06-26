@@ -1,0 +1,13 @@
+.card {
+    padding: 10px;
+    background-color: #fff;
+}
+
+.cardGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 2rem;
+    grid-row-gap: 0;
+    margin: 2rem;
+}

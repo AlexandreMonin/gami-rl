@@ -5,8 +5,8 @@ import Location from "@/type/Event/Location";
 type Event = {
     id: number;
     name: string;
-    startDate: Date;
-    endDate: Date;
+    start_date: Date;
+    end_date: Date;
     links?: Link[];
     location: Location;
     userInterested?: User[];

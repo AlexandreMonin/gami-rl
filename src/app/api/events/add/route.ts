@@ -1,4 +1,4 @@
-import prisma from "@/utils/database";
+import prisma from "@/utils/db";
 import {NextResponse} from "next/server";
 import Event from "@/type/Event/Event";
 
@@ -9,14 +9,14 @@ export async function POST(req: Request) {
         const event_creation = await prisma.event.create({
             data: {
                 name: event.name,
-                start_date: event.startDate,
-                end_date: event.endDate,
+                start_date: event.start_date,
+                end_date: event.end_date,
                 location: {
                     create: {
                         city: event.location.city,
                         address: event.location.address,
                         country: event.location.country,
-                        zip_code: event.location.zipCode,
+                        zip_code: event.location.zip_code,
                         latitude: event.location.latitude,
                         longitude: event.location.longitude,
                     }

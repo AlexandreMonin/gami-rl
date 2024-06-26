@@ -1,0 +1,13 @@
+.link_container {
+    display: flex;
+    padding-top: 1rem;
+    flex-direction: row;
+    /*justify-content: space-between;*/
+    width: 60%;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+
