@@ -13,20 +13,40 @@ const PostForm = ({ authorId }: { authorId: number }) => {
 
     useEffect(() => {
         // Fetch game tags
-        fetch(`${process.env.NEXT_PUBLIC_URL}/api/games`)
-            .then((res) => res.json())
-            .then((data) => setGameTags(data.tags))
-            .catch((error) => console.error('Error fetching game tags:', error));
-        
-        console.log("gameTags : " + gameTags);
+        const getGameTags = async () => {
+
+            const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/games`, {
+                method: "GET",
+                cache: "no-cache",
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                setGameTags(data.data);
+            }
+
+        };
 
         // Fetch platform tags
-        fetch(`${process.env.NEXT_PUBLIC_URL}/api/platforms`)
-            .then((res) => res.json())
-            .then((data) => setPlatformTags(data.tags))
-            .catch((error) => console.error('Error fetching platform tags:', error));
+        const getPlatformTags = async () => {
+
+            const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/platforms`, {
+                method: "GET",
+                cache: "no-cache",
+            });
+
+            const data = await response.json();
+
+            if(response.ok){
+                setPlatformTags(data.data);
+            }
+
+        };
+
+        getGameTags();
+        getPlatformTags();
         
-        console.log("platformTags : " + platformTags);
     }, []);
 
     const handleInputChange = (e: any) => {
