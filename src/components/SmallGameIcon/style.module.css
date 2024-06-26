@@ -1,0 +1,30 @@
+.game_card_icon {
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 1rem;
+    width: 6vw;
+    height: 6vw;
+    min-width: 4rem;
+    min-height: 4rem;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    background-color: rgba(215, 128, 128, 0.69);
+}
+.container {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+.game_container {
+    display: flex;
+    min-width: 2rem;
+    max-width: 20rem;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.game_name {
+    max-width: 70%;
+}
+
