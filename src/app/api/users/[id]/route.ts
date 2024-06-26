@@ -28,7 +28,8 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
     const id = params.id;
 
     try {
-        const { status, biography, gameIds } = await req.json();
+        const { status, biography, favoriteGames, platformIds } = await req.json();
+
 
         const user = await prisma.user.findUnique({
             where: { id: Number(id) },
@@ -37,15 +38,24 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
                     include: {
                         game: true
                     }
-                }
-            }
+                },
+                platform_user: true,
+            },
         });
 
         if (!user) {
             return NextResponse.json({ error: "User not found" }, { status: 404 });
         }
 
-        console.log('user:' + user.id);
+
+        await prisma.game_User.deleteMany({
+            where: { userId: Number(id) },
+        });
+
+        await prisma.user_Platform.deleteMany({
+            where: { userId: Number(id) },
+        });
+        
         const updatedUser = await prisma.user.update({
             where: { id: Number(id) },
             data: {
@@ -53,16 +63,22 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
                 biography,
                 game_user: {
                     createMany: {
-                        data: gameIds.map((gameId: number, index: number) => ({
+                        data: favoriteGames.map((gameId: number) => ({
                             gameId,
-                            // userId: user.id,
-                            order: index + 1
-                        }))
-                    }
+                        })),
+                    },
+                },
+                platform_user: {
+                    createMany: {
+                        data: platformIds.map((platformId: number) => ({
+                            platformId,
+                        })),
+                    },
                 },
             },
-            include: { game_user: true }
+            include: { game_user: true, platform_user: true },
         });
+
 
         return NextResponse.json({ data: updatedUser }, { status: 200 });
     } catch (e) {
