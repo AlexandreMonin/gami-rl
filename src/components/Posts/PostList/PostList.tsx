@@ -5,6 +5,7 @@ import Post from '@/type/Post/Post';
 import PostCard from '@/components/Posts/PostCard/PostCard';
 import styles from './style.module.css';
 import PostForm from '../PostForm/PostForm';
+import { User } from 'next-auth';
 
 const retrievePosts = async () => {
   try {
@@ -21,7 +22,7 @@ const retrievePosts = async () => {
   }
 };
 
-const PostList = () => {
+const PostList = ({user}: {user?: User}) => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [showForm, setShowForm] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -57,12 +58,14 @@ const PostList = () => {
   return (
     <main className={styles.background}>
       <div className={styles.container}>
+      {user && (
         <div>
           <button onClick={toggleForm} className={styles.toggleButton}>
             {showForm ? 'Cacher le formulaire' : 'Ajouter un post'}
           </button>
-          {showForm && <PostForm authorId={1} />}
+          {showForm && <PostForm authorId={user.id} />}
         </div>
+      )}
         <input
           type="text"
           placeholder="Rechercher..."

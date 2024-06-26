@@ -6,8 +6,9 @@ import TagPlatform from '@/components/Tag/TagPlatform';
 import Platform from '@/type/Platform/Platform';
 import ResponseCard from '../ResponseCard/ResponseCard';
 import ResponseForm from '../ResponseForm/ResponseForm';
+import { User } from 'next-auth';
 
-const PostDetails = ({ params } : {params: Post }) => {
+const PostDetails = ({ params, user } : {params: Post, user?: User }) => {
     return (
         <main className={styles.background}>
             <a className={styles.spanContainer} href={`/post`}><span>Toutes les questions</span></a>
@@ -27,9 +28,8 @@ const PostDetails = ({ params } : {params: Post }) => {
                 {params.replies && params.replies.map((response: Post) => (
                     <ResponseCard params={response}/>
                 ))}
-                {/* TODO: Récupérer l'id de l'utilisateur connecté et conditionner l'affichage au fait d'être connecté */}
-                {3 == 3 && (
-                    <ResponseForm postId={params.id} authorId={1}/>
+                {user && (
+                    <ResponseForm postId={params.id} authorId={user.id}/>
                 )}
             </div>
         </main>

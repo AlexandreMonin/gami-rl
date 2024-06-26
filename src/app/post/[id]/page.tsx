@@ -1,5 +1,7 @@
 import PostDetails from '@/components/Posts/PostDetails/PostDetails';
 import React from 'react';
+import {getServerSession, Session} from "next-auth";
+import {authOptions} from "@/app/api/auth/[...nextauth]/route";
 import type {Metadata} from "next";
 
 export const metadata: Metadata = {
@@ -28,8 +30,9 @@ const retrievePosts = async (id : string) => {
 
 const PostPage = async( { params } : {params: { id: string }}) => {
     const post = await retrievePosts(params.id);
+    const session: Session | null = await getServerSession(authOptions);
     return (
-        <PostDetails params={post}/>
+        <PostDetails params={post} user={session?.user}/>
     );
 };
 
