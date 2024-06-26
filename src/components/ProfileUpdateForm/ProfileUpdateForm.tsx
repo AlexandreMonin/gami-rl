@@ -13,6 +13,9 @@ export default function ProfileUpdateForm({ player }: { player: User }) {
     const [selectedPlatformIds, setSelectedPlatformIds] = useState<number[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [initialLoad, setInitialLoad] = useState<boolean>(true);
+    const [isPublicProfile, setIsPublicProfile] = useState<boolean>(false);
+    // const [profilePictureUrl, setProfilePictureUrl] = useState<string>(''); // State for profile picture URL
+
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -23,11 +26,12 @@ export default function ProfileUpdateForm({ player }: { player: User }) {
                     setStatus(data.status);
                     setBiography(data.biography);
                     setSelectedPlatformIds(data.UserPlatform.map((platform: { platformId: number }) => platform.platformId));
-
                     const initialFavoriteGames = data.game_user.map((gameUser: { gameId: number }) => ({
                         gameId: gameUser.gameId,
                     }));
                     setFavoriteGames(initialFavoriteGames);
+                    setIsPublicProfile(data.isPublicProfile);
+                    // setProfilePictureUrl(data.profilePictureUrl);
                 } else {
                     alert('Error fetching user data');
                 }
@@ -85,12 +89,13 @@ export default function ProfileUpdateForm({ player }: { player: User }) {
                 biography,
                 favoriteGames: favoriteGames.map((item) => item.gameId).filter((id) => id !== null),
                 platformIds: selectedPlatformIds,
+                isPublicProfile,
             }),
         });
 
         if (res.ok) {
             const data = await res.json();
-            alert('User updated successfully!');
+            alert('Votre profil a été mis à jour !');
             console.log(data);
             location.reload();
         } else {
@@ -138,6 +143,21 @@ export default function ProfileUpdateForm({ player }: { player: User }) {
     return (
         <div className={style.page}>
             <form onSubmit={handleSubmit} className={style.form}>
+
+                {/*<div className={style.field}>*/}
+                {/*    <label htmlFor="profile-picture" className={style.labelInput}>Photo de profil :</label>*/}
+                {/*    <input*/}
+                {/*        id="profile-picture"*/}
+                {/*        type="file"*/}
+                {/*        accept="image/*"*/}
+                {/*        onChange={(e) => handleProfilePictureChange(e.target.files)}*/}
+                {/*        disabled={loading}*/}
+                {/*        className={style.userInput}*/}
+                {/*    />*/}
+                {/*    {profilePictureUrl && (*/}
+                {/*        <img src={profilePictureUrl} alt="Profile" className={style.profilePicture} />*/}
+                {/*    )}*/}
+                {/*</div>*/}
                 <div className={style.field}>
                     <label htmlFor="status" className={style.labelInput}>Statut :</label>
                     <input
@@ -149,6 +169,23 @@ export default function ProfileUpdateForm({ player }: { player: User }) {
                         className={style.userInput}
                     />
                 </div>
+                <div className={style.boolean_field}>
+                    <input
+                        type="checkbox"
+                        id="public-profile"
+                        checked={isPublicProfile}
+                        onChange={(e) => setIsPublicProfile(e.target.checked)}
+                        disabled={loading}
+                        className={style.checkboxInput}
+                    />
+                    <label htmlFor="public-profile" className={style.checkboxlabelInput}>Profil public</label>
+                    {isPublicProfile && (
+                        <span className={style.additionalText}>
+                            Le profil sera visible dans la liste des joueurs
+                        </span>
+                    )}
+                </div>
+
                 <div className={style.field}>
                     <label htmlFor="biography" className={style.labelInput}>Biographie :</label>
                     <textarea
@@ -161,6 +198,9 @@ export default function ProfileUpdateForm({ player }: { player: User }) {
                 </div>
                 <div className={style.field}>
                     <label className={style.labelInput}>Jeux préférés :</label>
+                    <span className={style.gameAdditionalText}>
+                            Ajoutez vos jeux préférés par ordre de préférence
+                    </span>
                     {favoriteGames.map((favorite, index) => (
                         <div key={index} className={style.favoriteGame}>
                             <select

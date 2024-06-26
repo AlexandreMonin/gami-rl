@@ -18,8 +18,10 @@ const retrievePlayers = async () => {
 };
 
 export default async function PlayerPage() {
-    const players = await retrievePlayers();
-    const data = players.data as User[];
+    const all_players = await retrievePlayers();
+    const players = all_players.data.filter((player) => player.isPublicProfile);
+    const data = players as User[];
+
 
     return (
         <div className={style.container}>

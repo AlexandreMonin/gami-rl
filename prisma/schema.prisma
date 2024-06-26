@@ -26,6 +26,8 @@ model User {
   posts                Post[]           @relation("posts")
   game_user            Game_User[]
   UserPlatform         User_Platform[]
+  isPublicProfile      Boolean          @default(true)
+  // profilePictureFile   String
 }
 
 model Platform_Tag {

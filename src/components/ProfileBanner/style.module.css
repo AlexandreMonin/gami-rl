@@ -85,9 +85,11 @@
 .circle {
     background-color: lightblue;
     border-radius: 50%;
-    width: 250px;
-    height: 250px;
-    min-width: 250px;
+    width: 15rem;
+    max-width: 15rem;
+    height: 15rem;
+    max-height: 15rem;
+    min-width: 15rem;
     align-content: center;
     text-align: center;
     /*justify-content: center;*/

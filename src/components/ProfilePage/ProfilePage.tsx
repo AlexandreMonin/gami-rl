@@ -26,7 +26,7 @@ export default async function ProfilePage({id}: { id: number }) {
                         <ProfileFavouriteGames player={player}/>
                     </div>
                     <div className={style.link_container}>
-                        <PlayerLinks player={player}/>
+                        {/*<PlayerLinks player={player}/>*/}
                     </div>
                 </div>
                 <div className={style.profile_page}>

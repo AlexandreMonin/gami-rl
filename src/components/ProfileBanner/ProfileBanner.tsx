@@ -20,21 +20,21 @@ export default async function ProfileBanner({player}: { player: User }) {
                             </div>
                             <div className={style.profile_platform_icons}>
                                 {/*<span>GamePlatforms</span>*/}
-                                <span className={style.dot}></span>
-                                <span className={style.dot}></span>
-                                <span className={style.dot}></span>
-                                <span className={style.dot}></span>
+                                {/*<span className={style.dot}></span>*/}
+                                {/*<span className={style.dot}></span>*/}
+                                {/*<span className={style.dot}></span>*/}
+                                {/*<span className={style.dot}></span>*/}
                             </div>
                         </div>
                         <div className={style.row_bottom_banner_container}>
                         <div className={style.profile_status}>
                             <p>{player.status}</p>
                         </div>
-                        <div className={style.profile_settings_buttons}>
-                            <span className={style.buttons}></span>
-                            <span className={style.buttons}></span>
-                            <span className={style.buttons}></span>
-                        </div>
+                        {/*<div className={style.profile_settings_buttons}>*/}
+                        {/*    <span className={style.buttons}></span>*/}
+                        {/*    <span className={style.buttons}></span>*/}
+                        {/*    <span className={style.buttons}></span>*/}
+                        {/*</div>*/}
                     </div>
                     </div>
                 </div>

@@ -8,7 +8,8 @@ type User = {
     password: string;
     status: string,
     biography: string;
-    role: string
+    role: string;
+    isPublicProfile: Boolean;
 };
 
 export default User;

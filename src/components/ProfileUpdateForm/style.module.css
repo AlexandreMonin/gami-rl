@@ -64,6 +64,32 @@
     width: 50%;
 }
 
+.boolean_field {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.checkboxInput{
+    margin-right: 0.5rem;
+}
+
+.checkboxlabelInput{
+    color: #5F0099;
+    align-self: flex-start;
+    font-weight: bold;
+}
+
+.additionalText {
+    font-size: 0.75rem;
+    margin-left: 2rem;
+}
+.gameAdditionalText {
+    font-size: 0.75rem;
+}
+
 .form {
     gap: 10px;
     display: flex;
