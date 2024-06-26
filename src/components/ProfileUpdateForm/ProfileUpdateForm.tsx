@@ -201,6 +201,7 @@ export default function ProfileUpdateForm({ player }: { player: User }) {
                     <span className={style.gameAdditionalText}>
                             Ajoutez vos jeux préférés par ordre de préférence
                     </span>
+                    <div>
                     {favoriteGames.map((favorite, index) => (
                         <div key={index} className={style.favoriteGame}>
                             <select
@@ -224,7 +225,7 @@ export default function ProfileUpdateForm({ player }: { player: User }) {
                                 </button>
                             )}
                         </div>
-                    ))}
+                    ))}</div>
                     <button
                         type="button"
                         onClick={handleAddFavoriteGame}
