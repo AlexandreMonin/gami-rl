@@ -2,7 +2,7 @@
 import { FormEvent, useEffect, useState } from "react";
 import style from "./style.module.css";
 import User from "@/type/User/User";
-import { Game_Tag, Platform_Tag } from ".prisma/client";
+import { Game_User, Game_Tag, Platform_Tag } from ".prisma/client";
 
 export default function ProfileUpdateForm({ player }: { player: User }) {
     const [status, setStatus] = useState<string>('');
@@ -20,10 +20,14 @@ export default function ProfileUpdateForm({ player }: { player: User }) {
                 const res = await fetch(`/api/users/${player.id}`);
                 if (res.ok) {
                     const { data } = await res.json();
-                    setStatus(data.status);                    setFavoriteGames(data.game_user.map((gameId: number) => ({ gameId })));
+                    setStatus(data.status);
                     setBiography(data.biography);
-                    setFavoriteGames(data.game_user.map((gameId: number) => ({  })));
                     setSelectedPlatformIds(data.platforms.map((platform: Platform_Tag) => platform.id));
+
+                    const initialFavoriteGames = data.game_user.map((gameUser: Game_User) => ({
+                        gameId: gameUser.gameId,
+                    }));
+                    setFavoriteGames(initialFavoriteGames);
                 } else {
                     alert('Error fetching user data');
                 }
@@ -177,7 +181,7 @@ export default function ProfileUpdateForm({ player }: { player: User }) {
                     <button
                         type="button"
                         onClick={handleAddFavoriteGame}
-                        disabled={loading || favoriteGames.length >= 10} // Limit to 10 favorite games
+                        disabled={loading || favoriteGames.length >= 10}
                         className={style.addButton}
                     >
                         Ajouter un jeu préféré

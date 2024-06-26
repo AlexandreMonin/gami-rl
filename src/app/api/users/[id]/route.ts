@@ -35,7 +35,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
             include: {
                 game_user: {
                     include: {
-                        game: true // Include the 'game' relation to fetch game details
+                        game: true
                     }
                 }
             }
