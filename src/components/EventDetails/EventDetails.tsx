@@ -4,7 +4,6 @@ import {JSX, useEffect, useState} from "react";
 import Event from "@/type/Event/Event";
 import Loader from "@/components/Loader/Loader";
 import dynamic from "next/dynamic";
-import type {Metadata} from "next";
 
 const Map = dynamic(() => import('@/components/Map/Map'), { ssr: false })
 

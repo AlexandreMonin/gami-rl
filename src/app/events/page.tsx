@@ -1,4 +1,4 @@
-import {JSX, Suspense} from "react";
+import {JSX} from "react";
 import style from "./style.module.css";
 import {getServerSession, Session} from "next-auth";
 import {authOptions} from "@/app/api/auth/[...nextauth]/route";
