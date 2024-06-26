@@ -14,12 +14,9 @@ export default async function GameIcon({game}: { game: Game_Tag }) {
                 ) : (
                     <div className={style.game_card_block}>
                         <MdDoNotDisturbAlt className={style.game_card_icon} />
-                        {/* Placeholder content when image_url is not available */}
                     </div>
                 )}
 
-                {/*<div className={style.game_card_icon}>*/}
-                {/*</div>*/}
                 <div className={style.game_name}>
                     <span>{game.name}</span>
                 </div>
