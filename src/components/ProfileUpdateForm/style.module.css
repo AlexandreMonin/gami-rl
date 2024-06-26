@@ -81,13 +81,21 @@
     align-self: flex-start;
     font-weight: bold;
 }
-
+.profilePicture{
+    max-width: 30rem;
+    max-height: 10rem;
+}
+.profileBanner{
+    max-width: 30rem;
+    max-height: 10rem;
+}
 .additionalText {
     font-size: 0.75rem;
     margin-left: 2rem;
 }
 .gameAdditionalText {
     font-size: 0.75rem;
+    margin-bottom: 1rem;
 }
 
 .form {

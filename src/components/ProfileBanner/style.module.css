@@ -81,23 +81,27 @@
     display: inline-block;
     margin-right: 0.3rem;
 }
-
 .circle {
-    background-color: lightblue;
-    border-radius: 50%;
     width: 15rem;
-    max-width: 15rem;
     height: 15rem;
+    max-width: 15rem;
     max-height: 15rem;
     min-width: 15rem;
-    align-content: center;
-    text-align: center;
-    /*justify-content: center;*/
-    /*align-items: center;*/
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: lightblue;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-left: 2rem;
-    /*position: relative;*/
-    /*top: 6rem; left: 1rem;*/
-    /*margin: auto;*/
+}
+
+.circle_image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
 }
 
 
@@ -116,7 +120,7 @@
     /*background-color: #2d50b8;*/
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
-    background-image: url("https://www.w3schools.com/css/img_lights.jpg");
+    background-image: url("https://w0.peakpx.com/wallpaper/488/367/HD-wallpaper-neutral-background-vectors-stock-psd-neutral-abstract.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;

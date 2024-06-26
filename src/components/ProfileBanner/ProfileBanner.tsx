@@ -7,12 +7,25 @@ export default async function ProfileBanner({player}: { player: User }) {
     return (
         <div>
             <div className={style.banner_container}>
-                <div className={style.banner_image}>
-                </div>
+                {/*{player.profileBannerFile ? (*/}
+                {/*    <div className={style.banner_image}>*/}
+                {/*        <img*/}
+                {/*            src={`/attachments/profile/${player.id}/banner/${player.profileBannerFile}`}*/}
+                {/*            alt="Profile Banner"*/}
+                {/*        />*/}
+                {/*    </div>*/}
+                {/*) : (*/}
+                <div className={style.banner_image}></div>
+                {/*)}*/}
                 <div className={style.row_container}>
                     <div className={style.circle}>
-                        <span>Profile Picture</span>
+                        <img
+                            src="/assets/images/profile_picture.png"
+                            alt="Profile Picture"
+                            className={style.circle_image}
+                        />
                     </div>
+                    {/*)}*/}
                     <div className={style.banner_content}>
                         <div className={style.row_top_banner_container}>
                             <div className={style.profile_name}>
