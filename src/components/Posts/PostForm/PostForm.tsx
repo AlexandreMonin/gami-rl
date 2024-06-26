@@ -13,16 +13,20 @@ const PostForm = ({ authorId }: { authorId: number }) => {
 
     useEffect(() => {
         // Fetch game tags
-        fetch(`${process.env.NEXT_PUBLIC_URL}/api/gametags`)
+        fetch(`${process.env.NEXT_PUBLIC_URL}/api/games`)
             .then((res) => res.json())
             .then((data) => setGameTags(data.tags))
             .catch((error) => console.error('Error fetching game tags:', error));
+        
+        console.log("gameTags : " + gameTags);
 
         // Fetch platform tags
-        fetch(`${process.env.NEXT_PUBLIC_URL}/api/platformtags`)
+        fetch(`${process.env.NEXT_PUBLIC_URL}/api/platforms`)
             .then((res) => res.json())
             .then((data) => setPlatformTags(data.tags))
             .catch((error) => console.error('Error fetching platform tags:', error));
+        
+        console.log("platformTags : " + platformTags);
     }, []);
 
     const handleInputChange = (e: any) => {
