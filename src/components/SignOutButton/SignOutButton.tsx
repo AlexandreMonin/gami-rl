@@ -5,7 +5,7 @@ import Image from "next/image";
 import {signOut} from "next-auth/react";
 
 const SignOut = async () => {
-    await signOut({ redirect: true, callbackUrl: '/' });
+    await signOut({ redirect: true, callbackUrl: '/signin' });
 }
 
 export default function SignOutButton() : JSX.Element {

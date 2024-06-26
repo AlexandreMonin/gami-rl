@@ -12,7 +12,7 @@ export default function LoginForm() : JSX.Element {
         await signIn("credentials", {
             username: email,
             password: password,
-            callbackUrl: '/'
+            callbackUrl: '/players'
         });
     }
 

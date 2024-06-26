@@ -16,7 +16,7 @@ export default function Navbar({user}: NavbarProps): JSX.Element {
             <Image src="/logo.svg" alt="Logo du site Gami-RL" width={185} height={250} priority className={style.logo}/>
 
             <div className={style.tabs}>
-                <NavbarTab name="Accueil" href="/"/>
+                {/*<NavbarTab name="Accueil" href="/"/>*/}
                 <NavbarTab name="Forum" href="/post"/>
                 <NavbarTab name="Joueurs" href="/players"/>
                 <NavbarTab name="Évènements" href="/events"/>
