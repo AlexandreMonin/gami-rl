@@ -1,5 +1,6 @@
 import {NextRequest, NextResponse} from "next/server";
 import prisma from "@/utils/db";
+import game from "@/type/Game/Game";
 
 export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
     const id = params.id;
@@ -7,7 +8,11 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
         const user = await prisma.user.findUnique({
             where: { id: Number(id) },
             include: {
-                game_user: true,
+                game_user: {
+                    include: {
+                        game: true,
+                    },
+                },
                 UserPlatform: true
             }
         });
