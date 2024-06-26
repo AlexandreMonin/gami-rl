@@ -1,6 +1,5 @@
-import prisma from "@/utils/db";
 import {NextRequest, NextResponse} from "next/server";
-import { User, Game_Tag } from ".prisma/client";
+import prisma from "@/utils/db";
 
 export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
     const id = params.id;
@@ -9,7 +8,7 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
             where: { id: Number(id) },
             include: {
                 game_user: true,
-                platforms: true
+                UserPlatform: true
             }
         });
         if (user) {
