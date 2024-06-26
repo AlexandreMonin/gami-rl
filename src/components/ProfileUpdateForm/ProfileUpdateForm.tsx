@@ -22,9 +22,9 @@ export default function ProfileUpdateForm({ player }: { player: User }) {
                     const { data } = await res.json();
                     setStatus(data.status);
                     setBiography(data.biography);
-                    setSelectedPlatformIds(data.platforms.map((platform: Platform_Tag) => platform.id));
+                    setSelectedPlatformIds(data.UserPlatform.map((platform: { platformId: number }) => platform.platformId));
 
-                    const initialFavoriteGames = data.game_user.map((gameUser: Game_User) => ({
+                    const initialFavoriteGames = data.game_user.map((gameUser: { gameId: number }) => ({
                         gameId: gameUser.gameId,
                     }));
                     setFavoriteGames(initialFavoriteGames);

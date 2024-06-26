@@ -1,5 +1,12 @@
 import PostDetails from '@/components/Posts/PostDetails/PostDetails';
 import React from 'react';
+import type {Metadata} from "next";
+
+export const metadata: Metadata = {
+    title: "Gami-RL - Question",
+    description: "Gami-RL post",
+};
+
 
 const retrievePosts = async (id : string) => {
     try {

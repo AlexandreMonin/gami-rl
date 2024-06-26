@@ -1,6 +1,5 @@
-import prisma from "@/utils/db";
 import {NextRequest, NextResponse} from "next/server";
-import { User, Game_Tag } from ".prisma/client";
+import prisma from "@/utils/db";
 
 export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
     const id = params.id;
@@ -9,7 +8,7 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
             where: { id: Number(id) },
             include: {
                 game_user: true,
-                platforms: true
+                UserPlatform: true
             }
         });
         if (user) {
@@ -39,7 +38,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
                         game: true
                     }
                 },
-                platform_user: true,
+                UserPlatform: true,
             },
         });
 
@@ -63,12 +62,14 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
                 biography,
                 game_user: {
                     createMany: {
-                        data: favoriteGames.map((gameId: number) => ({
+                        data: favoriteGames.map((gameId: number, index: number) => ({
                             gameId,
-                        })),
-                    },
+                            // userId: user.id,
+                            order: index + 1
+                        }))
+                    }
                 },
-                platform_user: {
+                UserPlatform: {
                     createMany: {
                         data: platformIds.map((platformId: number) => ({
                             platformId,
@@ -76,7 +77,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
                     },
                 },
             },
-            include: { game_user: true, platform_user: true },
+            include: { game_user: true, UserPlatform: true },
         });
 
 
