@@ -19,10 +19,10 @@ export default function LoginForm() : JSX.Element {
     return(
         <form action={signin} method="POST">
             <input name="email" id="email" type="email" placeholder="Email" className={style.userInput} value={email}
-                   onChange={event => setEmail(event.target.value)}/>
+                   onChange={event => setEmail(event.target.value)} required/>
             <input name="password" id="password" type="password" placeholder="Mot de passe"
                    className={style.userInput} value={password}
-                   onChange={event => setPassword(event.target.value)}/>
+                   onChange={event => setPassword(event.target.value)} required/>
 
             <button type="submit">
                 Connexion
