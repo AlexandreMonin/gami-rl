@@ -19,7 +19,6 @@ model User {
   role_id              Int
   friends              User[]           @relation("UserFriends")
   friend_of            User[]           @relation("UserFriends")
-  platforms            Platform_Tag[]   @relation("UserPlatforms")
   events_interested_by Event[]          @relation("eventsInterest")
   events_author        Event[]          @relation("eventsAuthor")
   friend_request       Friend_Request[] @relation("UserFriendsRequester")
@@ -34,7 +33,6 @@ model Platform_Tag {
   name         String
   image_url    String
   api_id       Int             @unique
-  users        User[]          @relation("UserPlatforms")
   posts        Post[]
   UserPlatform User_Platform[]
 }
