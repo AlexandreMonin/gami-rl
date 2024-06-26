@@ -25,3 +25,43 @@ export async function GET() {
       return NextResponse.json({ error: e }, { status: 500 });  
     }
 }
+
+export async function POST(req: Request) {
+  const post: {
+    authorId: number,
+    title: string,
+    content: string,
+    gameTag: string,
+    platformTag: string
+  } = await req.json();
+
+  try {
+    const create_post = await prisma.post.create({
+      data: {
+        title: post.title,
+        content: post.content,
+        author: {
+          connect: {
+            id: post.authorId,
+          }
+        },
+        games: {
+          connect: {
+            id: parseInt(post.gameTag)
+          }
+        },
+        platforms: {
+          connect: {
+            id: parseInt(post.platformTag)
+          }
+        },
+        isPost: true
+      }
+    });
+
+    return NextResponse.json({data: create_post, status: 201 });
+  } catch (e: any) {
+    return NextResponse.json({data: e, status: 500 });
+  }
+
+}
