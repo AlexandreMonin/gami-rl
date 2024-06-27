@@ -27,7 +27,6 @@ export default function EventDetails({id}: EventFormProps): JSX.Element {
                         console.error(data);
                         throw new Error("Une erreur est survenue");
                     }
-                    console.log(data);
                     setEvent(data.event as Event);
                 } catch (e: any) {
                     console.error(e);

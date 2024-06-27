@@ -3,10 +3,8 @@ import {useEffect, useState} from "react";
 import style from "./style.module.css"
 import {JSX} from "react";
 import InformationToast from "@/components/InformationToast/InformationToats";
-import EventLink from "@/components/EventLinks/EventLinks";
+import EventLink from "@/components/Event/EventLinks/EventLinks";
 import Event from "@/type/Event/Event";
-import {getServerSession, Session} from "next-auth";
-import {authOptions} from "@/app/api/auth/[...nextauth]/route";
 
 type EventFormProps = {
     userMail: string

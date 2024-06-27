@@ -10,7 +10,7 @@ export async function GET() {
             }
         });
 
-        return NextResponse.json({events: events}, {status: 200});
+        return NextResponse.json(events, {status: 200});
     } catch (e: any) {
         console.error(e);
         return NextResponse.json({error: e}, {status: 500});

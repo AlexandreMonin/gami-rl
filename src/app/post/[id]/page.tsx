@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 const retrievePosts = async (id : string) => {
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/posts/${id}`);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/posts/${id}`, {cache: "no-cache"});
       if (!res.ok) {
         throw new Error('Failed to fetch data');
       }

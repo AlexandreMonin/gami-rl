@@ -1,6 +1,6 @@
 import {JSX} from "react";
 import style from "./style.module.css";
-import EventForm from "@/components/EventForm/EventForm";
+import EventForm from "@/components/Event/EventForm/EventForm";
 import {getServerSession, Session} from "next-auth";
 import {authOptions} from "@/app/api/auth/[...nextauth]/route";
 import type {Metadata} from "next";

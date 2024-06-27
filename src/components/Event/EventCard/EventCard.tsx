@@ -2,9 +2,9 @@
 import style from "./style.module.css"
 import {JSX} from "react";
 import Event from "@/type/Event/Event"
-import EventLocation from "@/components/EventLocation/EventLocation";
+import EventLocation from "@/components/Event/EventLocation/EventLocation";
 import Location from "@/type/Event/Location";
-import EventDates from "@/components/EventDates/EventDates";
+import EventDates from "@/components/Event/EventDates/EventDates";
 import {FiChevronRight} from "react-icons/fi";
 
 type EventFormProps = {
