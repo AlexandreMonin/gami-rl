@@ -8,10 +8,12 @@ import LinkTo from "@/components/Input/LinkTo/LinkTo";
 import TextInput from "@/components/Input/TextInput/TextInput";
 
 export default function LoginForm(): JSX.Element {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const signin = async () => {
+        setIsLoading(true);
         await signIn("credentials", {
             username: email,
             password: password,
@@ -29,7 +31,7 @@ export default function LoginForm(): JSX.Element {
                            setValue={setPassword} required={true}/>
             </div>
             <div className={style.inputGroup}>
-                <Button type="submit" text="Connexion"/>
+                <Button type="submit" text="Connexion" loading={isLoading} className="primary"/>
                 <LinkTo href="/user/signup" text="Inscription" className="textPrimary"/>
             </div>
         </form>

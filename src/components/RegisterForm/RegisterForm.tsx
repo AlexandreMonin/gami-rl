@@ -154,7 +154,7 @@ export default function RegisterForm(): JSX.Element {
                         ariaLabel="tail-spin-loading"
                     /></button>
                 ) : (
-                    <Button type="submit" text="M'enregistrer" />
+                    <Button type="submit" text="M'enregistrer" className="primary" />
                 )
             }
             <InformationToast information={modalMessage} isOpen={isOpen} success={success}/>

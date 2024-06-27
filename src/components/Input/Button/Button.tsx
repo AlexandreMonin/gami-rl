@@ -1,15 +1,26 @@
 import style from "./style.module.css";
+import {TailSpin} from "react-loader-spinner";
 
 type ButtonProps = {
     type: "button" | "submit" | "reset";
     text: string;
-    outline?: boolean;
+    className: "outline" | "primary";
+    loading?: boolean;
 }
 
-export default function Button({type = "button", text, outline = false}: ButtonProps) {
+export default function Button({type = "button", text, className, loading = false}: ButtonProps) {
     return (
-        <button type={type} className={outline ? style.outline : style.primary}>
+        <button type={type} className={style[className]} disabled={loading}>
             {text}
+            {
+                loading && <TailSpin
+                    visible={true}
+                    height="20"
+                    width="20"
+                    color="#ffffff"
+                    ariaLabel="tail-spin-loading"
+                />
+            }
         </button>
     )
 }
