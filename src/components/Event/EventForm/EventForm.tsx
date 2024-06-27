@@ -7,7 +7,7 @@ import EventLink from "@/components/Event/EventLinks/EventLinks";
 import Event from "@/type/Event/Event";
 
 type EventFormProps = {
-    userMail: string
+    userMail: string;
 }
 
 export default function EventForm({userMail}: EventFormProps): JSX.Element {
