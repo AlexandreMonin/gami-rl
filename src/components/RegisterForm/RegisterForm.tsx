@@ -3,6 +3,7 @@ import {JSX, useState} from "react";
 import style from "./style.module.css";
 import {TailSpin} from "react-loader-spinner";
 import InformationToast from "@/components/InformationToast/InformationToats";
+import Button from "@/components/Input/Button/Button";
 
 export default function RegisterForm(): JSX.Element {
     const [email, setEmail] = useState("");
@@ -153,7 +154,7 @@ export default function RegisterForm(): JSX.Element {
                         ariaLabel="tail-spin-loading"
                     /></button>
                 ) : (
-                    <button type="submit" className="button-primary">M&apos;enregistrer</button>
+                    <Button type="submit" text="M'enregistrer" />
                 )
             }
             <InformationToast information={modalMessage} isOpen={isOpen} success={success}/>

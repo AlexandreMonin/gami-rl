@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function Signup(): JSX.Element {
     return (
         <main className={style.main}>
-            <div className="card">
+            <div className={style.card}>
                 <h1 className={style.title}>Connexion</h1>
                 <LoginForm />
             </div>

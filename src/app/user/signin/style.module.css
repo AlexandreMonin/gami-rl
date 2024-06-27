@@ -7,3 +7,11 @@
     display: flex;
     justify-content: center;
 }
+
+.card {
+    margin-top: 5rem;
+    background-color: white;
+    width: 35%;
+    padding: 2rem;
+    border-radius: 0.5rem;
+}

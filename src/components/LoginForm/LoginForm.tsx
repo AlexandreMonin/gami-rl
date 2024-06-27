@@ -1,10 +1,13 @@
 "use client"
 import {signIn} from "next-auth/react";
 import {JSX, useState} from "react";
-import style from "@/components/RegisterForm/style.module.css";
+import style from "./style.module.css";
 import Link from "next/link";
+import Button from "@/components/Input/Button/Button";
+import LinkTo from "@/components/Input/LinkTo/LinkTo";
+import TextInput from "@/components/Input/TextInput/TextInput";
 
-export default function LoginForm() : JSX.Element {
+export default function LoginForm(): JSX.Element {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -16,20 +19,19 @@ export default function LoginForm() : JSX.Element {
         });
     }
 
-    return(
-        <form action={signin} method="POST">
-            <input name="email" id="email" type="email" placeholder="Email" className={style.userInput} value={email}
-                   onChange={event => setEmail(event.target.value)} required/>
-            <input name="password" id="password" type="password" placeholder="Mot de passe"
-                   className={style.userInput} value={password}
-                   onChange={event => setPassword(event.target.value)} required/>
+    return (
+        <form action={signin} method="POST" className={style.form}>
 
-            <button type="submit">
-                Connexion
-            </button>
-            <Link href={"/user/signup"} >
-                Inscription
-            </Link>
+            <div className={style.inputTextGroup}>
+                <TextInput name="email" id="email" type="email" placeholder="Email" value={email} setValue={setEmail}
+                           required={true}/>
+                <TextInput name="password" id="password" type="password" placeholder="Mot de passe" value={password}
+                           setValue={setPassword} required={true}/>
+            </div>
+            <div className={style.inputGroup}>
+                <Button type="submit" text="Connexion"/>
+                <LinkTo href="/user/signup" text="Inscription" className="textPrimary"/>
+            </div>
         </form>
     )
 }
