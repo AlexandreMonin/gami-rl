@@ -15,3 +15,13 @@
     padding: 2rem;
     border-radius: 0.5rem;
 }
+
+@media only screen and (max-width: 950px) {
+    .card {
+        margin-top: 5rem;
+        background-color: white;
+        width: 80%;
+        padding: 2rem;
+        border-radius: 0.5rem;
+    }
+}
