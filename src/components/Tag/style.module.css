@@ -1,21 +1,28 @@
 .tagGame {
     background-color: pink;
     margin-top: 1vh;
-    margin-left: 1vw;
-    margin-right: 1vw;
+    margin-left: 0.5vw;
+    margin-right: 0.5vw;
+    padding-left: 0.5vw;
+    padding-right: 0.5vw;
     padding-top: 1vh;
     padding-bottom: 1vh;
-    width: 5vw;
+    width: 11vw;
     text-align: center;
+    border-radius: 1em;
 }
 
 .tagPlatform {
     background-color: green;
     margin-top: 1vh;
-    margin-left: 1vw;
-    margin-right: 1vw;
+    margin-left: 0.5vw;
+    margin-right: 0.5vw;
+    padding-left: 0.5vw;
+    padding-right: 0.5vw;
     padding-top: 1vh;
     padding-bottom: 1vh;
-    width: 5vw;
+    width: 11vw;
     text-align: center;
+    border-radius: 1em;
+    color: white;
 }

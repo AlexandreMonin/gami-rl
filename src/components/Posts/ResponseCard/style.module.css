@@ -7,14 +7,5 @@
     padding-left: 1vw;
     padding-right: 1vw;
     padding-bottom: 1vh;
-}
-
-.spanContainer {
-    background-color: blue;
-    margin-top: 2vh;
-    margin-left: 2vw;
-    padding-top: 1vh;
-    padding-left: 1vw;
-    padding-right: 1vw;
-    padding-bottom: 1vh;
+    border-radius: 1em;
 }

@@ -16,7 +16,7 @@ const PostCard: React.FC<PostProps> = ({ post }) => {
       <li className={styles.card}>
         <h2>{post.title} - {post.author.username}</h2>
         <p>{post.content}</p>
-        <div style={{display: 'flex'}}>
+        <div style={{display: 'flex', justifyContent: 'flex-end'}}>
           {post.games.map((game: Game) => (
             <TagGame key={game.id} game={game} />
           ))}
