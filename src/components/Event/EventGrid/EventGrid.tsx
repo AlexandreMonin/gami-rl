@@ -1,6 +1,6 @@
 "use client"
 import style from "./style.module.css"
-import {JSX, useEffect, useState} from "react";
+import {JSX} from "react";
 import Event from "@/type/Event/Event"
 import EventCard from "@/components/Event/EventCard/EventCard";
 

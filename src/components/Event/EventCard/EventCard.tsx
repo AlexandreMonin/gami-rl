@@ -8,11 +8,10 @@ import EventDates from "@/components/Event/EventDates/EventDates";
 import {FiChevronRight} from "react-icons/fi";
 
 type EventFormProps = {
-    id: number
     event: Event
 }
 
-export default function EventCard({id, event}: EventFormProps): JSX.Element {
+export default function EventCard({event}: EventFormProps): JSX.Element {
     let detail = event.details;
 
     if (event.details.length > 250) {

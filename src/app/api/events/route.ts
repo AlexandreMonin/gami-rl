@@ -1,6 +1,5 @@
 import {NextResponse} from "next/server";
 import prisma from "@/utils/db";
-import Event from "@/type/Event/Event";
 
 export async function GET() {
     try {

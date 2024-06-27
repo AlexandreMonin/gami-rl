@@ -1,0 +1,11 @@
+.input {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    -webkit-box-shadow: inset 0 0 23px -5px rgba(0,0,0,0.5);
+    box-shadow: inset 0 0 23px -5px rgba(0,0,0,0.5);
+}
+
+.inputGroup {
+    width: 100%;
+}
