@@ -2,7 +2,6 @@
 import {signIn} from "next-auth/react";
 import {JSX, useState} from "react";
 import style from "./style.module.css";
-import Link from "next/link";
 import Button from "@/components/Input/Button/Button";
 import LinkTo from "@/components/Input/LinkTo/LinkTo";
 import TextInput from "@/components/Input/TextInput/TextInput";
