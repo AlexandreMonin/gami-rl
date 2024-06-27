@@ -1,7 +1,6 @@
 "use client"
 import {JSX, useEffect, useState} from "react";
 import style from "./style.module.css";
-import {TailSpin} from "react-loader-spinner";
 import InformationToast from "@/components/InformationToast/InformationToats";
 import Button from "@/components/Input/Button/Button";
 import TextInput from "@/components/Input/TextInput/TextInput";
