@@ -5,6 +5,7 @@ import InformationToast from "@/components/InformationToast/InformationToats";
 import Button from "@/components/Input/Button/Button";
 import TextInput from "@/components/Input/TextInput/TextInput";
 import TextArea from "@/components/Input/TextArea/TextArea";
+import LinkTo from "@/components/Input/LinkTo/LinkTo";
 
 export default function RegisterForm(): JSX.Element {
     const [email, setEmail] = useState("");
@@ -113,6 +114,7 @@ export default function RegisterForm(): JSX.Element {
                       label="Biographie" placeholder="Dites en d'avantage..." required={true}/>
 
             <Button type="submit" text="M'enregistrer" className="primary" loading={isLoading}/>
+            <LinkTo href="/user/signin" text="Connexion" className="textPrimary"/>
 
             <InformationToast information={modalMessage} isOpen={isOpen} success={success}/>
         </form>
