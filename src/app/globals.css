@@ -34,3 +34,7 @@ legend {
     padding-right: 0.5rem;
     color: #5F0099;
 }
+
+input {
+    outline: none;
+}
