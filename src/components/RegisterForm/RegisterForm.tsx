@@ -1,9 +1,11 @@
 "use client"
-import {JSX, useState} from "react";
+import {JSX, useEffect, useState} from "react";
 import style from "./style.module.css";
 import {TailSpin} from "react-loader-spinner";
 import InformationToast from "@/components/InformationToast/InformationToats";
 import Button from "@/components/Input/Button/Button";
+import TextInput from "@/components/Input/TextInput/TextInput";
+import TextArea from "@/components/Input/TextArea/TextArea";
 
 export default function RegisterForm(): JSX.Element {
     const [email, setEmail] = useState("");
@@ -19,17 +21,9 @@ export default function RegisterForm(): JSX.Element {
     const [modalMessage, setModalMessage] = useState("");
     const [success, setSuccess] = useState(false);
 
-    const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setPassword(event.target.value);
-        setPasswordsMatch(event.target.value === confirmPassword);
-
-    };
-
-    const handleConfirmPasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setConfirmPassword(event.target.value);
-        setPasswordsMatch(event.target.value === password);
-
-    };
+    useEffect(() => {
+        setPasswordsMatch(password === confirmPassword);
+    }, [password, confirmPassword]);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -94,69 +88,33 @@ export default function RegisterForm(): JSX.Element {
                 </div>
             </fieldset>
 
-            <div className={style.inputGroup}>
-                <label htmlFor="email" className={style.labelInput}>Email <span
-                    className={style.required}>*</span></label>
-                <input name="email" id="email" type="email" placeholder="mon@email.com" className={style.userInput}
-                       value={email}
-                       onChange={event => setEmail(event.target.value)} required/>
-            </div>
-
-            <div className={style.inputGroup}>
-                <label htmlFor="username" className={style.labelInput}>Pseudonyme <span
-                    className={style.required}>*</span></label>
-                <input name="username" id="username" type="text" placeholder="Pseudonyme" className={style.userInput}
-                       value={username} onChange={event => setUsername(event.target.value)} required/>
-            </div>
+            <TextInput name="email" label="Email" id="email" type="email" value={email} setValue={setEmail}
+                       placeholder="mon@mail.com" required={true}/>
+            <TextInput name="username" label="Pseudonyme" id="username" type="text" value={username}
+                       setValue={setUsername} placeholder="Pseudo123" required={true}/>
 
             <div className={style.passwordContainer}>
                 <div className={style.passwordField}>
-                    <div className={style.inputGroup}>
-                        <label htmlFor="password" className={style.labelInput}>Mot de passe <span
-                            className={style.required}>*</span></label>
-                        <input name="password" id="password" type="password" placeholder="********"
-                               className={style.userInput} value={password}
-                               onChange={handlePasswordChange} required/>
-                    </div>
-                    <div className={style.inputGroup}>
-                        <label htmlFor="confirmPassword" className={style.labelInput}>Confirmer votre mot de
-                            passe <span className={style.required}>*</span></label>
-                        <input name="confirmPassword" id="confirmPassword" type="password"
-                               placeholder="********" className={style.userInput}
-                               value={confirmPassword}
-                               onChange={handleConfirmPasswordChange} required/>
-                    </div>
+                    <TextInput name="password" id="password" type="password" label="Mot de passe" value={password}
+                               setValue={setPassword}
+                               placeholder="********" required={true}/>
+                    <TextInput name="confirmPassword" id="confirmPassword" type="password"
+                               label="Confirmer le mot de passe" value={confirmPassword}
+                               setValue={setConfirmPassword}
+                               placeholder="********" required={true}/>
                 </div>
                 {!passwordsMatch &&
                     <p className={style.passwordMatchError}>Les mots de passe ne correspondent pas.</p>}
             </div>
 
-            <div className={style.inputGroup}>
-                <label htmlFor="status" className={style.labelInput}>Status</label>
-                <input name="status" id="status" type="text" placeholder="Décrivez-vous en une phrase..."
-                       className={style.userInput} value={status} onChange={event => setStatus(event.target.value)}/>
-            </div>
+            <TextInput name="status" id="status" type="text" value={status} setValue={setStatus}
+                       placeholder="Décrivez-vous en une phrase" required={true} label="Status"/>
 
-            <div className={style.inputGroup}>
-                <label htmlFor="biography" className={style.labelInput}>Biographie</label>
-                <textarea name="biography" id="biography" rows={10} className={style.userInput}
-                          placeholder="Dites en d'avantage..."
-                          value={biography} onChange={event => setBiography(event.target.value)}/>
-            </div>
+            <TextArea name="biography" id="biography" value={biography} setValue={setBiography} rows={10}
+                      label="Biographie" placeholder="Dites en d'avantage..." required={true}/>
 
-            {
-                isLoading ? (
-                    <button type="submit" className="button-primary-disabled" disabled>M&apos;enregistrer <TailSpin
-                        visible={true}
-                        height="30"
-                        width="30"
-                        color="#5F0099"
-                        ariaLabel="tail-spin-loading"
-                    /></button>
-                ) : (
-                    <Button type="submit" text="M'enregistrer" className="primary" />
-                )
-            }
+            <Button type="submit" text="M'enregistrer" className="primary" loading={isLoading}/>
+
             <InformationToast information={modalMessage} isOpen={isOpen} success={success}/>
         </form>
     );

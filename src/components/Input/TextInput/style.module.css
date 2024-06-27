@@ -2,5 +2,16 @@
     width: 100%;
     padding: 0.5rem 1rem;
     border-radius: 1rem;
-    border: 1px #5F0099 solid;
+    border: 0.1rem #5F0099 solid;
+}
+
+.inputGroup {
+    width: 100%;
+}
+
+.label {
+    color: #5F0099;
+    margin-bottom: -1rem;
+    margin-left: 0.5rem;
+    align-self: flex-start;
 }
