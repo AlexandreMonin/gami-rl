@@ -45,6 +45,7 @@ export async function GET(req: NextRequest, {params}: { params: { search: string
             },
 
         });
+
         return NextResponse.json(events, {status: 200});
     } catch (e) {
         console.log(e);

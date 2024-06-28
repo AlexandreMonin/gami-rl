@@ -1,0 +1,9 @@
+.searchElement {
+    width: 50%;
+}
+
+.searchDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

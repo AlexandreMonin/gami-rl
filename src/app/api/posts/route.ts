@@ -9,6 +9,9 @@ import { NextResponse } from "next/server";
 export async function GET() {
     try {
       const posts = await prisma.post.findMany({
+        where: {
+          isPost: true,
+        },
         include: {
           author: true,
           games: true,
@@ -20,7 +23,7 @@ export async function GET() {
           }
         },
       })
-      return NextResponse.json({ data: posts }, { status: 200 });
+      return NextResponse.json(posts, { status: 200 });
     } catch (e) {
       return NextResponse.json({ error: e }, { status: 500 });  
     }

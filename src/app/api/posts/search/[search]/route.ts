@@ -4,7 +4,7 @@ import prisma from "@/utils/db";
 export async function GET(req: NextRequest, {params}: { params: { search: string } }) {
     const {search}: {search: string} = params;
     try {
-        const post = await prisma.post.findMany({
+        const posts = await prisma.post.findMany({
             where: {
                 OR: [
                     {
@@ -55,7 +55,8 @@ export async function GET(req: NextRequest, {params}: { params: { search: string
             },
 
         });
-        return NextResponse.json(post, {status: 200});
+
+        return NextResponse.json(posts, {status: 200});
     } catch (e) {
         console.log(e);
         return NextResponse.json({error: e}, {status: 500});

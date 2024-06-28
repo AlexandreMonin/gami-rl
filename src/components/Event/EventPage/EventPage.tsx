@@ -11,28 +11,6 @@ export default function EventPage(): JSX.Element {
     const [events, setEvents] = useState<Event[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
-    useEffect(() => {
-            const getEvents = async (): Promise<void> => {
-                try {
-                    const response = await fetch(`/api/events`, {
-                        method: "GET",
-                        cache: "no-store"
-                    });
-                    const data = await response.json();
-                    if (!response.ok) {
-                        console.error(data);
-                        throw new Error("Une erreur est survenue");
-                    }
-                    setEvents(data as Event[]);
-                } catch (e: any) {
-                    console.error(e);
-                    throw new Error(e);
-                }
-            }
-            getEvents().finally(() => setIsLoading(false));
-        }, []
-    );
-
     return (
         <div>
             <div className={style.searchDiv}>

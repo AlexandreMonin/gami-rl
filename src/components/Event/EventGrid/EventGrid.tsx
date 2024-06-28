@@ -14,7 +14,7 @@ export default function EventGrid({events}: EventGridProps): JSX.Element {
         <div className={style.cardGrid}>
             {
                 events.map((event: Event) => (
-                        <EventCard key={event.id} id={event.id} event={event}/>
+                        <EventCard key={event.id} event={event}/>
                     )
                 )
             }
