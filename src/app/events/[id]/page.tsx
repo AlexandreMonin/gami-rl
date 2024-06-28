@@ -1,5 +1,5 @@
 import {JSX} from "react";
-import EventDetails from "@/components/EventDetails/EventDetails";
+import EventDetails from "@/components/Event/EventDetails/EventDetails";
 import type {Metadata} from "next";
 
 type EventDetailsProps = {
