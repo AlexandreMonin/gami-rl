@@ -10,14 +10,6 @@ h1, h2, h3, h4, h5, h6 {
     font-size: revert;
     font-weight: revert;
 }
-
-.card {
-    background-color: white;
-    width: 90%;
-    padding: 2rem;
-    border-radius: 0.5rem;
-}
-
 fieldset {
     display: flex;
     flex-direction: row;
