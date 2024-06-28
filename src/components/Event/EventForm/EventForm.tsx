@@ -140,11 +140,11 @@ export default function EventForm({userMail}: EventFormProps): JSX.Element {
                 <label htmlFor="isPrivate">Evènement privé</label>
             </div>
             <fieldset className={style.form}>
-                <legend className={style.legend}>Informations de l&apos;évènement</legend>
+                <legend className={style.legend}>Informations de l&apos;événement</legend>
                 <div className={style.inputGroup}>
-                    <label htmlFor="name" className={style.labelInput}>Nom de l&apos;évènement <span
+                    <label htmlFor="name" className={style.labelInput}>Nom de l&apos;événement <span
                         className={style.required}>*</span></label>
-                    <input name="name" id="name" type="name" placeholder="Mon évènement"
+                    <input name="name" id="name" type="name" placeholder="Mon événement"
                            className={style.userInput}
                            value={name}
                            onChange={event => setName(event.target.value)} required/>
@@ -152,7 +152,7 @@ export default function EventForm({userMail}: EventFormProps): JSX.Element {
 
                 <div className={style.dateGroup}>
                     <div className={style.dateInput}>
-                        <label htmlFor="start_date">Début de l&apos;évènement</label>
+                        <label htmlFor="start_date">Début de l&apos;événement</label>
                         <input
                             type="datetime-local"
                             id="start_date"
@@ -162,7 +162,7 @@ export default function EventForm({userMail}: EventFormProps): JSX.Element {
                             required/>
                     </div>
                     <div className={style.dateInput}>
-                        <label htmlFor="end_date">Fin de l&apos;évènement</label>
+                        <label htmlFor="end_date">Fin de l&apos;événement</label>
                         <input
                             type="datetime-local"
                             id="end_date"
@@ -254,7 +254,7 @@ export default function EventForm({userMail}: EventFormProps): JSX.Element {
                 <legend className={style.legend}>Détails</legend>
 
                 <textarea name="details" id="details" rows={10} className={style.userInput}
-                          placeholder="Parler de votre évènement !"
+                          placeholder="Parler de votre événement !"
                           value={details} onChange={event => setDetails(event.target.value)}/>
             </fieldset>
 

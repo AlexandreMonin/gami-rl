@@ -21,7 +21,7 @@ export default async function Events(): Promise<JSX.Element> {
             {
                 session &&
                 <Link href={`/events/new`} className={style.addEvent}>
-                    Planifier un évènement
+                    Planifier un événement
                 </Link>
             }
             <EventPage/>

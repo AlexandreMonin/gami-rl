@@ -6,7 +6,7 @@ import {authOptions} from "@/app/api/auth/[...nextauth]/route";
 import type {Metadata} from "next";
 
 export const metadata: Metadata = {
-    title: "Gami-RL - Nouvel évènement",
+    title: "Gami-RL - Nouvel événement",
     description: "Gami-RL new event",
 };
 
@@ -17,7 +17,7 @@ export default async function Signup(): Promise<JSX.Element> {
     return (
         <main className={style.main}>
             <div className="card">
-                <h1 className={style.title}>Planifier un évènement</h1>
+                <h1 className={style.title}>Planifier un événement</h1>
                 <p className={style.required}>* : Champs obligatoires</p>
                 {
                     session && <EventForm userMail={session.user.email}/>
