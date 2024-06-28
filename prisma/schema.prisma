@@ -128,6 +128,7 @@ model Post {
   replies       Post[]         @relation("replies")
   reply_of_post Post?          @relation("replies", fields: [replyId], references: [id])
   replyId       Int?
+  votes         Int            @default(0)
 }
 
 model Post_Like {

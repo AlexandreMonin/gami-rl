@@ -11,6 +11,7 @@ type Post = {
     games: Game[];
     platforms: Platform[];
     replies: Post[];
+    votes: number;
 };
 
 export default Post;
