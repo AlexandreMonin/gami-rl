@@ -28,6 +28,8 @@ model User {
   UserPlatform         User_Platform[]
   isPublicProfile      Boolean          @default(true)
   // profilePictureFile   String
+  PostUpVoted          Post[]           @relation("upVote")
+  PostDownVoted        Post[]           @relation("downVote")
 }
 
 model Platform_Tag {
@@ -129,6 +131,8 @@ model Post {
   reply_of_post Post?          @relation("replies", fields: [replyId], references: [id])
   replyId       Int?
   votes         Int            @default(0)
+  upVoteBy      User[]         @relation("upVote")
+  downVoteBy    User[]         @relation("downVote")
 }
 
 model Post_Like {

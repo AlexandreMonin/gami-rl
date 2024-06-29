@@ -1,6 +1,6 @@
 'use client';
 
-import {useState, useEffect} from 'react';
+import {JSX, useState} from 'react';
 import Post from '@/type/Post/Post';
 import PostCard from '@/components/Posts/PostCard/PostCard';
 import style from './style.module.css';
@@ -12,8 +12,10 @@ type PostListProps = {
     posts: Post[]
 }
 
-const PostList = ({user, posts}: PostListProps) => {
+export default function PostList({user, posts}: PostListProps): JSX.Element{
     const [showForm, setShowForm] = useState(false);
+
+    console.log(user);
 
     const toggleForm = () => {
         setShowForm(!showForm);
@@ -34,7 +36,7 @@ const PostList = ({user, posts}: PostListProps) => {
                 }
                 <div className={style.postCard}>
                     {posts.map((post: Post) => (
-                        <PostCard key={post.id} post={post}/>
+                        <PostCard key={post.id} user={user} post={post}/>
                     ))}
                 </div>
             </div>
@@ -42,4 +44,3 @@ const PostList = ({user, posts}: PostListProps) => {
     );
 };
 
-export default PostList;

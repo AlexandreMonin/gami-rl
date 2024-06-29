@@ -1,9 +1,9 @@
-import PostList from "@/components/Posts/PostList/PostList";
 import type {Metadata} from "next";
 import {getServerSession, Session} from "next-auth";
 import {authOptions} from "@/app/api/auth/[...nextauth]/route";
 import style from "./style.module.css";
 import PostPage from "@/components/Posts/PostPage/PostPage";
+import {JSX} from "react";
 
 export const metadata: Metadata = {
     title: "Gami-RL - Forum",
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 export const dynamic = 'force-dynamic';
-export default async function PostIndex() {
+export default async function PostIndex(): Promise<JSX.Element> {
     const session: Session | null = await getServerSession(authOptions);
     return (
         <div className={style.page}>

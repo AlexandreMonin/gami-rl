@@ -1,21 +1,24 @@
-import React from 'react';
+import React, {JSX} from 'react';
 import Post from '@/type/Post/Post';
 import style from './style.module.css';
 import Game from '@/type/Game/Game';
 import Platform from '@/type/Platform/Platform';
 import TagGame from '@/components/Tag/TagGame';
 import TagPlatform from '@/components/Tag/TagPlatform';
-import { PiCaretRightBold } from "react-icons/pi";
-import UpVote from "@/components/Posts/Votes/UpVote/UpVote";
-import DownVote from "@/components/Posts/Votes/DownVote/DownVote";
+import {PiCaretRightBold} from "react-icons/pi";
+import PostVotes from "@/components/Posts/PostVotes/PostVotes";
+import {User} from "next-auth";
 
 interface PostProps {
     post: Post;
+    user: User | undefined
 }
 
-const PostCard: React.FC<PostProps> = ({post}) => {
+export default async function PostCard({post, user}: PostProps): Promise<JSX.Element>  {
+
     return (
-        <a href={`/post/${post.id}`} className={style.card}>
+        // <a href={`/post/${post.id}`} className={style.card}>
+        <div className={style.card}>
             <div className={style.title}>
                 <h2>{post.title} - {post.author.username}</h2>
                 <div className={style.tags}>
@@ -30,18 +33,13 @@ const PostCard: React.FC<PostProps> = ({post}) => {
             <p className={style.content}>{post.content}</p>
             <div className={style.footer}>
                 <div className={style.footerLeft}>
-                    <div className={style.votes}>
-                        <UpVote />
-                        <p>{post.votes}</p>
-                        <DownVote />
-                    </div>
+                    <PostVotes user={user} votes={post.votes} />
                     <p className={style.answerLength}>{post.replies.length} Réponses</p>
                 </div>
-                <p className={style.details}>Détails <PiCaretRightBold /></p>
+                <a className={style.details}  href={`/post/${post.id}`}>Détails <PiCaretRightBold/></a>
             </div>
+        </div>
 
-        </a>
-);
+        // </a>
+    );
 };
-
-export default PostCard;
