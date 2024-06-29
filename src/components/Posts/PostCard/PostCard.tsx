@@ -5,7 +5,6 @@ import Game from '@/type/Game/Game';
 import Platform from '@/type/Platform/Platform';
 import TagGame from '@/components/Tag/TagGame';
 import TagPlatform from '@/components/Tag/TagPlatform';
-import Image from "next/image";
 import { PiCaretRightBold } from "react-icons/pi";
 import UpVote from "@/components/Posts/Votes/UpVote/UpVote";
 import DownVote from "@/components/Posts/Votes/DownVote/DownVote";
