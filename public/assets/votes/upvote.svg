@@ -1,12 +1,5 @@
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-
-<!-- Uploaded to: SVG Repo, www.svgrepo.com, Transformed by: SVG Repo Mixer Tools -->
-<svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(180)">
-
-<g id="SVGRepo_bgCarrier" stroke-width="0"/>
-
-<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
-
-<g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M7.66588 21.25H16.3349C19.3549 21.25 21.2499 19.111 21.2499 16.084V7.916C21.2499 4.889 19.3649 2.75 16.3349 2.75H7.66588C4.63588 2.75 2.74988 4.889 2.74988 7.916V16.084C2.74988 19.111 4.63588 21.25 7.66588 21.25Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path d="M11.9999 16.0861V7.91406" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path d="M15.7478 12.3223L11.9998 16.0863L8.25183 12.3223" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </g>
-
+<svg width="31" height="30" viewBox="0 0 31 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M26.9009 15C26.9009 24.2644 24.866 26.25 15.372 26.25C5.87788 26.25 3.84303 24.2644 3.84303 15C3.84303 5.73563 5.87788 3.75 15.372 3.75C24.866 3.75 26.9009 5.73563 26.9009 15Z" stroke="#323232" stroke-width="2"/>
+<path d="M15.3719 10L15.3719 20" stroke="#323232" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M19.2149 13.75L15.4834 10.1087C15.4219 10.0487 15.322 10.0487 15.2605 10.1087L11.529 13.75" stroke="#323232" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

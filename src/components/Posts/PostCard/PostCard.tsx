@@ -7,6 +7,8 @@ import TagGame from '@/components/Tag/TagGame';
 import TagPlatform from '@/components/Tag/TagPlatform';
 import Image from "next/image";
 import { PiCaretRightBold } from "react-icons/pi";
+import UpVote from "@/components/Posts/Votes/UpVote/UpVote";
+import DownVote from "@/components/Posts/Votes/DownVote/DownVote";
 
 interface PostProps {
     post: Post;
@@ -30,11 +32,9 @@ const PostCard: React.FC<PostProps> = ({post}) => {
             <div className={style.footer}>
                 <div className={style.footerLeft}>
                     <div className={style.votes}>
-                        <Image src="/assets/votes/upvote.svg" alt="Avatar de compte déconnecté" width={30}
-                               height={100}/>
+                        <UpVote />
                         <p>{post.votes}</p>
-                        <Image src="/assets/votes/downvote.svg" alt="Avatar de compte déconnecté" width={30}
-                               height={100}/>
+                        <DownVote />
                     </div>
                     <p className={style.answerLength}>{post.replies.length} Réponses</p>
                 </div>
