@@ -24,7 +24,7 @@ export default async function Events(): Promise<JSX.Element> {
                     Planifier un événement
                 </Link>
             }
-            <EventPage/>
+            <EventPage username={session?.user.username}/>
         </div>
     );
 }

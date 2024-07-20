@@ -6,15 +6,16 @@ import EventCard from "@/components/Event/EventCard/EventCard";
 
 type EventGridProps = {
     events: Event[]
+    username: string | undefined;
 }
 
-export default function EventGrid({events}: EventGridProps): JSX.Element {
+export default function EventGrid({events, username}: EventGridProps): JSX.Element {
 
     return (
         <div className={style.cardGrid}>
             {
                 events.map((event: Event) => (
-                        <EventCard key={event.id} event={event}/>
+                        <EventCard key={event.id} event={event} username={username} />
                     )
                 )
             }

@@ -9,6 +9,7 @@ export async function GET() {
             },
             include: {
                 location: true,
+                users_interested: true,
             }
         });
 

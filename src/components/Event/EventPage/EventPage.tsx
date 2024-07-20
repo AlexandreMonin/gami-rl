@@ -5,8 +5,13 @@ import EventGrid from "@/components/Event/EventGrid/EventGrid";
 import style from "./style.module.css";
 import Event from "@/type/Event/Event";
 import Loader from "@/components/Loader/Loader";
+import {User} from "next-auth";
 
-export default function EventPage(): JSX.Element {
+type EventPageProps = {
+    username: string | undefined;
+}
+
+export default function EventPage({username}: EventPageProps): JSX.Element {
     const [search, setSearch] = useState<string>("");
     const [events, setEvents] = useState<Event[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -23,7 +28,7 @@ export default function EventPage(): JSX.Element {
                 isLoading ? (
                     <Loader/>
                 ) : (
-                    <EventGrid events={events}/>
+                    <EventGrid events={events} username={username}/>
                 )
             }
         </div>

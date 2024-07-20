@@ -1,6 +1,6 @@
 "use client"
 import style from "./style.module.css"
-import {JSX} from "react";
+import {JSX, useEffect, useState} from "react";
 import Event from "@/type/Event/Event"
 import EventLocation from "@/components/Event/EventLocation/EventLocation";
 import Location from "@/type/Event/Location";
@@ -11,10 +11,16 @@ import FollowButton from "@/components/Event/FollowButton/FollowButton";
 
 type EventFormProps = {
     event: Event
+    username: string | undefined;
 }
 
-export default function EventCard({event}: EventFormProps): JSX.Element {
+export default function EventCard({event, username}: EventFormProps): JSX.Element {
+    const [isInterested, setInterested] = useState<boolean>(false);
     let detail = event.details;
+
+    useEffect(() => {
+
+    }, []);
 
     if (event.details.length > 250) {
         detail = event.details.substring(0, 250) + "..."
@@ -32,7 +38,7 @@ export default function EventCard({event}: EventFormProps): JSX.Element {
 
             <div className={style.buttons}>
                 <a className={style.moreButton} href={`/events/${event.id}`}>En savoir plus <FiChevronRight size={25}/></a>
-                <FollowButton />
+                <FollowButton username={username} eventId={event.id}/>
             </div>
         </div>
     )
