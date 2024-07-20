@@ -2,7 +2,7 @@
 import { FormEvent, useEffect, useState } from "react";
 import style from "./style.module.css";
 import User from "@/type/User/User";
-import { Game_User, Game_Tag, Platform_Tag } from ".prisma/client";
+import { Game_Tag, Platform_Tag } from ".prisma/client";
 
 export default function ProfileUpdateForm({ player }: { player: User }) {
     const [status, setStatus] = useState<string>('');
@@ -96,7 +96,6 @@ export default function ProfileUpdateForm({ player }: { player: User }) {
         if (res.ok) {
             const data = await res.json();
             alert('Votre profil a été mis à jour !');
-            console.log(data);
             location.reload();
         } else {
             const errorData = await res.json();

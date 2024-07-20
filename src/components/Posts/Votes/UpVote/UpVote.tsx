@@ -1,14 +1,42 @@
 "use client"
-import React, {JSX, useState} from "react";
+import React, {JSX, useEffect, useState} from "react";
 import Image from "next/image";
 import style from "../style.module.css";
 
-export default function UpVote(): JSX.Element {
+type UpVoteProps = {
+    userId: number;
+    postId: number;
+}
+
+export default function UpVote({userId, postId}: UpVoteProps): JSX.Element {
     const [clicked, setClicked] = useState<boolean>(true);
 
-    const update = async () => {
+    useEffect(() => {
+        const update = async () => {
+            try {
+                const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/posts/liked`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        userId,
+                        postId,
+                        votedType: "up",
+                    }),
+                });
 
-    }
+                if (!response.ok) {
+                    throw new Error('Failed to submit response');
+                }
+                console.log("upvoted")
+            } catch (e: any) {
+                console.error(e);
+            }
+        };
+
+        update();
+    }, [clicked]);
 
     return (
         <div onClick={() => setClicked(!clicked)}>

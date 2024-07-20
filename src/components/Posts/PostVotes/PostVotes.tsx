@@ -6,14 +6,15 @@ import {User} from "next-auth";
 
 type PostVotesProps = {
     votes: number;
-    user: User | undefined
+    user: User | undefined;
+    postId: number
 }
 
-export default function PostVotes({votes, user}: PostVotesProps): JSX.Element {
+export default function PostVotes({votes, user, postId}: PostVotesProps): JSX.Element {
     return (
         <div className={style.votes}>
             {
-                user && <UpVote/>
+                user && <UpVote userId={user.id} postId={postId}/>
             }
             <p>{votes} {
                 !user && "votes"

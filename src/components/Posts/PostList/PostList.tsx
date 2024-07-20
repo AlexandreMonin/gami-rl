@@ -15,8 +15,6 @@ type PostListProps = {
 export default function PostList({user, posts}: PostListProps): JSX.Element{
     const [showForm, setShowForm] = useState(false);
 
-    console.log(user);
-
     const toggleForm = () => {
         setShowForm(!showForm);
     };

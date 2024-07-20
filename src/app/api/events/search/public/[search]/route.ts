@@ -6,6 +6,7 @@ export async function GET(req: NextRequest, {params}: { params: { search: string
     try {
         const events = await prisma.event.findMany({
             where: {
+                isPrivate: false,
                 OR: [
                     {
                         name: {

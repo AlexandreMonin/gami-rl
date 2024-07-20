@@ -119,7 +119,6 @@ export default function EventForm({userMail}: EventFormProps): JSX.Element {
                 setSuccess(false);
                 setModalMessage(data.data);
             } else {
-                console.log(data);
                 setSuccess(true);
                 setModalMessage("Enregistrement réussi");
             }

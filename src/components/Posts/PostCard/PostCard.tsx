@@ -33,7 +33,7 @@ export default async function PostCard({post, user}: PostProps): Promise<JSX.Ele
             <p className={style.content}>{post.content}</p>
             <div className={style.footer}>
                 <div className={style.footerLeft}>
-                    <PostVotes user={user} votes={post.votes} />
+                    <PostVotes user={user} votes={post.votes} postId={post.id} />
                     <p className={style.answerLength}>{post.replies.length} Réponses</p>
                 </div>
                 <a className={style.details}  href={`/post/${post.id}`}>Détails <PiCaretRightBold/></a>

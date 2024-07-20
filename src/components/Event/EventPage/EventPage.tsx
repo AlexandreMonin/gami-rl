@@ -1,5 +1,5 @@
 "use client"
-import {JSX, useEffect, useState} from "react";
+import {JSX, useState} from "react";
 import SearchBar from "@/components/Input/SearchBar/SearchBar";
 import EventGrid from "@/components/Event/EventGrid/EventGrid";
 import style from "./style.module.css";
@@ -15,7 +15,7 @@ export default function EventPage(): JSX.Element {
         <div>
             <div className={style.searchDiv}>
                 <div className={style.searchElement}>
-                    <SearchBar value={search} setValue={setSearch} apiRoute="/api/events/search" apiRouteEmpty="/api/events" setResponseData={setEvents} setLoading={setIsLoading}/>
+                    <SearchBar value={search} setValue={setSearch} apiRoute="/api/events/search/public" apiRouteEmpty="/api/events/public" setResponseData={setEvents} setLoading={setIsLoading}/>
                 </div>
             </div>
 
