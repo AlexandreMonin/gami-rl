@@ -12,9 +12,35 @@ type FollowButtonProps = {
 export default function FollowButton({username, eventId, isInterested}: FollowButtonProps): JSX.Element {
     const [isHovered, setIsHovered] = useState(false);
 
-    const onClick = async () => {
+    const interested = async () => {
         try {
             const response = await fetch("/api/events/interested", {
+                method: "POST",
+                headers: {
+                    contentType: "application/json",
+                },
+                body: JSON.stringify({
+                    username: username,
+                    eventId: eventId
+                })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                console.error(data);
+            } else {
+                console.log(data);
+            }
+
+        } catch (e: any) {
+            console.error(e);
+        }
+    }
+
+    const uninterested = async () => {
+        try {
+            const response = await fetch("/api/events/uninterested", {
                 method: "POST",
                 headers: {
                     contentType: "application/json",
@@ -44,7 +70,20 @@ export default function FollowButton({username, eventId, isInterested}: FollowBu
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
                 className={style.button}
-                onClick={onClick}
+                onClick={uninterested}
+            >
+                {isHovered ? (
+                    <IoMdHeartEmpty size={30}/>
+                ) : (
+                    <IoMdHeart size={30}/>
+                )}
+            </div>
+        ) : (
+            <div
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                className={style.button}
+                onClick={interested}
             >
                 {isHovered ? (
                     <IoMdHeart size={30}/>
@@ -52,20 +91,7 @@ export default function FollowButton({username, eventId, isInterested}: FollowBu
                     <IoMdHeartEmpty size={30}/>
                 )}
             </div>
-
-        ) : (
-            <div
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-                className={style.button}
-                onClick={onClick}
-            >
-                {isHovered ? (
-                        <IoMdHeartEmpty size={30}/>
-                ) : (
-                    <IoMdHeart size={30}/>
-                )}
-            </div>
         )
-    );
+    )
+        ;
 }

@@ -9,7 +9,7 @@ type Event = {
     end_date: Date;
     links?: Link[];
     location: Location;
-    userInterested?: User[];
+    users_interested?: User[];
     author?: User;
     authorId: number;
     phoneNumber: string;

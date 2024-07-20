@@ -19,7 +19,7 @@ export default function EventCard({event, username}: EventFormProps): JSX.Elemen
     let detail = event.details;
 
     useEffect(() => {
-        event.userInterested && setInterested(event.userInterested.some(user => user.username === username))
+        event.users_interested?.length > 0 && setInterested(event.users_interested.some(user => user.username === username))
     }, []);
 
     if (event.details.length > 250) {

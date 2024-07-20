@@ -38,7 +38,7 @@ export default function SearchBar({
         setLoading(true);
         if (debouncedTerm) {
             const fetchData = async () => {
-                const response = await fetch(`${apiRoute}/${value}`);
+                const response = await fetch(`${apiRoute}/${value}`, {cache: "no-cache"});
                 const data = await response.json();
                 setResponseData(data);
                 setLoading(false)
@@ -47,7 +47,7 @@ export default function SearchBar({
             fetchData();
         } else {
             const fetchData = async () => {
-                const response = await fetch(`${apiRouteEmpty}`);
+                const response = await fetch(`${apiRouteEmpty}`, {cache: "no-cache"});
                 const data = await response.json();
                 setResponseData(data);
                 setLoading(false)
