@@ -6,6 +6,8 @@ import EventLocation from "@/components/Event/EventLocation/EventLocation";
 import Location from "@/type/Event/Location";
 import EventDates from "@/components/Event/EventDates/EventDates";
 import {FiChevronRight} from "react-icons/fi";
+import FollowButton from "@/components/Event/FollowButton/FollowButton";
+
 
 type EventFormProps = {
     event: Event
@@ -30,6 +32,7 @@ export default function EventCard({event}: EventFormProps): JSX.Element {
 
             <div className={style.buttons}>
                 <a className={style.moreButton} href={`/events/${event.id}`}>En savoir plus <FiChevronRight size={25}/></a>
+                <FollowButton />
             </div>
         </div>
     )
