@@ -5,7 +5,6 @@ import EventGrid from "@/components/Event/EventGrid/EventGrid";
 import style from "./style.module.css";
 import Event from "@/type/Event/Event";
 import Loader from "@/components/Loader/Loader";
-import {User} from "next-auth";
 
 type EventPageProps = {
     username: string | undefined;

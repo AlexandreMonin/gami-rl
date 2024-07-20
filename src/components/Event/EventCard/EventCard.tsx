@@ -19,7 +19,7 @@ export default function EventCard({event, username}: EventFormProps): JSX.Elemen
     let detail = event.details;
 
     useEffect(() => {
-
+        event.userInterested && setInterested(event.userInterested.some(user => user.username === username))
     }, []);
 
     if (event.details.length > 250) {
@@ -38,7 +38,7 @@ export default function EventCard({event, username}: EventFormProps): JSX.Elemen
 
             <div className={style.buttons}>
                 <a className={style.moreButton} href={`/events/${event.id}`}>En savoir plus <FiChevronRight size={25}/></a>
-                <FollowButton username={username} eventId={event.id}/>
+                <FollowButton username={username} eventId={event.id} isInterested={isInterested}/>
             </div>
         </div>
     )

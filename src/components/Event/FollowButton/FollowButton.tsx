@@ -1,14 +1,15 @@
 "use client"
-import { useState } from "react";
-import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
+import {useState} from "react";
+import {IoMdHeartEmpty, IoMdHeart} from "react-icons/io";
 import style from "./style.module.css";
 
 type FollowButtonProps = {
     username: string | undefined;
     eventId: number;
+    isInterested: boolean;
 }
 
-export default function FollowButton({username, eventId}: FollowButtonProps): JSX.Element {
+export default function FollowButton({username, eventId, isInterested}: FollowButtonProps): JSX.Element {
     const [isHovered, setIsHovered] = useState(false);
 
     const onClick = async () => {
@@ -38,17 +39,33 @@ export default function FollowButton({username, eventId}: FollowButtonProps): JS
     }
 
     return (
-        <div
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            className={style.button}
-            onClick={onClick}
-        >
-            {isHovered ? (
-                <IoMdHeart size={30} />
-            ) : (
-                <IoMdHeartEmpty size={30} />
-            )}
-        </div>
+        isInterested ? (
+            <div
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                className={style.button}
+                onClick={onClick}
+            >
+                {isHovered ? (
+                    <IoMdHeart size={30}/>
+                ) : (
+                    <IoMdHeartEmpty size={30}/>
+                )}
+            </div>
+
+        ) : (
+            <div
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                className={style.button}
+                onClick={onClick}
+            >
+                {isHovered ? (
+                        <IoMdHeartEmpty size={30}/>
+                ) : (
+                    <IoMdHeart size={30}/>
+                )}
+            </div>
+        )
     );
 }
