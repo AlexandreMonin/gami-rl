@@ -7,12 +7,14 @@ type FollowButtonProps = {
     username: string | undefined;
     eventId: number;
     isInterested: boolean;
+    setIsInterested: any;
 }
 
-export default function FollowButton({username, eventId, isInterested}: FollowButtonProps): JSX.Element {
+export default function FollowButton({username, eventId, isInterested, setIsInterested}: FollowButtonProps): JSX.Element {
     const [isHovered, setIsHovered] = useState(false);
 
     const interested = async () => {
+        setIsInterested(true);
         try {
             const response = await fetch("/api/events/interested", {
                 method: "POST",
@@ -29,16 +31,19 @@ export default function FollowButton({username, eventId, isInterested}: FollowBu
 
             if (!response.ok) {
                 console.error(data);
+                setIsInterested(false);
             } else {
                 console.log(data);
             }
 
         } catch (e: any) {
             console.error(e);
+            setIsInterested(false);
         }
     }
 
     const uninterested = async () => {
+        setIsInterested(false);
         try {
             const response = await fetch("/api/events/uninterested", {
                 method: "POST",
@@ -55,12 +60,14 @@ export default function FollowButton({username, eventId, isInterested}: FollowBu
 
             if (!response.ok) {
                 console.error(data);
+                setIsInterested(true);
             } else {
                 console.log(data);
             }
 
         } catch (e: any) {
             console.error(e);
+            setIsInterested(true);
         }
     }
 

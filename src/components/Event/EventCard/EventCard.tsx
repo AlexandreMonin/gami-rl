@@ -38,7 +38,7 @@ export default function EventCard({event, username}: EventFormProps): JSX.Elemen
 
             <div className={style.buttons}>
                 <a className={style.moreButton} href={`/events/${event.id}`}>En savoir plus <FiChevronRight size={25}/></a>
-                <FollowButton username={username} eventId={event.id} isInterested={isInterested}/>
+                <FollowButton username={username} eventId={event.id} isInterested={isInterested} setIsInterested={setInterested}/>
             </div>
         </div>
     )
