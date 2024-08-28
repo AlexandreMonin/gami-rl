@@ -1,5 +1,4 @@
 import PlayerCard from "@/components/PlayerCard/PlayerCard"
-import User from "@/type/User/User";
 import style from "@/components/PlayerPage/style.module.css";
 
 const retrievePlayers = async () => {
@@ -21,7 +20,7 @@ export default async function PlayerPage() {
     let players = [];
     try {
         const all_players = await retrievePlayers();
-        players = all_players.data.filter((player) => player.isPublicProfile);
+        players = all_players.data.filter((player: any) => player.isPublicProfile);
     } catch (error) {
         console.error('Error fetching players:', error);
     }
@@ -30,10 +29,10 @@ export default async function PlayerPage() {
         <div className={style.container}>
             <div className={style.page_title}>
                 {players.length != 0 && <h2>Trouvez vos meilleurs coéquipiers</h2>}
-                {players.length === 0 && <p className={style.noPlayers}>Il n'y a pas de joueurs pour le moment.</p>}
+                {players.length === 0 && <p className={style.noPlayers}>Il n&apos;y a pas de joueurs pour le moment.</p>}
             </div>
             <div className={style.player_container}>
-                {players.map((player) => (
+                {players.map((player: any) => (
                     <PlayerCard key={player.id} id={player.id} aria-label="Player" />
                 ))}
             </div>

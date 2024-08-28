@@ -26,7 +26,7 @@ const PostDetails = ({ params, user } : {params: Post, user?: User }) => {
                     ))}
                 </div>
                 {params.replies && params.replies.map((response: Post) => (
-                    <ResponseCard params={response}/>
+                    <ResponseCard key={response.id} params={response}/>
                 ))}
                 {user && (
                     <ResponseForm postId={params.id} authorId={user.id}/>
