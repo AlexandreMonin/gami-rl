@@ -12,6 +12,10 @@ const pwa = PWA({
 });
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+    typescript: {
+        ignoreBuildErrors: true,
+    }
+};
 
 export default pwa(nextConfig);

@@ -59,6 +59,11 @@ export const authOptions = {
     }
 };
 
-const handler = NextAuth(authOptions);
+const handler = NextAuth({
+    ...authOptions,
+    // Override types because NextAuth doesn't export them correctly
+    callbacks: authOptions.callbacks as any,
+    providers: authOptions.providers as any,
+});
 
 export { handler as GET, handler as POST };
