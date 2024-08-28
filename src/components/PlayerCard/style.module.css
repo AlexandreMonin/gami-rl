@@ -1,0 +1,34 @@
+.player_card {
+    /*box-sizing: border-box;*/
+    height: 10rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 1rem;
+    background-color: #ffffff;
+    min-width: 20%;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.player_card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transform: translateY(-5px);
+}
+
+.player_card_name {
+    font-size: 24px;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.player_card_email,
+.player_card_biography {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.player_card_status {
+    font-size: 12px;
+    margin-bottom: 8px;
+    color: #555;
+}

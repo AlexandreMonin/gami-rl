@@ -1,0 +1,156 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                   Int              @id @default(autoincrement())
+  username             String           @unique
+  email                String           @unique
+  password             String
+  status               String           @db.VarChar(128)
+  biography            String
+  register_date        DateTime         @default(now())
+  role                 Role             @relation(fields: [role_id], references: [id])
+  role_id              Int
+  friends              User[]           @relation("UserFriends")
+  friend_of            User[]           @relation("UserFriends")
+  events_interested_by Event[]          @relation("eventsInterest")
+  events_author        Event[]          @relation("eventsAuthor")
+  friend_request       Friend_Request[] @relation("UserFriendsRequester")
+  friend_requested     Friend_Request[] @relation("UserFriendsRequested")
+  posts                Post[]           @relation("posts")
+  game_user            Game_User[]
+  UserPlatform         User_Platform[]
+  isPublicProfile      Boolean          @default(true)
+  // profilePictureFile   String
+  PostUpVoted          Post[]           @relation("upVote")
+  PostDownVoted        Post[]           @relation("downVote")
+}
+
+model Platform_Tag {
+  id           Int             @id @default(autoincrement())
+  name         String
+  image_url    String
+  api_id       Int             @unique
+  posts        Post[]
+  UserPlatform User_Platform[]
+}
+
+model User_Platform {
+  id         Int          @id @default(autoincrement())
+  userId     Int
+  platformId Int
+  user       User         @relation(fields: [userId], references: [id])
+  platform   Platform_Tag @relation(fields: [platformId], references: [id])
+
+  @@unique([userId, platformId])
+}
+
+model Role {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  users User[]
+}
+
+model Friend_Request {
+  id           Int  @id @default(autoincrement())
+  requester_id Int
+  requester    User @relation(name: "UserFriendsRequested", fields: [requester_id], references: [id])
+  receiver_id  Int
+  receiver     User @relation(name: "UserFriendsRequester", fields: [receiver_id], references: [id])
+}
+
+model Game_Tag {
+  id        Int         @id @default(autoincrement())
+  name      String
+  image_url String
+  api_id    Int         @unique
+  posts     Post[]
+  game_user Game_User[]
+}
+
+model Event {
+  id               Int      @id @default(autoincrement())
+  name             String
+  start_date       DateTime
+  end_date         DateTime
+  links            Link[]
+  location         Location @relation(fields: [locationId], references: [id])
+  users_interested User[]   @relation("eventsInterest")
+  author           User     @relation(name: "eventsAuthor", fields: [userId], references: [id])
+  locationId       Int
+  userId           Int
+  post             Post[]
+  isPrivate        Boolean
+  phoneNumber      String
+  details          String
+}
+
+model Location {
+  id        Int     @id @default(autoincrement())
+  address   String
+  city      String
+  zip_code  Int
+  country   String
+  latitude  String?
+  longitude String?
+  events    Event[]
+}
+
+model Link {
+  id          Int       @id @default(autoincrement())
+  text        String
+  type        Link_Type @relation(fields: [link_TypeId], references: [id])
+  event       Event     @relation(fields: [eventId], references: [id])
+  eventId     Int
+  link_TypeId Int
+}
+
+model Link_Type {
+  id    Int    @id @default(autoincrement())
+  name  String
+  links Link[]
+}
+
+model Post {
+  id            Int            @id @default(autoincrement())
+  title         String
+  content       String
+  author        User           @relation(name: "posts", fields: [userId], references: [id])
+  userId        Int
+  isPost        Boolean
+  games         Game_Tag[]
+  platforms     Platform_Tag[]
+  events        Event[]
+  replies       Post[]         @relation("replies")
+  reply_of_post Post?          @relation("replies", fields: [replyId], references: [id])
+  replyId       Int?
+  votes         Int            @default(0)
+  upVoteBy      User[]         @relation("upVote")
+  downVoteBy    User[]         @relation("downVote")
+}
+
+model Post_Like {
+  userId Int
+  postId Int
+  count  Int
+
+  @@id([userId, postId])
+}
+
+model Game_User {
+  gameId Int
+  userId Int
+  order  Int
+
+  game Game_Tag @relation(fields: [gameId], references: [id])
+  user User     @relation(fields: [userId], references: [id])
+
+  @@id([userId, gameId])
+  @@unique([userId, gameId])
+}

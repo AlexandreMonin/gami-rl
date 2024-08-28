@@ -1,0 +1,37 @@
+.card {
+    background-color: rgba(255, 255, 255, 0.9);
+    margin-top: 2vh;
+    margin-left: 2vw;
+    margin-right: 2vw;
+    padding-top: 1vh;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    padding-bottom: 1vh;
+    border-radius: 1em;
+}
+
+.spanContainer {
+    background-color: #5F0099;
+    color: white;
+    margin-top: 2vh;
+    margin-left: 2vw;
+    padding-top: 1vh;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    padding-bottom: 1vh;
+    border-radius: 15em;
+}
+
+.spanContainer:hover {
+    background-color: #7200b9;
+}
+
+.div {
+    border-width: 0.1vw;
+    border-color: #5F0099;
+    padding-top: 1vh;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    padding-bottom: 1vh;
+    border-radius: 1em;
+}

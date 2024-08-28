@@ -1,0 +1,25 @@
+.container {
+    /*display: flex;*/
+    /*justify-content: center;*/
+}
+.player_container {
+    /*display: flex;*/
+    /*flex-wrap: wrap;*/
+    /*gap: 20px;*/
+    padding: 0.5em;
+    margin: 0.5em;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+}
+.noPlayers {
+    color: white;
+    margin-top: 4rem;
+}
+.page_title {
+    text-align: center;
+    color: white;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}

@@ -1,0 +1,41 @@
+.primary {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    border: 1px #5F0099 solid;
+    background-color: #5F0099;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    width: fit-content;
+    transition-duration: 0.5s;
+}
+
+.primary:hover{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    border: 1px rgba(95, 0, 153, 0.1) solid;
+    background-color: rgba(	95, 0, 153, 0.1);
+    color: #5F0099;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    width: fit-content;
+    transition-duration: 0.5s;
+}
+
+.outline {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    border: 1px #5F0099 solid;
+    background-color: white;
+    color: #5F0099;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    width: fit-content;
+    transition-duration: 0.5s;
+}

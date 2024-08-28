@@ -1,0 +1,17 @@
+{
+  "name": "Gami-RL",
+  "short_name": "G-RL",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "scope": ".",
+  "description": "Gami-RL est une application web dédiée aux joueurs passionés",
+  "icons": [
+    {
+      "src": "pwa_icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

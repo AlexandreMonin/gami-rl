@@ -1,0 +1,9 @@
+.favourite_games_container {
+    display: flex;
+    padding-top: 1rem;
+    margin: 2rem;
+    flex-direction: row;
+    align-items: start;
+}
+
+

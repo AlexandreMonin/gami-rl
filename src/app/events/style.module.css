@@ -1,0 +1,23 @@
+.title {
+    text-align: center;
+    color: white;
+    margin-top: 2rem;
+    font-weight: bold;
+    font-size: 3rem;
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+}
+
+.addEvent {
+    border: 1px #5F0099 solid;
+    background-color: white;
+    color: #5F0099;
+    padding: 0.8rem;
+    border-radius: 0.5rem;
+    align-self: center;
+    margin-bottom: 2rem;
+}
+
