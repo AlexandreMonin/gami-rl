@@ -28,7 +28,7 @@ export default function LoggedAvatar({username, status, id}: LoggedAvatarProps):
             </div>
 
             <div className={style.wrap}>
-                <Link className={style.links} href={`/user/profile/${id}`}>
+                <Link className={style.links} href={`${process.env.APP_URL}/user/profile/${id}`}>
                     <Image src="/assets/profile_dropdown/profile.svg" alt="Logo de profile" width={25} height={100}/>
                     <p>Mon profil</p>
                 </Link>
@@ -36,7 +36,7 @@ export default function LoggedAvatar({username, status, id}: LoggedAvatarProps):
                 {/*    <Image src="/assets/profile_dropdown/friends.svg" alt="Logo des amis" width={25} height={100}/>*/}
                 {/*    <p>Mes amis</p>*/}
                 {/*</Link>*/}
-                <Link className={style.links} href={`/user/update/${id}`}>
+                <Link className={style.links} href={`${process.env.APP_URL}/user/update/${id}`}>
                     <Image src="/assets/profile_dropdown/settings.svg" alt="Logo des paramètres" width={25} height={100}/>
                     <p>Paramètres</p>
                 </Link>
