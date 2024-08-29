@@ -1,7 +1,14 @@
 import prisma from "@/utils/db";
-import { NextResponse } from "next/server";
+import {NextRequest, NextResponse} from "next/server";
+import {getToken} from "next-auth/jwt";
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
+  const token = await getToken({req});
+
+  if (!token) {
+    console.log("Session not found");
+    return NextResponse.json({ error: "Unauthorized" }, {status: 401});
+  }
   const {userId, postId, votedType}: {userId: number, postId: number, votedType : "up" | "down"} = await req.json();
 
   try {

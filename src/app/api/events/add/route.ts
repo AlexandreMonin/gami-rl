@@ -1,9 +1,17 @@
 import prisma from "@/utils/db";
-import {NextResponse} from "next/server";
+import {NextResponse, NextRequest} from "next/server";
 import Event from "@/type/Event/Event";
+import {getToken} from "next-auth/jwt";
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
     const event: Event = await req.json();
+    const token = await getToken({req});
+
+    if (!token) {
+        console.log("Session not found");
+        return NextResponse.json({ error: "Unauthorized" }, {status: 401});
+    }
+
     console.log(event);
     try {
         const event_creation = await prisma.event.create({
